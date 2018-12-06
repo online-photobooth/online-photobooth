@@ -1,13 +1,13 @@
 import React from 'react';
 
-class PreparePage extends React.Component {
+class Preview extends React.Component {
     render = () => {
         return (
-            <div className='PreparePage'>
+            <div className='Preview'>
                 
             </div>
         )
     }
 }
 
-export default PreparePage;
+export default Preview;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import StartPage from '../_pages/StartPage';
-import PreparePage from '../_pages/PreparePage';
+import PreviewPage from '../_pages/PreviewPage';
 import T0 from '../../assets/img/Triangle_0.png';
 import T1 from '../../assets/img/Triangle_1.png';
 import T2 from '../../assets/img/Triangle_2.png';
@@ -13,10 +13,9 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<div className="wrapper">
-					<Route exact path="/" component={ StartPage } />
-					<Route exact path="/" component={ PreparePage } />
-				</div>
+				<Route exact path="/" 			component={ StartPage } />
+				<Route exact path="/preview" 	component={ PreviewPage } />
+
 				<Footer />
 				
 				<div className="triangles">

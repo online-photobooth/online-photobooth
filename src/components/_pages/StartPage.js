@@ -17,7 +17,7 @@ class StartPage extends React.Component {
                             alt='Large green button with camera icon in it.' 
                             size='large' 
                             title='Druk om verder te gaan.'
-                            link='prepare'
+                            link='preview'
                         />
                     </div>
                 </div>

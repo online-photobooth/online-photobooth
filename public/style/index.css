@@ -74,6 +74,10 @@ p {
 .StartPage .RegularButton {
   margin-left: -200px; }
 
+.PreviewPage {
+  width: 100%;
+  height: 100vh; }
+
 .RegularButton {
   background-color: #00A685;
   border-radius: 200rem;
@@ -114,3 +118,15 @@ p {
 .Footer img {
   width: 17rem;
   padding-bottom: 1rem; }
+
+.Heading .heading--0 {
+  font-size: 78px; }
+
+.Heading .heading--1 {
+  font-size: 60px; }
+
+.Heading .heading--2 {
+  font-size: 50px; }
+
+.Heading .heading--3 {
+  font-size: 45px; }
