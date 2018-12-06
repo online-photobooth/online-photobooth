@@ -10,7 +10,7 @@ p
 
 .wrapper 
 {
-    margin: 0 auto;
+    height: 100vh; display: flex; align-items: center; margin: 0 auto;
 
     // Phone
     @media only screen and (max-width: 768px) 

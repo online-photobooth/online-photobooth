@@ -2,8 +2,6 @@
 {
     & { width: 100%; }
 
-    .wrapper { height: 100vh; display: flex; align-items: center };
-
     .left, .right { width: 50%; display: flex; }
 
     .left { padding-bottom: 20rem; justify-content: flex-start; padding-left: 5rem; width: calc(50% - 5rem); }
