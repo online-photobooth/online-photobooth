@@ -76,7 +76,11 @@ p {
 
 .PreviewPage {
   width: 100%;
-  height: 100vh; }
+  height: 100vh;
+  overflow: hidden; }
+
+.PreviewPage video {
+  object-fit: cover; }
 
 .RegularButton {
   background-color: #00A685;

@@ -1,13 +1,15 @@
 import React from 'react';
-import Heading from '../titles/Heading';
+import Webcam from "react-webcam";
 
 class PreviewPage extends React.Component {
     render = () => {
         return (
             <div className='PreviewPage'>
-                <div className="wrapper">
-                    
-                </div>
+                <Webcam 
+                    width='100%'
+                    height='100%'
+                    audio={ false }
+                />
             </div>
         )
     }

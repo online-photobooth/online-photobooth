@@ -6,7 +6,6 @@ import T0 from '../../assets/img/Triangle_0.png';
 import T1 from '../../assets/img/Triangle_1.png';
 import T2 from '../../assets/img/Triangle_2.png';
 import T3 from '../../assets/img/Triangle_3.png';
-
 import Footer from '../footer/Footer';
 
 class App extends Component {
