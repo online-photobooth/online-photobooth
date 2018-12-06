@@ -1,0 +1,20 @@
+.RegularButton 
+{
+    &   { background-color: #00A685; border-radius: 200rem; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; }
+
+    &.small
+    {
+        & { width: 180px; height: 180px; }
+
+        h3 { margin-top: 3rem; }
+    }
+
+    &.large 
+    {
+        & { width: 400px; height: 400px; }
+
+        h3 { margin-top: 1.4rem; font-size: 1.4rem; }
+    }
+
+    img { width: 35%; }
+}
