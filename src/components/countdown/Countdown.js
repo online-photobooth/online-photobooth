@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Countdown extends React.Component {
     constructor (props) {
@@ -19,6 +19,8 @@ class Countdown extends React.Component {
             else 
             {
                 this.setState({ timer: 0, hideTimer: true });
+                clearInterval(this.interval);
+                this.props.onDone();
             }
         }, 1000)
     }

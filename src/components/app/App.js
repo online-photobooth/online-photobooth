@@ -7,6 +7,7 @@ import T1 from '../../assets/img/Triangle_1.png';
 import T2 from '../../assets/img/Triangle_2.png';
 import T3 from '../../assets/img/Triangle_3.png';
 import Footer from '../footer/Footer';
+import ShowPicturePage from '../_pages/ReviewPage';
 
 class App extends Component {
 	render() {
@@ -14,6 +15,7 @@ class App extends Component {
 			<div className="App">
 				<Route exact path="/" 			component={ StartPage } />
 				<Route exact path="/preview" 	component={ PreviewPage } />
+				<Route exact path="/review" 	component={ ShowPicturePage } />
 
 				<Footer />
 				

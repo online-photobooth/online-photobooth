@@ -10,18 +10,27 @@ class PreviewPage extends React.Component {
             startCountdown: false,
         };
     }
-    
-    startCounter = () => {
-        this.setState({ startCountdown: true });
-    }
+
+    setRef = (webcam) => {
+        this.webcam = webcam;
+    };
 
     renderCountDown = () => {
         if (this.state.startCountdown)
         {
-            return (
-                <Countdown />
-            )
+            return <Countdown onDone={ this.showPicture }/>
         }
+        else 
+        {
+            return null;
+        }
+    }
+
+    showPicture = () => {
+        this.props.history.push({
+            pathname: '/review',
+            state: { picture: this.webcam.getScreenshot() }
+        });
     }
     
     render = () => {
@@ -31,11 +40,12 @@ class PreviewPage extends React.Component {
                     width='100%'
                     height='100%'
                     audio={ false }
+                    ref={ this.setRef }
                 />
 
                 { this.renderCountDown() }
 
-                <CaptureButton onClick={ this.startCounter }/>
+                <CaptureButton onClick={ (e) => this.setState({ startCountdown: true }) }/>
             </div>
         )
     }
