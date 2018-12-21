@@ -6,6 +6,8 @@
 
     a   { text-decoration: none; }
 
+    &:hover { cursor: pointer; }
+
     &.small
     {
         &   { width: 180px; height: 180px; }

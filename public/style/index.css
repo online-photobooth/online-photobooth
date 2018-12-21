@@ -97,6 +97,9 @@ p {
 .RegularButton a {
   text-decoration: none; }
 
+.RegularButton:hover {
+  cursor: pointer; }
+
 .RegularButton.small {
   width: 180px;
   height: 180px; }
