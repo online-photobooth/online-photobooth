@@ -9,6 +9,8 @@ import T3 from '../../assets/img/Triangle_3.png';
 import Footer from '../footer/Footer';
 import ShowPicturePage from '../_pages/ReviewPage';
 import LoginPage from '../_pages/LoginPage';
+import SelectAbumPage from '../_pages/SelectAlbumPage';
+import FinalPage from '../_pages/FinalPage';
 
 class App extends Component {
 	render() {
@@ -18,6 +20,8 @@ class App extends Component {
 				<Route exact path="/preview" 	component={ PreviewPage } />
 				<Route exact path="/review" 	component={ ShowPicturePage } />
 				<Route exact path="/login" 	component={ LoginPage } />
+				<Route exact path="/album" 	component={ SelectAbumPage } />
+				<Route exact path="/final" 	component={ FinalPage } />
 
 				<Footer />
 				

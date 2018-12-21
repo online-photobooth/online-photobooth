@@ -2,10 +2,6 @@ import React from 'react';
 import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
 import GoogleLogin from 'react-google-login';
-import { createBrowserHistory } from 'history';
-const history = createBrowserHistory({
-  forceRefresh: true
-});
 
 class LoginPage extends React.Component {
     responseGoogle(resp) {
@@ -22,10 +18,11 @@ class LoginPage extends React.Component {
                     </div>
                     <div className='right'>
                         <GoogleLogin
-                            clientId="101871442630-48t1albcpttlf4jn8q65cn2e872m2s47.apps.googleusercontent.com"
-                            buttonText="Login"
-                            onSuccess={(resp) => history.push('/', { accessToken: resp.accessToken})}
+                            clientId={process.env.REACT_APP_CLIENT_ID}
+                            onSuccess={(resp) => this.props.history.push('/album', { accessToken: resp.accessToken})}
                             onFailure={(resp) => this.responseGoogle(resp)}
+                            scope="profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing"
+                            prompt="consent"
                             render={renderProps => (
                                 <RegularButton 
                                     img='check' 
