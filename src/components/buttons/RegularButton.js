@@ -14,7 +14,7 @@ class RegularButton extends React.Component {
             )
         } else {
             return (
-                <div className={ `RegularButton ${ this.props.size }` }>
+                <div className={ `RegularButton ${ this.props.size }` } onClick={this.props.onClick}>
                     <img src={ `./style/img/${ this.props.img }.png` } alt="test"/>
                     <h3>{ this.props.title }</h3>
                 </div>
