@@ -21,7 +21,7 @@ class LoginPage extends React.Component {
                             clientId={process.env.REACT_APP_CLIENT_ID}
                             onSuccess={(resp) => this.props.history.push('/album', { accessToken: resp.accessToken})}
                             onFailure={(resp) => this.responseGoogle(resp)}
-                            scope="profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing"
+                            scope="profile email https://www.googleapis.com/auth/photoslibrary.sharing"
                             prompt="consent"
                             render={renderProps => (
                                 <RegularButton 

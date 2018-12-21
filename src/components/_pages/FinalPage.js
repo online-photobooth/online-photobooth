@@ -23,7 +23,7 @@ class FinalPage extends React.Component {
                     </div>
 
                     <div className=''>
-                        <QRCode value={this.props.location.state.album.productUrl} />
+                        <QRCode value={this.props.location.state.album.shareInfo.shareableUrl} />
                         <RegularButton 
                             img='camera' 
                             alt='Large green button with camera icon in it.' 

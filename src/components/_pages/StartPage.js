@@ -18,7 +18,7 @@ class StartPage extends React.Component {
             <div className='StartPage'>
                 <div className="wrapper">
                     <div className='left'>
-                        <Heading>Welkom op de { this.props.location.state.album.title }!</Heading>
+                        <Heading>Welkom op de { this.props.location.state ? this.props.location.state.album.title : ''}!</Heading>
                     </div>
 
                     <div className='right'>
