@@ -6,10 +6,7 @@ import { connect } from 'react-redux';
 class ReviewPage extends React.Component {  
   
     componentDidMount() {
-      if(!this.props.location.state || !this.props.location.state.googleUser) {
-        this.props.history.push('/login')
-      }
-      else if(!this.props.location.state.album) {
+      if(!this.props.location.state || !this.props.location.state.album) {
         this.props.history.push('/album')
       }
     }
@@ -23,7 +20,7 @@ class ReviewPage extends React.Component {
         console.log(resp);
         
         if(resp.status === 200) {
-          this.props.history.push('/final', { googleUser: this.props.location.state.googleUser, album: this.props.location.state.album })
+          this.props.history.push('/final', { album: this.props.location.state.album })
         }
       } catch (error) {
         console.log(error);

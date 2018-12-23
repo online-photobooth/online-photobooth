@@ -18,7 +18,9 @@ class SelectAbumPage extends React.Component {
     }
 
     async componentDidMount() {
-      if(!this.props.location.state || !this.props.location.state.googleUser) {
+      if(!this.props.accessToken) {
+        console.log('redirecting from album to login');
+        
         this.props.history.push('/login')
       } else {
         try {
@@ -39,7 +41,7 @@ class SelectAbumPage extends React.Component {
 
     setDefaultAlbum = (selectedAlbum) => {
       this.setState({ selectedAlbum })
-      this.props.history.push('/', { googleUser: this.props.location.state.googleUser, album: selectedAlbum })
+      this.props.history.push('/', { album: selectedAlbum })
     }
 
     renderAlbums = () => {
@@ -54,6 +56,7 @@ class SelectAbumPage extends React.Component {
     createNewAlbum = async (e) => {
         e.preventDefault()
         if(this.state.newAlbum === '') return false
+        // CREATE ALBUM
         try {
           const resp = await axios({
             method: 'POST',
@@ -68,6 +71,7 @@ class SelectAbumPage extends React.Component {
           })
 
           console.log(resp);
+          // SHARE ALBUM
           try {
             const resp2 = await axios({
               method: 'POST',
@@ -91,7 +95,7 @@ class SelectAbumPage extends React.Component {
           console.log(selectedAlbum);
           
           this.setState({ selectedAlbum })
-          this.props.history.push('/', { googleUser: this.props.location.state.googleUser.accessToken, album: selectedAlbum })
+          this.props.history.push('/', { album: selectedAlbum })
         } catch (error) {
             console.log('Sharing album went wrong')
             console.log(error)

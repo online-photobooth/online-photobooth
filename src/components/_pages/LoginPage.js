@@ -17,7 +17,11 @@ class LoginPage extends React.Component {
         type: 'SET_ACCESS_TOKEN',
         payload: googleUser.tokenObj.access_token
       })
-      this.props.history.push('/album', { googleUser })
+      this.props.dispatch({
+        type: 'SET_GOOGLE_USER',
+        payload: googleUser
+      })
+      this.props.history.push('/album')
     }
 
     setRefreshTimeout = (expiresAt) => {
@@ -34,7 +38,7 @@ class LoginPage extends React.Component {
 
     reloadAuthToken = async () => {
       try {
-        const tokenObj = await this.props.location.state.googleUser.reloadAuthResponse()
+        const tokenObj = await this.props.googleUser.reloadAuthResponse()
         this.props.dispatch({
           type: 'SET_ACCESS_TOKEN',
           payload: tokenObj.access_token
@@ -58,7 +62,7 @@ class LoginPage extends React.Component {
                             clientId={process.env.REACT_APP_CLIENT_ID}
                             onSuccess={(resp) => this.successResponseGoogle(resp)}
                             onFailure={(resp) => this.responseGoogle(resp)}
-                            scope="profile email https://www.googleapis.com/auth/photoslibrary.sharing"
+                            scope="profile email https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
                             prompt="consent"
                             loginHint="kdgphotobooth@gmail.com"
                             render={renderProps => (
@@ -78,4 +82,7 @@ class LoginPage extends React.Component {
     }
 }
 
-export default connect()(LoginPage);
+const mapStateToProps = (state) => ({
+  googleUser: state.googleUser
+});
+export default connect(mapStateToProps)(LoginPage);

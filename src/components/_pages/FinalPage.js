@@ -3,6 +3,7 @@ import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
 import QRCode from 'react-qr-code';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class FinalPage extends React.Component {
     constructor (props) {
@@ -13,10 +14,7 @@ class FinalPage extends React.Component {
     }
 
     componentDidMount() {
-      if(!this.props.location.state || !this.props.location.state.googleUser) {
-        this.props.history.push('/login')
-      }
-      else if(!this.props.location.state.album) {
+      if(!this.props.location.state || !this.props.location.state.album) {
         this.props.history.push('/album')
       }
     }
@@ -27,14 +25,17 @@ class FinalPage extends React.Component {
 
     sendEmail = async (e) => {
       e.preventDefault()
+      console.log('Sending mail!');
+      
       try {
         const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/sendPictureToEmail`, {
-            token: this.props.location.state.googleUser.accessToken,
+            token: this.props.accessToken,
+            title: this.props.location.state.album.title,
             email: this.state.email,
         })
         console.log(resp);
       } catch (error) {
-        console.log('Send Email', error)
+        console.log('Send Email', error.response)
       }
     }
 
@@ -57,7 +58,7 @@ class FinalPage extends React.Component {
                       alt='Large green button with camera icon in it.' 
                       size='large' 
                       title='Neem een nieuwe foto.'
-                      onClick={() => this.props.history.push('/', { googleUser: this.props.location.state.googleUser, album: this.props.location.state.album })}
+                      onClick={() => this.props.history.push('/', { album: this.props.location.state.album })}
                     />
                 </div>
                 </div>
@@ -66,4 +67,7 @@ class FinalPage extends React.Component {
     }
 }
 
-export default FinalPage;
+const mapStateToProps = (state) => ({
+  accessToken: state.accessToken
+});
+export default connect(mapStateToProps)(FinalPage);
