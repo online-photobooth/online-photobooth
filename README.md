@@ -1,4 +1,6 @@
 # KDG Photobooth
+A photobooth client, that takes a picture with a canon camera and uploads it to google photos.  
+Best used on a raspberry pi that's running the [Photobooth Server](https://github.com/KdG-Photobooth/Server)
 
 ## Installation
 git clone https://github.com/KdG-Photobooth/Photobooth.git  

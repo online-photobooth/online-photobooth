@@ -1,7 +1,13 @@
 {
   "name": "photobooth_interface",
   "version": "0.1.0",
+  "description": "Takes a picture with Gphoto2 and sends it to google photos.",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KdG-Photobooth/Photobooth.git"
+  },
   "dependencies": {
     "art": "^0.10.3",
     "axios": "^0.18.0",
