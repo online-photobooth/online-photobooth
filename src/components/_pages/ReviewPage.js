@@ -16,7 +16,7 @@ class ReviewPage extends React.Component {
 
     async uploadPicture() {
       try {
-        const resp = await axios.post('http://192.168.1.42:8888/uploadLastImageTaken', {
+        const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/uploadLastImageTaken`, {
             token: this.props.accessToken,
             album: this.props.location.state.album.id,
         })

@@ -28,7 +28,7 @@ class FinalPage extends React.Component {
     sendEmail = async (e) => {
       e.preventDefault()
       try {
-        const resp = await axios.post('http://192.168.1.42:8888/sendPictureToEmail', {
+        const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/sendPictureToEmail`, {
             token: this.props.location.state.googleUser.accessToken,
             email: this.state.email,
         })

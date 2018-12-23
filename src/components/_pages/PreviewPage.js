@@ -22,7 +22,7 @@ class PreviewPage extends React.Component {
     }
     
      takePicture = async () => {
-      const resp = await axios.get('http://192.168.1.42:8888/takePicture')
+      const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`)
       const picture = resp.data.image
       this.props.history.push('/review', { picture, googleUser: this.props.location.state.googleUser, album: this.props.location.state.album })
     }
