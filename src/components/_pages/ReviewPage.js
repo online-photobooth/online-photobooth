@@ -23,7 +23,7 @@ class ReviewPage extends React.Component {
           this.props.history.push('/final', { album: this.props.location.state.album })
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     }
 

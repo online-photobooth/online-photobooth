@@ -46,7 +46,7 @@ class LoginPage extends React.Component {
         this.setRefreshTimeout(tokenObj.expires_at);
       } catch (error) {
         console.log('Could not refresh token');
-        console.log(error);
+        console.log(error.response);
       }
     }
 

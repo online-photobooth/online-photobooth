@@ -98,11 +98,11 @@ class SelectAbumPage extends React.Component {
           this.props.history.push('/', { album: selectedAlbum })
         } catch (error) {
             console.log('Sharing album went wrong')
-            console.log(error)
+            console.log(error.response)
           }
         } catch (error) {
           console.log('Creating album went wrong')
-          console.log(error);
+          console.log(error.response);
         }
     }
 
