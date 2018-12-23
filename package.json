@@ -13,9 +13,11 @@
     "react-dom": "^16.6.3",
     "react-google-login": "^4.0.0",
     "react-qr-code": "^0.1.2",
+    "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "react-webcam": "^1.0.4",
+    "redux": "^4.0.1",
     "simple-ssh": "^1.0.0",
     "ssh2": "^0.6.1"
   },

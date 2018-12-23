@@ -1,6 +1,7 @@
 import React from 'react';
 import Heading from '../titles/Heading';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class SelectAbumPage extends React.Component {
     constructor (props) {
@@ -12,18 +13,18 @@ class SelectAbumPage extends React.Component {
         };
     }
 
-    updateNewAlbum(event){
-      this.setState({newAlbum : event.target.value})
-      }
+    onChangeHandler(e){
+      this.setState({ [e.target.name]: e.target.value})
+    }
 
     async componentDidMount() {
-      if(!this.props.location.state || !this.props.location.state.accessToken) {
+      if(!this.props.location.state || !this.props.location.state.googleUser) {
         this.props.history.push('/login')
       } else {
         try {
           const resp = await axios.get('https://photoslibrary.googleapis.com/v1/sharedAlbums?excludeNonAppCreatedData=true', {
             headers: {
-              Authorization: 'Bearer ' + this.props.location.state.accessToken
+              Authorization: 'Bearer ' + this.props.accessToken
             }
           })
           console.log(resp);
@@ -38,7 +39,7 @@ class SelectAbumPage extends React.Component {
 
     setDefaultAlbum = (selectedAlbum) => {
       this.setState({ selectedAlbum })
-      this.props.history.push('/', { accessToken: this.props.location.state.accessToken, album: selectedAlbum })
+      this.props.history.push('/', { googleUser: this.props.location.state.googleUser, album: selectedAlbum })
     }
 
     renderAlbums = () => {
@@ -58,7 +59,7 @@ class SelectAbumPage extends React.Component {
             method: 'POST',
             url: 'https://photoslibrary.googleapis.com/v1/albums', 
             headers: {
-              Authorization: 'Bearer ' + this.props.location.state.accessToken,
+              Authorization: 'Bearer ' + this.props.accessToken,
               'Content-type': 'application/json',
             },
             data: {
@@ -72,7 +73,7 @@ class SelectAbumPage extends React.Component {
               method: 'POST',
               url: `https://photoslibrary.googleapis.com/v1/albums/${resp.data.id}:share`, 
               headers: {
-                Authorization: 'Bearer ' + this.props.location.state.accessToken,
+                Authorization: 'Bearer ' + this.props.accessToken,
                 'Content-type': 'application/json',
               },
               data: {
@@ -90,7 +91,7 @@ class SelectAbumPage extends React.Component {
           console.log(selectedAlbum);
           
           this.setState({ selectedAlbum })
-          this.props.history.push('/', { accessToken: this.props.location.state.accessToken, album: selectedAlbum })
+          this.props.history.push('/', { googleUser: this.props.location.state.googleUser.accessToken, album: selectedAlbum })
         } catch (error) {
             console.log('Sharing album went wrong')
             console.log(error)
@@ -111,7 +112,7 @@ class SelectAbumPage extends React.Component {
 
                     <div className=''>
                         <form onSubmit={(e) => this.createNewAlbum(e)}>
-                          <input name='albumName' onChange={(e) => this.updateNewAlbum(e)} />
+                          <input name='albumName' value={this.state.newAlbum} onChange={(e) => this.onChangeHandler(e)} />
                           <button type='submit'>Create new Album</button>
                         </form>
                         { this.state.albums ? this.renderAlbums() : 'No albums found' }
@@ -122,4 +123,7 @@ class SelectAbumPage extends React.Component {
     }
 }
 
-export default SelectAbumPage;
+const mapStateToProps = (state) => ({
+  accessToken: state.accessToken
+});
+export default connect(mapStateToProps)(SelectAbumPage);

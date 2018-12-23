@@ -5,7 +5,7 @@ import Heading from '../titles/Heading';
 class StartPage extends React.Component {
 
     componentDidMount() {
-      if(!this.props.location.state || !this.props.location.state.accessToken) {
+      if(!this.props.location.state || !this.props.location.state.googleUser) {
         this.props.history.push('/login')
       }
       else if(!this.props.location.state.album) {
@@ -27,7 +27,7 @@ class StartPage extends React.Component {
                             alt='Large green button with camera icon in it.' 
                             size='large' 
                             title='Druk om verder te gaan.'
-                            onClick={() => this.props.history.push('/preview', { accessToken: this.props.location.state.accessToken, album: this.props.location.state.album })}
+                            onClick={() => this.props.history.push('/preview', { googleUser: this.props.location.state.googleUser, album: this.props.location.state.album })}
                         />
                     </div>
                 </div>

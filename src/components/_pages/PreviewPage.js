@@ -13,7 +13,7 @@ class PreviewPage extends React.Component {
     }
 
     componentDidMount() {
-      if(!this.props.location.state || !this.props.location.state.accessToken) {
+      if(!this.props.location.state || !this.props.location.state.googleUser) {
         this.props.history.push('/login')
       }
       else if(!this.props.location.state.album) {
@@ -22,9 +22,9 @@ class PreviewPage extends React.Component {
     }
     
      takePicture = async () => {
-      const resp = await axios.get('http://192.168.0.105:8888/takePictureWithoutSaving')
+      const resp = await axios.get('http://192.168.1.42:8888/takePicture')
       const picture = resp.data.image
-      this.props.history.push('/review', { picture, accessToken: this.props.location.state.accessToken, album: this.props.location.state.album })
+      this.props.history.push('/review', { picture, googleUser: this.props.location.state.googleUser, album: this.props.location.state.album })
     }
 
     setRef = (webcam) => {
