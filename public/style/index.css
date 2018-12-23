@@ -97,6 +97,9 @@ p {
 .RegularButton a {
   text-decoration: none; }
 
+.RegularButton:hover {
+  cursor: pointer; }
+
 .RegularButton.small {
   width: 180px;
   height: 180px; }
@@ -128,6 +131,8 @@ p {
   color: #fff;
   border: none;
   font-size: 4rem; }
+  .CaptureButton:hover {
+    cursor: pointer; }
 
 .Footer {
   position: absolute;

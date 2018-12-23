@@ -3,14 +3,23 @@ import { Link } from 'react-router-dom';
 
 class RegularButton extends React.Component {
     render = () => {
-        return (
-            <Link to={ `/${ this.props.link }` } className='RegularButtonLink'>
-                <div className={ `RegularButton ${ this.props.size }` }>
+        if(this.props.link) {
+            return (
+                <Link to={ `/${ this.props.link }` } className='RegularButtonLink'>
+                    <div className={ `RegularButton ${ this.props.size }` }>
+                        <img src={ `./style/img/${ this.props.img }.png` } alt="test"/>
+                        <h3>{ this.props.title }</h3>
+                    </div>
+                </Link>
+            )
+        } else {
+            return (
+                <div className={ `RegularButton ${ this.props.size }` } onClick={this.props.onClick}>
                     <img src={ `./style/img/${ this.props.img }.png` } alt="test"/>
                     <h3>{ this.props.title }</h3>
                 </div>
-            </Link>
-        )
+            )
+        }
     }
 }
 
