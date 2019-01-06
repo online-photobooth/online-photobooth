@@ -1,0 +1,37 @@
+.SingleAlbum 
+{
+    padding: 1rem 0 0 0;
+    margin: 1rem;
+    width: calc(50% - 2rem);
+    -webkit-box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.09);
+    -moz-box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.09);
+    box-shadow: 0px 3px 21px 0px rgba(0,0,0,0.09);
+    border-radius: 10px;
+
+    h3 
+    {
+        margin: 0 0 1rem 0;
+        padding: 0 1.5rem;
+    }
+
+    button 
+    {
+        width: 100%;
+        border: none;
+        background-color: #00A685;
+        color: #fff;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        transition: all 150ms ease-in-out;
+        cursor: pointer;
+
+        &:hover 
+        {
+            background-color: darken(#00A685, 10%);
+        }
+    }
+}

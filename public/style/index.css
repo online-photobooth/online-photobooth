@@ -11,7 +11,18 @@ p {
   height: 100vh;
   display: flex;
   align-items: center;
-  margin: 0 auto; }
+  margin: 0 auto;
+  justify-content: center; }
+  .wrapper .content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -2rem;
+    justify-content: center; }
+    .wrapper .content .Heading {
+      width: 60%;
+      text-align: center;
+      margin-bottom: 2rem; }
   @media only screen and (max-width: 768px) {
     .wrapper {
       width: 95%; } }
@@ -58,22 +69,6 @@ p {
 .StartPage {
   width: 100%; }
 
-.StartPage .left, .StartPage .right {
-  width: 50%;
-  display: flex; }
-
-.StartPage .left {
-  padding-bottom: 20rem;
-  justify-content: flex-start;
-  padding-left: 5rem;
-  width: calc(50% - 5rem); }
-
-.StartPage .right {
-  justify-content: flex-start; }
-
-.StartPage .RegularButton {
-  margin-left: -200px; }
-
 .PreviewPage {
   width: 100%;
   height: 100vh;
@@ -81,6 +76,48 @@ p {
 
 .PreviewPage video {
   object-fit: cover; }
+
+.SelectAlbumPage .albumOverview {
+  border: 1px solid #00A685;
+  width: 70%;
+  border-radius: 10px; }
+  .SelectAlbumPage .albumOverview form {
+    width: 100%;
+    background-color: #00A685;
+    display: flex;
+    justify-content: space-between;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; }
+    .SelectAlbumPage .albumOverview form input {
+      height: 3rem;
+      width: 100%;
+      margin: 1rem;
+      border: none;
+      padding: 0 1rem;
+      font-size: 18px;
+      border-radius: 10px; }
+    .SelectAlbumPage .albumOverview form button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-top-right-radius: 10px;
+      padding: 0 1rem;
+      font-size: 18px;
+      width: 10rem;
+      transition: all 150ms ease-in-out;
+      font-size: 14px;
+      font-weight: bold; }
+      .SelectAlbumPage .albumOverview form button:hover {
+        background-color: #292929;
+        cursor: pointer; }
+
+.SelectAlbumPage .albums {
+  height: 15rem;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  padding: 1rem;
+  flex-wrap: wrap;
+  display: flex; }
 
 .RegularButton {
   background-color: #00A685;
@@ -90,30 +127,23 @@ p {
   justify-content: center;
   align-items: center;
   color: #fff; }
-
-.RegularButton img {
-  width: 35%; }
-
-.RegularButton a {
-  text-decoration: none; }
-
-.RegularButton:hover {
-  cursor: pointer; }
-
-.RegularButton.small {
-  width: 180px;
-  height: 180px; }
-
-.RegularButton.small h3 {
-  margin-top: 3rem; }
-
-.RegularButton.large {
-  width: 400px;
-  height: 400px; }
-
-.RegularButton.large h3 {
-  margin-top: 1.4rem;
-  font-size: 1.4rem; }
+  .RegularButton img {
+    width: 35%; }
+  .RegularButton a {
+    text-decoration: none; }
+  .RegularButton:hover {
+    cursor: pointer; }
+  .RegularButton.small {
+    width: 180px;
+    height: 180px; }
+  .RegularButton.small h3 {
+    margin-top: 3rem; }
+  .RegularButton.large {
+    width: 400px;
+    height: 400px; }
+  .RegularButton.large h3 {
+    margin-top: 1.4rem;
+    font-size: 1.4rem; }
 
 .CaptureButton {
   position: absolute;
@@ -192,3 +222,30 @@ p {
   .Polaroid .logo {
     width: 175px;
     margin-top: 50px; }
+
+.SingleAlbum {
+  padding: 1rem 0 0 0;
+  margin: 1rem;
+  width: calc(50% - 2rem);
+  -webkit-box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.09);
+  -moz-box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.09);
+  box-shadow: 0px 3px 21px 0px rgba(0, 0, 0, 0.09);
+  border-radius: 10px; }
+  .SingleAlbum h3 {
+    margin: 0 0 1rem 0;
+    padding: 0 1.5rem; }
+  .SingleAlbum button {
+    width: 100%;
+    border: none;
+    background-color: #00A685;
+    color: #fff;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 150ms ease-in-out;
+    cursor: pointer; }
+    .SingleAlbum button:hover {
+      background-color: #00735c; }

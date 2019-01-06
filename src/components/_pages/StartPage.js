@@ -14,18 +14,17 @@ class StartPage extends React.Component {
         return (
             <div className='StartPage'>
                 <div className="wrapper">
-                    <div className='left'>
-                        <Heading>Welkom op de { this.props.location.state ? this.props.location.state.album.title : ''}!</Heading>
-                    </div>
-
-                    <div className='right'>
+                    <div className="content">
+                        <Heading>
+                            Welkom op de { this.props.location.state ? this.props.location.state.album.title : ''}!
+                        </Heading>
                         <RegularButton 
                             img='camera' 
                             alt='Large green button with camera icon in it.' 
-                            size='small' 
+                            size='large' 
                             title='Druk om verder te gaan.'
                             link='preview'
-                            /* onClick={() => this.props.history.push('/preview', { album: this.props.location.state.album })} */
+                            onClick={() => this.props.history.push('/preview', { album: this.props.location.state.album })}
                         />
                     </div>
                 </div>

@@ -2,14 +2,39 @@ import React from 'react';
 import Heading from '../titles/Heading';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import SingleAlbum from '../albums/SingleAlbum';
 
 class SelectAbumPage extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            albums: [],
+			// albums: [],
+			albums: [
+				{
+					"title": "Event 1"
+				},
+				{
+					"title": "Event 2"
+				},
+				{
+					"title": "Event 3"
+				},
+				{
+					"title": "Event 4"
+				},
+				{
+					"title": "Event 5"
+				},
+				{
+					"title": "Event 6"
+				},
+				{
+					"title": "Event 7"
+				},
+			],
             selectedAlbum: [],
-            newAlbum: '',
+			newAlbum: '',
+			albumName: '',
         };
     }
 
@@ -21,7 +46,7 @@ class SelectAbumPage extends React.Component {
 		if(!this.props.accessToken) 
 		{
 			console.log('redirecting from album to login');
-			this.props.history.push('/login')
+			// this.props.history.push('/login')
 		} 
 		else 
 		{
@@ -46,17 +71,20 @@ class SelectAbumPage extends React.Component {
     }
 
     setDefaultAlbum = (selectedAlbum) => {
+		console.log('CLICKED')
         this.setState({ selectedAlbum })
         this.props.history.push('/', { album: selectedAlbum })
     }
 
     renderAlbums = () => {
-        return this.state.albums.map(album => 
-            <div key={album.id}>
+        return this.state.albums.map((album, i) => (
+/*             <div key={album.id}>
               <h3>{ album.title }</h3>
               <button onClick={ () => this.setDefaultAlbum(album) }>Select this Album</button>
-            </div>
-        )
+            </div> */
+
+			<SingleAlbum key={ i } album={ album } onClick={ this.setDefaultAlbum }/>
+        ))
     }
 
     createNewAlbum = async (e) => {
@@ -122,19 +150,30 @@ class SelectAbumPage extends React.Component {
 
     render = () => {
         return (
-            <div className='StartPage'>
+            <div className='SelectAlbumPage'>
                 <div className='wrapper'>
-                    <div className=''>
-                        <Heading>Selecteer een Album.</Heading>
-                    </div>
+					<div className="content">
+						<Heading>Selecteer een Album.</Heading>
 
-                    <div className=''>
-                        <form onSubmit={(e) => this.createNewAlbum(e)}>
-                          <input name='albumName' value={this.state.newAlbum} onChange={(e) => this.onChangeHandler(e)} />
-                          <button type='submit'>Create new Album</button>
-                        </form>
-                        { this.state.albums ? this.renderAlbums() : 'No albums found' }
-                    </div>
+						<div className="albumOverview">
+							<form onSubmit={(e) => this.createNewAlbum(e)}>
+								<input 
+									name='albumName' 
+									value={ this.state.albumName } 
+									onChange={ this.onChangeHandler } 
+									placeholder='Maak een nieuw album aan'
+								/>
+
+								<button type='submit'>
+									AANMAKEN
+								</button>
+							</form>
+
+							<div className="albums">
+								{ this.state.albums ? this.renderAlbums() : 'No albums found' }
+							</div>
+						</div>
+					</div>
                 </div>
             </div>
         )

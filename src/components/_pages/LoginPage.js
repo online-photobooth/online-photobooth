@@ -61,12 +61,11 @@ class LoginPage extends React.Component {
         return (
             <div className='StartPage'>
                 <div className="wrapper">
-                    <div className='left'>
+                    <div className='content'>
                         <Heading>Welkom op de KdG Photobooth!!!!!</Heading>
-                    </div>
-                    <div className='right'>
+
                         <GoogleLogin
-                            clientId={process.env.REACT_APP_CLIENT_ID}
+                            clientId={ process.env.REACT_APP_CLIENT_ID }
                             onSuccess={(resp) => this.successResponseGoogle(resp)}
                             onFailure={(resp) => this.responseGoogle(resp)}
                             scope="profile email https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
@@ -78,7 +77,7 @@ class LoginPage extends React.Component {
                                     alt='Large green button with camera icon in it.' 
                                     size='large' 
                                     title='Druk om in te loggen.'
-                                    onClick={renderProps.onClick}
+                                    onClick={ renderProps.onClick }
                                 />
                             )}
                         />
@@ -90,7 +89,7 @@ class LoginPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  googleUser: state.googleUser
+    googleUser: state.googleUser
 });
 
 export default connect(mapStateToProps)(LoginPage);
