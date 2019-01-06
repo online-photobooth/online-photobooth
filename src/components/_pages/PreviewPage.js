@@ -13,15 +13,16 @@ class PreviewPage extends React.Component {
     }
 
     componentDidMount() {
-      if(!this.props.location.state || !this.props.location.state.album) {
-        this.props.history.push('/album')
-      }
+        if (!this.props.location.state || !this.props.location.state.album) 
+        {
+            this.props.history.push('/album')
+        }
     }
     
      takePicture = async () => {
-      const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`)
-      const picture = resp.data.image
-      this.props.history.push('/review', { picture, album: this.props.location.state.album })
+        const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`)
+        const picture = resp.data.image
+        this.props.history.push('/review', { picture, album: this.props.location.state.album })
     }
 
     setRef = (webcam) => {

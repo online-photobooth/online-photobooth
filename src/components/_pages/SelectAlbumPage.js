@@ -8,8 +8,8 @@ class SelectAbumPage extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-			// albums: [],
-			albums: [
+			albums: [],
+/* 			albums: [
 				{
 					"title": "Event 1"
 				},
@@ -31,10 +31,11 @@ class SelectAbumPage extends React.Component {
 				{
 					"title": "Event 7"
 				},
-			],
+			], */
             selectedAlbum: [],
 			newAlbum: '',
 			albumName: '',
+			selectedAlbum: '',
         };
     }
 
@@ -43,10 +44,10 @@ class SelectAbumPage extends React.Component {
     }
 
     componentDidMount = async () => {
-		if(!this.props.accessToken) 
+		if (!this.props.accessToken) 
 		{
 			console.log('redirecting from album to login');
-			// this.props.history.push('/login')
+			this.props.history.push('/login')
 		} 
 		else 
 		{
@@ -71,8 +72,12 @@ class SelectAbumPage extends React.Component {
     }
 
     setDefaultAlbum = (selectedAlbum) => {
-		console.log('CLICKED')
-        this.setState({ selectedAlbum })
+		console.log('CLICKED');
+
+		console.log('FROM setDefaultAlbum');
+		console.log(selectedAlbum);
+
+        this.setState({ selectedAlbum });
         this.props.history.push('/', { album: selectedAlbum })
     }
 

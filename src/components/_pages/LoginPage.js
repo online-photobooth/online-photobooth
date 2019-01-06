@@ -62,7 +62,7 @@ class LoginPage extends React.Component {
             <div className='StartPage'>
                 <div className="wrapper">
                     <div className='content'>
-                        <Heading>Welkom op de KdG Photobooth!!!!!</Heading>
+                        <Heading>Welkom op de KdG Photobooth!</Heading>
 
                         <GoogleLogin
                             clientId={ process.env.REACT_APP_CLIENT_ID }
