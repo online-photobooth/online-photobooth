@@ -3,11 +3,11 @@ import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
 
 class StartPage extends React.Component {
-
-    componentDidMount() {
-      if(!this.props.location.state || !this.props.location.state.album) {
-        this.props.history.push('/album')
-      }
+    componentDidMount = () => {
+        if (!this.props.location.state || !this.props.location.state.album) 
+        {
+            this.props.history.push('/album')
+        }
     }
 
     render = () => {
@@ -22,9 +22,10 @@ class StartPage extends React.Component {
                         <RegularButton 
                             img='camera' 
                             alt='Large green button with camera icon in it.' 
-                            size='large' 
+                            size='small' 
                             title='Druk om verder te gaan.'
-                            onClick={() => this.props.history.push('/preview', { album: this.props.location.state.album })}
+                            link='preview'
+                            /* onClick={() => this.props.history.push('/preview', { album: this.props.location.state.album })} */
                         />
                     </div>
                 </div>

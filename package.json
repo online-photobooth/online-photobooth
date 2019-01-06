@@ -17,7 +17,7 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-art-svg-renderer": "^0.0.1-rc.8",
     "react-dom": "^16.6.3",
-    "react-google-login": "^4.0.0",
+    "react-google-login": "^4.0.1",
     "react-qr-code": "^0.1.2",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",

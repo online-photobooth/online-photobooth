@@ -11,43 +11,50 @@ class LoginPage extends React.Component {
     }
 
     successResponseGoogle = (googleUser) => {
-        console.log(googleUser)
+        console.log(googleUser);
         this.setRefreshTimeout(googleUser.tokenObj.expires_at);
+
         this.props.dispatch({
           type: 'SET_ACCESS_TOKEN',
           payload: googleUser.tokenObj.access_token
-        })
+        });
+
         this.props.dispatch({
           type: 'SET_GOOGLE_USER',
           payload: googleUser
-        })
-        this.props.history.push('/album')
+        });
+
+        this.props.history.push('/album');
     }
 
     setRefreshTimeout = (expiresAt) => {
-      const oneMin = 60 * 1000;
-      const refreshDeadline =  Math.max(
-        5*oneMin,
-        expiresAt - Date.now() - (5*oneMin))
-      console.log('Refreshing credentials in '
-                  + Math.floor(refreshDeadline / oneMin).toString()
-                  + ' minutes')
+        const oneMin = 60 * 1000;
+        const refreshDeadline =  Math.max(5 * oneMin, expiresAt - Date.now() - (5 * oneMin));
 
-      setTimeout(this.reloadAuthToken, refreshDeadline)
+        console.log('Refreshing credentials in '
+                    + Math.floor(refreshDeadline / oneMin).toString()
+                    + ' minutes');
+
+        setTimeout(this.reloadAuthToken, refreshDeadline);
     }
 
     reloadAuthToken = async () => {
-      try {
-        const tokenObj = await this.props.googleUser.reloadAuthResponse()
-        this.props.dispatch({
-          type: 'SET_ACCESS_TOKEN',
-          payload: tokenObj.access_token
-        })
-        this.setRefreshTimeout(tokenObj.expires_at);
-      } catch (error) {
-        console.log('Could not refresh token');
-        console.log(error.response);
-      }
+        try 
+        {
+            const tokenObj = await this.props.googleUser.reloadAuthResponse();
+
+            this.props.dispatch({
+                type: 'SET_ACCESS_TOKEN',
+                payload: tokenObj.access_token
+            });
+
+            this.setRefreshTimeout(tokenObj.expires_at);
+        } 
+        catch (error) 
+        {
+            console.log('Could not refresh token');
+            console.log(error.response);
+        }
     }
 
     render = () => {
@@ -85,4 +92,5 @@ class LoginPage extends React.Component {
 const mapStateToProps = (state) => ({
   googleUser: state.googleUser
 });
+
 export default connect(mapStateToProps)(LoginPage);

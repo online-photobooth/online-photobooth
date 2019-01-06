@@ -18,21 +18,21 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Route exact path="/" 			  component={ StartPage } />
+				<Route exact path="/" 			component={ StartPage } />
 				<Route exact path="/preview" 	component={ PreviewPage } />
 				<Route exact path="/review" 	component={ ShowPicturePage } />
-				<Route exact path="/login" 	  component={ LoginPage } />
-				<Route exact path="/album" 	  component={ SelectAbumPage } />
-				<Route exact path="/final" 	  component={ FinalPage } />
+				<Route exact path="/login" 	  	component={ LoginPage } />
+				<Route exact path="/album" 	  	component={ SelectAbumPage } />
+				<Route exact path="/final" 	  	component={ FinalPage } />
 
 				<Footer />
 				
-{/* 				<div className="triangles">
+				<div className="triangles">
 					<img className='t0' src={ T0 } alt="Traingle in the upperleft corner."/>
 					<img className='t1' src={ T1 } alt="Traingle in the upperright corner."/>
 					<img className='t2' src={ T2 } alt="Traingle in the bottomright corner."/>
 					<img className='t3' src={ T3 } alt="Traingle in the bottomleft corner."/>
-				</div> */}
+				</div>
 			</div>
 		);
 	}
