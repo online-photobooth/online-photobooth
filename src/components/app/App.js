@@ -19,12 +19,12 @@ class App extends Component {
 
 				<Footer />
 				
-				<div className="triangles">
+{/* 				<div className="triangles">
 					<img className='t0' src={ T0 } alt="Traingle in the upperleft corner."/>
 					<img className='t1' src={ T1 } alt="Traingle in the upperright corner."/>
 					<img className='t2' src={ T2 } alt="Traingle in the bottomright corner."/>
 					<img className='t3' src={ T3 } alt="Traingle in the bottomleft corner."/>
-				</div>
+				</div> */}
 			</div>
 		);
 	}

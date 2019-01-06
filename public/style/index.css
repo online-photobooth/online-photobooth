@@ -167,3 +167,23 @@ p {
   .Countdown h1 {
     color: #fff;
     font-size: 12rem; }
+
+.Polaroid {
+  display: inline-block;
+  line-height: 0;
+  border-radius: 3px;
+  padding: 25px;
+  -webkit-box-shadow: 0px 4px 19px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 4px 19px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 19px 0px rgba(0, 0, 0, 0.3); }
+  .Polaroid img {
+    width: 20rem; }
+  .Polaroid h3 {
+    color: #8460AC;
+    font-size: 30px;
+    font-weight: lighter; }
+  .Polaroid p {
+    font-size: 20px; }
+  .Polaroid .logo {
+    width: 175px;
+    margin-top: 50px; }

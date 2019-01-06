@@ -2,6 +2,7 @@ import React from 'react';
 import Webcam from "react-webcam";
 import CaptureButton from '../buttons/CaptureButton';
 import Countdown from '../countdown/Countdown';
+import axios from 'axios'
 
 class PreviewPage extends React.Component {
     constructor (props) {
@@ -18,7 +19,7 @@ class PreviewPage extends React.Component {
     renderCountDown = () => {
         if (this.state.startCountdown)
         {
-            return <Countdown onDone={ this.showPicture }/>
+            return <Countdown onDone={ this.takePicture }/>
         }
         else 
         {
@@ -26,11 +27,19 @@ class PreviewPage extends React.Component {
         }
     }
 
-    showPicture = () => {
-        this.props.history.push({
-            pathname: '/review',
-            state: { picture: this.webcam.getScreenshot() }
-        });
+    takePicture = () => {
+        axios.get('http://10.6.101.1:8888/takePictureWithoutSaving')
+            .then((res) => {
+                this.props.history.push({
+                    pathname: '/review',
+                    state: { picture: res.data.image }
+                });
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+
+
     }
     
     render = () => {
