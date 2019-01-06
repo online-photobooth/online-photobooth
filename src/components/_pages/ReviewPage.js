@@ -2,7 +2,6 @@ import React from 'react';
 import Polaroid from '../picture/Polaroid';
 import axios from 'axios';
 import RegularButton from '../buttons/RegularButton';
-import axios from 'axios';
 import { connect } from 'react-redux';
 
 class ReviewPage extends React.Component {   
