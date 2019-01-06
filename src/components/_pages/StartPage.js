@@ -23,7 +23,6 @@ class StartPage extends React.Component {
                             alt='Large green button with camera icon in it.' 
                             size='large' 
                             title='Druk om verder te gaan.'
-                            link='preview'
                             onClick={() => this.props.history.push('/preview', { album: this.props.location.state.album })}
                         />
                     </div>
