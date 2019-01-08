@@ -1,18 +1,24 @@
 .ReviewPage 
 {
-    height: 100vh;
 
-    .buttons 
+    .img_container 
     {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin-top: 1.5rem;
-        width: 60%;
+        width: 100vw;
+        height: 100vh;
+    }
 
-        .RegularButton 
-        {
-            margin: 2rem 0 0 0;
-        }
+    img 
+    {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .button_container 
+    {
+        position: absolute;
+        margin: auto;
+        bottom: 0;
+        margin-bottom: 2rem;
     }
 }

@@ -9,12 +9,12 @@ class ReviewPage extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            img: 'data:image/png;base64,' + this.props.location.state.picture,
+            img: '',
         };
     }
-    
+
     componentWillMount = () => {
-        console.log(this.props.location.state.picture);
+        this.setState({ img: 'data:image/png;base64,' + this.props.location.state.picture });
     }
   
     componentDidMount = () => {
@@ -60,36 +60,13 @@ class ReviewPage extends React.Component {
             <div className='ReviewPage'>
                 <div className="wrapper">
                     <div className="content">
-                        <Heading>Jippie! Wat wil je doen met deze foto?</Heading>
-
-                        <div className="buttons">
-                            <RegularButton 
-                                size='small'
-                                img='mail'
-                                title='Mail'
-                            />
-
-                            <RegularButton 
-                                size='small'
-                                img='link'
-                                title='Online'
-                            />
-
-                            <RegularButton 
-                                size='small'
-                                img='refresh'
-                                title='Retake'
-                            />
-
-                            <RegularButton 
-                                size='small'
-                                img='cancel'
-                                title='Cancel'
-                            />
+                        <div className="img_container">
+                            <img src={ this.props.location.state.picture } alt="Taken by our photobooth."/>
                         </div>
-                    </div>
-                    <div className="polaroid_container">
-                        <Polaroid img={ this.props.location.state.picture }/>
+
+                        {/* <div className="button_container">
+                            <Heading>Is deze foto goed?</Heading>
+                        </div> */}
                     </div>
                 </div>
             </div>

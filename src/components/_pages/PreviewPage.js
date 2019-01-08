@@ -20,10 +20,10 @@ class PreviewPage extends React.Component {
     }
     
     takePicture = async () => {
-        console.log(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
-        const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`)
-        const picture = resp.data.image
-        this.props.history.push('/review', { picture, album: this.props.location.state.album })
+        const resp      = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
+        const picture   = resp.data.image;
+
+        this.props.history.push('/review', { picture, album: this.props.location.state.album });
     }
 
     setRef = (webcam) => {

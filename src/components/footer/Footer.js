@@ -3,7 +3,11 @@ import Logo from '../../assets/img/KdG.png';
 
 class Footer extends React.Component {
     renderFooter = () => {
-        if (!(window.location.pathname === '/preview'))
+        if (window.location.pathname === '/preview' || window.location.pathname === '/review')
+        {
+            return '';
+        }
+        else 
         {
             return (
                 <div>
@@ -15,6 +19,7 @@ class Footer extends React.Component {
     } 
     
     render = () => {
+        console.log(window.location.pathname === '/review');
         return (
             <div className='Footer'>
                 { this.renderFooter() }

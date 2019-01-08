@@ -79,16 +79,20 @@ p {
 .PreviewPage video {
   object-fit: cover; }
 
-.ReviewPage {
+.ReviewPage .img_container {
+  width: 100vw;
   height: 100vh; }
-  .ReviewPage .buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 1.5rem;
-    width: 60%; }
-    .ReviewPage .buttons .RegularButton {
-      margin: 2rem 0 0 0; }
+
+.ReviewPage img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; }
+
+.ReviewPage .button_container {
+  position: absolute;
+  margin: auto;
+  bottom: 0;
+  margin-bottom: 2rem; }
 
 .SelectAlbumPage .albumOverview {
   border: 1px solid #00A685;
