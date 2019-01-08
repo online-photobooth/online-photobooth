@@ -13,13 +13,13 @@ class FinalPage extends React.Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
       if(!this.props.location.state || !this.props.location.state.album) {
         this.props.history.push('/album')
       }
     }
 
-    onChangeHandler(e){
+    onChangeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value})
     }
 
@@ -41,17 +41,20 @@ class FinalPage extends React.Component {
 
     render = () => {
         return (
-            <div className='StartPage'>
+            <div className='FinalPage'>
                 <div className="wrapper">
-                <div className='left'>
-                <Heading>Je foto is verstuurt! Bekijk de album via de QR-code!</Heading>
-                </div>
-                <div className=''>
+
+                    <div className="QR">
+                        <Heading>Je foto is verstuurt! Bekijk de album via de QR-code!</Heading>
+                        <QRCode value={this.props.location.state.album.shareInfo.shareableUrl} />
+                    </div>
+
+
                     <form onSubmit={(e) => this.sendEmail(e)}>
                         <input name='email' placeholder="youremail@domain.com" onChange={(e) => this.onChangeHandler(e)} value={this.state.email} />
                         <button type='submit'>Send the picture to your email</button>
                     </form>
-                    <QRCode value={this.props.location.state.album.shareInfo.shareableUrl} />
+                    
                     
                     <RegularButton 
                       img='camera' 
@@ -60,7 +63,6 @@ class FinalPage extends React.Component {
                       title='Neem een nieuwe foto.'
                       onClick={() => this.props.history.push('/', { album: this.props.location.state.album })}
                     />
-                </div>
                 </div>
             </div>
         )

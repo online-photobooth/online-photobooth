@@ -28,7 +28,7 @@ class ReviewPage extends React.Component {
         this.props.history.goBack();
     }
 
-    async uploadPicture() {
+    uploadPicture = async () => {
         try 
         {
             const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/uploadLastImageTaken`, {
@@ -45,19 +45,9 @@ class ReviewPage extends React.Component {
         } 
         catch (error) 
         {
-            console.log(error.response);
+            console.log(error);
         }
     }
-
-/*     upload = () => {
-        axios.post('http://10.6.101.1:8888/uploadLastImageTaken')
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    } */
 
     render = () => {
         return (
@@ -80,6 +70,7 @@ class ReviewPage extends React.Component {
                                 size='small'
                                 img='check'
                                 title='Oke!'
+                                onClick={ this.uploadPicture }
                             />
                         </div>
                     </div>
