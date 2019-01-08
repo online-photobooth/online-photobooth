@@ -33,21 +33,6 @@ class PreviewPage extends React.Component {
     renderCountDown = () => {
         if (this.state.startCountdown) return <Countdown onDone={ this.takePicture }/>
     }
-
-/*     takePicture = () => {
-        axios.get('http://10.6.101.1:8888/takePictureWithoutSaving')
-            .then((res) => {
-                this.props.history.push({
-                    pathname: '/review',
-                    state: { picture: res.data.image }
-                });
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-
-
-    } */
     
     render = () => {
         return (

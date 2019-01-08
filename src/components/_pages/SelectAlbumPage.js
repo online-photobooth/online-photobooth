@@ -9,29 +9,6 @@ class SelectAbumPage extends React.Component {
         super(props);
         this.state = {
 			albums: [],
-/* 			albums: [
-				{
-					"title": "Event 1"
-				},
-				{
-					"title": "Event 2"
-				},
-				{
-					"title": "Event 3"
-				},
-				{
-					"title": "Event 4"
-				},
-				{
-					"title": "Event 5"
-				},
-				{
-					"title": "Event 6"
-				},
-				{
-					"title": "Event 7"
-				},
-			], */
             selectedAlbum: [],
 			newAlbum: '',
 			albumName: '',
@@ -77,11 +54,6 @@ class SelectAbumPage extends React.Component {
 
     renderAlbums = () => {
         return this.state.albums.map((album, i) => (
-/*             <div key={album.id}>
-              <h3>{ album.title }</h3>
-              <button onClick={ () => this.setDefaultAlbum(album) }>Select this Album</button>
-            </div> */
-
 			<SingleAlbum key={ i } album={ album } onClick={ this.setDefaultAlbum }/>
         ))
     }
