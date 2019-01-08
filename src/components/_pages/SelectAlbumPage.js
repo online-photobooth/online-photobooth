@@ -20,31 +20,31 @@ class SelectAbumPage extends React.Component {
     }
 
     componentDidMount = async () => {
-		if (!this.props.accessToken) 
-		{
-			console.log('redirecting from album to login');
-			this.props.history.push('/login')
-		} 
-		else 
-		{
-			try 
-			{
-				const resp = await axios.get('https://photoslibrary.googleapis.com/v1/sharedAlbums?excludeNonAppCreatedData=true', {
-					headers: {
-						Authorization: 'Bearer ' + this.props.accessToken
-					}
-				});
+      if (!this.props.accessToken) 
+      {
+        console.log('redirecting from album to login');
+        this.props.history.push('/login')
+      } 
+      else 
+      {
+        try 
+        {
+          const resp = await axios.get('https://photoslibrary.googleapis.com/v1/sharedAlbums', {
+            headers: {
+              Authorization: 'Bearer ' + this.props.accessToken
+            }
+          });
 
-				console.log(resp);
-				
-				const albums = resp.data.sharedAlbums;
-				this.setState({ albums });
-			} 
-			catch (error) 
-			{
-				console.log(error);
-			}
+          console.log(resp);
+          
+          const albums = resp.data.sharedAlbums;
+          this.setState({ albums });
+        } 
+        catch (error) 
+        {
+          console.log(error.response);
         }
+      }
     }
 
     setDefaultAlbum = (selectedAlbum) => {
