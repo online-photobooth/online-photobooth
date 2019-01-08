@@ -19,7 +19,6 @@ class Footer extends React.Component {
     } 
     
     render = () => {
-        console.log(window.location.pathname === '/review');
         return (
             <div className='Footer'>
                 { this.renderFooter() }

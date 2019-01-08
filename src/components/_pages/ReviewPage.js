@@ -24,6 +24,10 @@ class ReviewPage extends React.Component {
         }
     }
 
+    goBack = () => {
+        this.props.history.goBack();
+    }
+
     async uploadPicture() {
         try 
         {
@@ -64,9 +68,20 @@ class ReviewPage extends React.Component {
                             <img src={ this.props.location.state.picture } alt="Taken by our photobooth."/>
                         </div>
 
-                        {/* <div className="button_container">
-                            <Heading>Is deze foto goed?</Heading>
-                        </div> */}
+                        <div className="button_container">
+                            <RegularButton
+                                size='small'
+                                img='refresh'
+                                title='Opnieuw'
+                                onClick={ this.goBack }
+                            />
+
+                            <RegularButton
+                                size='small'
+                                img='check'
+                                title='Oke!'
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

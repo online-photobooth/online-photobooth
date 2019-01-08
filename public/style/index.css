@@ -81,18 +81,24 @@ p {
 
 .ReviewPage .img_container {
   width: 100vw;
-  height: 100vh; }
-
-.ReviewPage img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover; }
+  overflow: hidden;
+  height: 100vh;
+  margin-bottom: -2rem; }
+  .ReviewPage .img_container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; }
 
 .ReviewPage .button_container {
   position: absolute;
   margin: auto;
   bottom: 0;
-  margin-bottom: 2rem; }
+  left: 0;
+  right: 0;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
 
 .SelectAlbumPage .albumOverview {
   border: 1px solid #00A685;
