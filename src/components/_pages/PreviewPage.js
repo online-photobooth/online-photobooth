@@ -2,7 +2,7 @@ import React from 'react';
 import Webcam from "react-webcam";
 import CaptureButton from '../buttons/CaptureButton';
 import Countdown from '../countdown/Countdown';
-import axios from 'axios';
+// import axios from 'axios';
 import { css } from '@emotion/core';
 import { SyncLoader } from 'react-spinners';
 

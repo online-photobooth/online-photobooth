@@ -44,6 +44,8 @@
 
     form 
     {   
+        width: 90%;
+
         input, button
         {
             width: 100%;
@@ -56,6 +58,18 @@
             border: 2px solid #000;
             padding: 1rem 1.5rem;
             font-size: 1rem;
+
+            &.error 
+            {
+                border: 2px solid red;
+            }
+        }
+
+        label 
+        {
+            color: red;
+            font-size: 12px;
+            margin: 0.3rem 0 0 0.2rem;
         }
 
         .buttons 
@@ -69,12 +83,18 @@
             color: #fff;
             padding: 1rem;
             background-color: #00A685; 
-            margin: 1rem 0.5rem 0 0.5rem;
-            min-width: 16rem;
+            margin: 1rem 0 0 0;
+            width: 100%;
+            transition: all 200ms ease-in-out 1s;
 
             &:hover 
             {
                 cursor: pointer;
+            }
+
+            &.sending 
+            {
+                // width: 8rem;
             }
         }
     

@@ -4,12 +4,18 @@ import Heading from '../titles/Heading';
 import QRCode from 'react-qr-code';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { css } from '@emotion/core';
+import { SyncLoader } from 'react-spinners';
 
 class FinalPage extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
             emails: '',
+            emails_are_valid: true,
+            email_is_sending: false,
+            email_is_send: false,
+            error_sending_email: false
         };
     }
 
@@ -28,7 +34,7 @@ class FinalPage extends React.Component {
         console.log('Sending mail!');
 
         let emails                = [];
-        let emails_are_valid      = false;
+        let emails_are_valid      = true;
 
         const reg     = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -40,21 +46,72 @@ class FinalPage extends React.Component {
 
         for (let i = 0, ilen = emails.length; i < ilen; i++)
         {
-            console.log(emails);
+            console.log(reg.test(String(emails[i]).toLowerCase()));
+
+            console.log('OK');
+
+            if (!(reg.test(String(emails[i]).toLowerCase())))
+            {
+                emails_are_valid   = false;
+                this.setState({ emails_are_valid: false })
+            }
+            else 
+            {
+                emails_are_valid   = true;
+                this.setState({ emails_are_valid: true })
+            }
         }
+
+        console.log(this.state.emails_are_valid);
         
-        try 
+        if (emails_are_valid)
         {
+            this.setState({ email_is_sending: true })
+
+            try 
+            {
                 const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/sendPictureToEmail`, {
                     token: this.props.accessToken,
                     title: this.props.location.state.album.title,
                     email: this.state.email,
                 })
-                console.log(resp);
-        } 
-        catch (error) 
+                
+                if (resp.status === 200) this.setState({ email_is_sending: false, email_is_send: true })
+            } 
+            catch (error) 
+            {
+                console.log('Send Email', error.response);
+
+                this.setState({ email_is_sending: false, email_is_send: false, error_sending_email: true })
+            }
+        }
+    }
+
+    renderButtonContent = () => {
+        if (this.state.email_is_sending)
         {
-                console.log('Send Email', error.response)
+            return (
+                <SyncLoader
+                    color='#fff'
+                    size={ 10 }
+                    loading={ this.state.requestIsSend }
+                /> 
+            )
+        }
+        else if (this.state.error_sending_email)
+        {
+            return 'Er is iets fout gegaan bij het versturen van je email'
+        }
+        else 
+        {
+            if (this.state.email_is_send)
+            {
+                return "Verzenden voltooid!"
+            }
+            else 
+            {
+                return "Verstuur foto's"
+            }
         }
     }
 
@@ -93,8 +150,17 @@ class FinalPage extends React.Component {
                             <p>Geef meerdere e-mail adressen op gescheiden door een puntkomma (;)</p>
 
                             <form onSubmit={(e) => this.sendEmail(e)}>
-                                <input name='emails' placeholder="email@example.com; email_2@example.com;" onChange={(e) => this.onChangeHandler(e)} value={ this.state.emails } />
-                                <button type='submit'>Verstuur de foto naar mijn email</button>
+                                <input 
+                                    name='emails' 
+                                    placeholder="email@example.com; email_2@example.com" 
+                                    onChange={(e) => this.onChangeHandler(e)} 
+                                    value={ this.state.emails } 
+                                    className={ this.state.emails_are_valid ? '' : 'error' }
+                                />
+                                <label htmlFor="emails">{ this.state.emails_are_valid ? '' : 'Controleer of alle e-mail adressen juist zijn ingevuld.' }</label>
+                                <button className={ this.state.email_is_sending ? 'sending' : '' } type='submit'>
+                                    { this.renderButtonContent() }
+                                </button>
                             </form>
                         </div>
                     </div>
