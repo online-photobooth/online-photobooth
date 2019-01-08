@@ -12,10 +12,6 @@ class ReviewPage extends React.Component {
             img: 'data:image/png;base64,' + this.props.location.state.picture,
         };
     }
-    
-    componentWillMount = () => {
-        console.log(this.props.location.state.picture);
-    }
   
     componentDidMount = () => {
         if (!this.props.location.state || !this.props.location.state.album) 
@@ -44,16 +40,6 @@ class ReviewPage extends React.Component {
             console.log(error.response);
         }
     }
-
-/*     upload = () => {
-        axios.post('http://10.6.101.1:8888/uploadLastImageTaken')
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    } */
 
     render = () => {
         return (
