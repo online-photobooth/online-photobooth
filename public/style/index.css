@@ -79,6 +79,17 @@ p {
 .PreviewPage video {
   object-fit: cover; }
 
+.PreviewPage .css-0 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
 .ReviewPage .img_container {
   width: 100vw;
   overflow: hidden;
@@ -264,9 +275,13 @@ p {
   justify-content: center;
   color: #fff;
   border: none;
-  font-size: 4rem; }
+  font-size: 4rem;
+  transition: all 150ms ease-in-out;
+  outline: none; }
   .CaptureButton:hover {
     cursor: pointer; }
+  .CaptureButton.clicked {
+    margin-bottom: -300px; }
 
 .Footer {
   position: absolute;
