@@ -9,8 +9,12 @@ class ReviewPage extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            img: 'data:image/png;base64,' + this.props.location.state.picture,
+            img: '',
         };
+    }
+
+    componentWillMount = () => {
+        this.setState({ img: 'data:image/png;base64,' + this.props.location.state.picture });
     }
   
     componentDidMount = () => {
@@ -20,7 +24,11 @@ class ReviewPage extends React.Component {
         }
     }
 
-    async uploadPicture() {
+    goBack = () => {
+        this.props.history.goBack();
+    }
+
+    uploadPicture = async () => {
         try 
         {
             const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/uploadLastImageTaken`, {
@@ -37,7 +45,7 @@ class ReviewPage extends React.Component {
         } 
         catch (error) 
         {
-            console.log(error.response);
+            console.log(error);
         }
     }
 
@@ -46,36 +54,25 @@ class ReviewPage extends React.Component {
             <div className='ReviewPage'>
                 <div className="wrapper">
                     <div className="content">
-                        <Heading>Jippie! Wat wil je doen met deze foto?</Heading>
+                        <div className="img_container">
+                            <img src={ this.props.location.state.picture } alt="Taken by our photobooth."/>
+                        </div>
 
-                        <div className="buttons">
-                            <RegularButton 
-                                size='small'
-                                img='mail'
-                                title='Mail'
-                            />
-
-                            <RegularButton 
-                                size='small'
-                                img='link'
-                                title='Online'
-                            />
-
-                            <RegularButton 
+                        <div className="button_container">
+                            <RegularButton
                                 size='small'
                                 img='refresh'
-                                title='Retake'
+                                title='Opnieuw'
+                                onClick={ this.goBack }
                             />
 
-                            <RegularButton 
+                            <RegularButton
                                 size='small'
-                                img='cancel'
-                                title='Cancel'
+                                img='check'
+                                title='Oke!'
+                                onClick={ this.uploadPicture }
                             />
                         </div>
-                    </div>
-                    <div className="polaroid_container">
-                        <Polaroid img={ this.props.location.state.picture }/>
                     </div>
                 </div>
             </div>

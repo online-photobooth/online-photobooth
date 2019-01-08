@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Heading from '../titles/Heading';
 
-class RegularButton extends React.Component {
+class RegularButton extends React.Component {    
     render = () => {
         const { link, size, img, title }    = this.props;
 
-        if (link) 
+        console.log(link);
+
+        if (link !== undefined) 
         {
             return (
                 <Link to={ `/${ link }` } className='RegularButtonLink'>
