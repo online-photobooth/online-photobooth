@@ -76,12 +76,11 @@ class FinalPage extends React.Component {
                     email: this.state.email,
                 })
                 
-                if (resp.status === 200) this.setState({ email_is_sending: false, email_is_send: true })
+                if (resp.status === 200) this.setState({ email_is_sending: false, email_is_send: true, error_sending_email: false })
             } 
             catch (error) 
             {
                 console.log('Send Email', error.response);
-
                 this.setState({ email_is_sending: false, email_is_send: false, error_sending_email: true })
             }
         }
