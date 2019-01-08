@@ -1,22 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Heading from '../titles/Heading';
 
 class RegularButton extends React.Component {
     render = () => {
-        if(this.props.link) {
+        const { link, size, img, title }    = this.props;
+
+        if (link) 
+        {
             return (
-                <Link to={ `/${ this.props.link }` } className='RegularButtonLink'>
-                    <div className={ `RegularButton ${ this.props.size }` }>
-                        <img src={ `./style/img/${ this.props.img }.png` } alt="test"/>
-                        <h3>{ this.props.title }</h3>
+                <Link to={ `/${ link }` } className='RegularButtonLink'>
+                    <div className={ `RegularButton ${ size }` }>
+                        <img src={ `./style/img/${ img }.png` } alt="test"/>
+                        <Heading type='heading--4'>{ title }</Heading>
                     </div>
                 </Link>
             )
-        } else {
+        } 
+        else 
+        {
             return (
-                <div className={ `RegularButton ${ this.props.size }` } onClick={this.props.onClick}>
-                    <img src={ `./style/img/${ this.props.img }.png` } alt="test"/>
-                    <h3>{ this.props.title }</h3>
+                <div className={ `RegularButton ${ size }` } onClick={ this.props.onClick }>
+                    <img src={ `./style/img/${ img }.png` } alt="test"/>
+                    <Heading type='heading--4'>{ title }</Heading>
                 </div>
             )
         }

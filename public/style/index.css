@@ -18,11 +18,13 @@ p {
     align-items: center;
     flex-direction: column;
     margin-top: -2rem;
-    justify-content: center; }
-    .wrapper .content .Heading {
-      width: 60%;
-      text-align: center;
-      margin-bottom: 2rem; }
+    justify-content: center;
+    /*         .Heading 
+        {
+            width: 60%;
+            text-align: center;
+            margin-bottom: 2rem;
+        } */ }
   @media only screen and (max-width: 768px) {
     .wrapper {
       width: 95%; } }
@@ -77,6 +79,17 @@ p {
 .PreviewPage video {
   object-fit: cover; }
 
+.ReviewPage {
+  height: 100vh; }
+  .ReviewPage .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 1.5rem;
+    width: 60%; }
+    .ReviewPage .buttons .RegularButton {
+      margin: 2rem 0 0 0; }
+
 .SelectAlbumPage .albumOverview {
   border: 1px solid #00A685;
   width: 70%;
@@ -128,22 +141,19 @@ p {
   align-items: center;
   color: #fff; }
   .RegularButton img {
-    width: 35%; }
+    width: 35%;
+    margin-bottom: 1.2rem; }
   .RegularButton a {
     text-decoration: none; }
   .RegularButton:hover {
     cursor: pointer; }
   .RegularButton.small {
     width: 180px;
-    height: 180px; }
-  .RegularButton.small h3 {
-    margin-top: 3rem; }
+    height: 180px;
+    margin: 2rem; }
   .RegularButton.large {
     width: 400px;
     height: 400px; }
-  .RegularButton.large h3 {
-    margin-top: 1.4rem;
-    font-size: 1.4rem; }
 
 .CaptureButton {
   position: absolute;
@@ -175,17 +185,20 @@ p {
   width: 17rem;
   padding-bottom: 1rem; }
 
-.Heading .heading--0 {
-  font-size: 78px; }
-
-.Heading .heading--1 {
-  font-size: 60px; }
-
-.Heading .heading--2 {
-  font-size: 50px; }
-
-.Heading .heading--3 {
-  font-size: 45px; }
+.Heading {
+  margin: 0;
+  text-align: center;
+  width: 60%; }
+  .Heading.heading--0 {
+    font-size: 78px; }
+  .Heading.heading--1 {
+    font-size: 60px; }
+  .Heading.heading--2 {
+    font-size: 50px; }
+  .Heading.heading--3 {
+    font-size: 45px; }
+  .Heading.heading--4 {
+    font-size: 18px; }
 
 .Countdown {
   position: absolute;

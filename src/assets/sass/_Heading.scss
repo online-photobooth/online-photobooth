@@ -1,7 +1,12 @@
 .Heading 
 {
-    .heading--0 { font-size: 78px; }
-    .heading--1 { font-size: 60px; }
-    .heading--2 { font-size: 50px; }
-    .heading--3 { font-size: 45px; }
+    margin: 0;
+    text-align: center;
+    width: 60%;
+
+    &.heading--0 { font-size: 78px; }
+    &.heading--1 { font-size: 60px; }
+    &.heading--2 { font-size: 50px; }
+    &.heading--3 { font-size: 45px; }
+    &.heading--4 { font-size: 18px; }
 }

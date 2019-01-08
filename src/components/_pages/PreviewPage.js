@@ -12,14 +12,15 @@ class PreviewPage extends React.Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         if (!this.props.location.state || !this.props.location.state.album) 
         {
             this.props.history.push('/album')
         }
     }
     
-     takePicture = async () => {
+    takePicture = async () => {
+        console.log(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
         const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`)
         const picture = resp.data.image
         this.props.history.push('/review', { picture, album: this.props.location.state.album })
@@ -30,17 +31,10 @@ class PreviewPage extends React.Component {
     };
 
     renderCountDown = () => {
-        if (this.state.startCountdown)
-        {
-            return <Countdown onDone={ this.takePicture }/>
-        }
-        else 
-        {
-            return null;
-        }
+        if (this.state.startCountdown) return <Countdown onDone={ this.takePicture }/>
     }
 
-    takePicture = () => {
+/*     takePicture = () => {
         axios.get('http://10.6.101.1:8888/takePictureWithoutSaving')
             .then((res) => {
                 this.props.history.push({
@@ -53,7 +47,7 @@ class PreviewPage extends React.Component {
             });
 
 
-    }
+    } */
     
     render = () => {
         return (

@@ -3,6 +3,7 @@ import Polaroid from '../picture/Polaroid';
 import axios from 'axios';
 import RegularButton from '../buttons/RegularButton';
 import { connect } from 'react-redux';
+import Heading from '../titles/Heading';
 
 class ReviewPage extends React.Component {   
     constructor (props) {
@@ -24,22 +25,27 @@ class ReviewPage extends React.Component {
     }
 
     async uploadPicture() {
-      try {
-        const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/uploadLastImageTaken`, {
-            token: this.props.accessToken,
-            album: this.props.location.state.album.id,
-        })
-        console.log(resp);
-        
-        if(resp.status === 200) {
-          this.props.history.push('/final', { album: this.props.location.state.album })
+        try 
+        {
+            const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/uploadLastImageTaken`, {
+                token: this.props.accessToken,
+                album: this.props.location.state.album.id,
+            });
+            
+            console.log(resp);
+            
+            if (resp.status === 200) 
+            {
+                this.props.history.push('/final', { album: this.props.location.state.album })
+            }
+        } 
+        catch (error) 
+        {
+            console.log(error.response);
         }
-      } catch (error) {
-        console.log(error.response);
-      }
     }
 
-    upload = () => {
+/*     upload = () => {
         axios.post('http://10.6.101.1:8888/uploadLastImageTaken')
             .then((res) => {
                 console.log(res);
@@ -47,19 +53,45 @@ class ReviewPage extends React.Component {
             .catch((err) => {
                 console.log(err);
             })
-    }
+    } */
 
     render = () => {
         return (
             <div className='ReviewPage'>
-                <img src={ this.props.location.state.picture } alt="" style={{maxHeight: '100vh', maxWidth: '100vw'}}/>
-                <div style={{position: 'absolute', top: '30%', right: '10px', zIndex: 5}}><RegularButton
-                    img='send'
-                    alt='Large green button with a send icon in it.'
-                    size='large'
-                    title='Content? Verzend.'
-                    onClick={() => this.uploadPicture()}
-                /></div>
+                <div className="wrapper">
+                    <div className="content">
+                        <Heading>Jippie! Wat wil je doen met deze foto?</Heading>
+
+                        <div className="buttons">
+                            <RegularButton 
+                                size='small'
+                                img='mail'
+                                title='Mail'
+                            />
+
+                            <RegularButton 
+                                size='small'
+                                img='link'
+                                title='Online'
+                            />
+
+                            <RegularButton 
+                                size='small'
+                                img='refresh'
+                                title='Retake'
+                            />
+
+                            <RegularButton 
+                                size='small'
+                                img='cancel'
+                                title='Cancel'
+                            />
+                        </div>
+                    </div>
+                    <div className="polaroid_container">
+                        <Polaroid img={ this.props.location.state.picture }/>
+                    </div>
+                </div>
             </div>
         )
     }

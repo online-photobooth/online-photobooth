@@ -35,7 +35,6 @@ class SelectAbumPage extends React.Component {
             selectedAlbum: [],
 			newAlbum: '',
 			albumName: '',
-			selectedAlbum: '',
         };
     }
 
@@ -72,11 +71,6 @@ class SelectAbumPage extends React.Component {
     }
 
     setDefaultAlbum = (selectedAlbum) => {
-		console.log('CLICKED');
-
-		console.log('FROM setDefaultAlbum');
-		console.log(selectedAlbum);
-
         this.setState({ selectedAlbum });
         this.props.history.push('/', { album: selectedAlbum })
     }
