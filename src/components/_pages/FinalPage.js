@@ -43,26 +43,40 @@ class FinalPage extends React.Component {
         return (
             <div className='FinalPage'>
                 <div className="wrapper">
+                    <div className="flex_container">
+                        <div className="left">
+                            <Heading>Je foto is verstuurd! Bekijk het album via de QR-code!</Heading>
+                            <QRCode value={this.props.location.state.album.shareInfo.shareableUrl} />
+                        </div>
 
-                    <div className="QR">
-                        <Heading>Je foto is verstuurt! Bekijk de album via de QR-code!</Heading>
-                        <QRCode value={this.props.location.state.album.shareInfo.shareableUrl} />
+                        <div className="right">
+                            <div className="buttons">
+                                <RegularButton 
+                                    img='camera' 
+                                    alt='Large green button with camera icon in it.' 
+                                    size='small' 
+                                    title='Neem een nieuwe foto'
+                                    onClick={() => this.props.history.push('/', { album: this.props.location.state.album })}
+                                />
+
+                                <RegularButton 
+                                    img='camera' 
+                                    alt='Large green button with camera icon in it.' 
+                                    size='small' 
+                                    title='Neem een nieuwe foto'
+                                    onClick={() => this.props.history.push('/', { album: this.props.location.state.album })}
+                                />
+                            </div>
+                            <Heading>
+                                Wil je de foto in je mailbox ontvangen?
+                            </Heading>
+
+                            <form onSubmit={(e) => this.sendEmail(e)}>
+                                <input name='email' placeholder="youremail@domain.com" onChange={(e) => this.onChangeHandler(e)} value={this.state.email} />
+                                <button type='submit'>Verstuur de foto naar mijn email</button>
+                            </form>
+                        </div>
                     </div>
-
-
-                    <form onSubmit={(e) => this.sendEmail(e)}>
-                        <input name='email' placeholder="youremail@domain.com" onChange={(e) => this.onChangeHandler(e)} value={this.state.email} />
-                        <button type='submit'>Send the picture to your email</button>
-                    </form>
-                    
-                    
-                    <RegularButton 
-                      img='camera' 
-                      alt='Large green button with camera icon in it.' 
-                      size='large' 
-                      title='Neem een nieuwe foto.'
-                      onClick={() => this.props.history.push('/', { album: this.props.location.state.album })}
-                    />
                 </div>
             </div>
         )
