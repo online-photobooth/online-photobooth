@@ -32,6 +32,16 @@
         }
     }
 
+    .Heading 
+    {
+        margin: 0 0 0.5rem 0;
+    }
+
+    p 
+    {
+        margin-bottom: 2rem;
+    }
+
     form 
     {   
         input, button
@@ -48,13 +58,19 @@
             font-size: 1rem;
         }
 
+        .buttons 
+        {
+            margin: 0 -0.5rem;
+        }
+
         button 
         {
             border: 2px solid #00A685;
             color: #fff;
             padding: 1rem;
             background-color: #00A685; 
-            margin-top: 1rem;
+            margin: 1rem 0.5rem 0 0.5rem;
+            min-width: 16rem;
 
             &:hover 
             {

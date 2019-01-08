@@ -218,6 +218,12 @@ p {
   .FinalPage .RegularButton .Heading {
     margin: 0; }
 
+.FinalPage .Heading {
+  margin: 0 0 0.5rem 0; }
+
+.FinalPage p {
+  margin-bottom: 2rem; }
+
 .FinalPage form input, .FinalPage form button {
   width: 100%;
   box-sizing: border-box;
@@ -228,12 +234,16 @@ p {
   padding: 1rem 1.5rem;
   font-size: 1rem; }
 
+.FinalPage form .buttons {
+  margin: 0 -0.5rem; }
+
 .FinalPage form button {
   border: 2px solid #00A685;
   color: #fff;
   padding: 1rem;
   background-color: #00A685;
-  margin-top: 1rem; }
+  margin: 1rem 0.5rem 0 0.5rem;
+  min-width: 16rem; }
   .FinalPage form button:hover {
     cursor: pointer; }
 

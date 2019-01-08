@@ -14,7 +14,7 @@ class ReviewPage extends React.Component {
     }
 
     componentWillMount = () => {
-        this.setState({ img: 'data:image/png;base64,' + this.props.location.state.picture });
+        this.setState({ img: this.props.location.state.picture });
     }
   
     componentDidMount = () => {
@@ -31,6 +31,7 @@ class ReviewPage extends React.Component {
     uploadPicture = async () => {
         try 
         {
+            this.props.history.push('/final', { album: this.props.location.state.album })
             const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/uploadLastImageTaken`, {
                 token: this.props.accessToken,
                 album: this.props.location.state.album.id,
@@ -55,7 +56,7 @@ class ReviewPage extends React.Component {
                 <div className="wrapper">
                     <div className="content">
                         <div className="img_container">
-                            <img src={ this.props.location.state.picture } alt="Taken by our photobooth."/>
+                            <img src={ this.state.img } alt="Taken by our photobooth."/>
                         </div>
 
                         <div className="button_container">
