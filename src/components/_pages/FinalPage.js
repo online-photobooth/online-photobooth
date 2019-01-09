@@ -73,7 +73,8 @@ class FinalPage extends React.Component {
                 const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/sendPictureToEmail`, {
                     token: this.props.accessToken,
                     title: this.props.location.state.album.title,
-                    email: this.state.email,
+                    email: e.target.emails.value,
+                    albumLink: this.props.location.state.album.shareInfo.shareableUrl,
                 })
                 
                 if (resp.status === 200) this.setState({ email_is_sending: false, email_is_send: true, error_sending_email: false })

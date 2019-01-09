@@ -129,8 +129,8 @@ class SelectAbumPage extends React.Component {
 						<div className="albumOverview">
 							<form onSubmit={(e) => this.createNewAlbum(e)}>
 								<input 
-									name='albumName' 
-									value={ this.state.albumName } 
+									name='newAlbum' 
+									value={ this.state.newAlbum } 
 									onChange={ this.onChangeHandler } 
 									placeholder='Maak een nieuw album aan'
 								/>
