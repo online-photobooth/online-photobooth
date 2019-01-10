@@ -141,7 +141,7 @@ class FinalPage extends React.Component {
         console.log(this.state.keyBoardIsOpen);
         return (
             <div className={ `FinalPage ${ this.state.keyBoardIsOpen ? 'open' : 'close' } `} onClick={ this.onKeyBoardExit }>
-                <div className={`checkInputOverlay ${ this.state.keyBoardIsOpen ? 'open' : 'close' }`} onClick={ this.onKeyBoardExit }></div>
+                {/* <div className={`checkInputOverlay ${ this.state.keyBoardIsOpen ? 'open' : 'close' }`} onClick={ this.onKeyBoardExit }></div> */}
                 <div className="wrapper">
                     <div className="flex_container">
                         <div className="left">
@@ -194,13 +194,13 @@ class FinalPage extends React.Component {
                 </div>
 
                 <div className='keyboard_container'>
-                    <Keyboard
+{/*                     <Keyboard
                         className='test'
                         ref={ r => (this.keyboard = r) }
                         layoutName={ this.state.layoutName }
                         onChange={ this.onKeyboardChange }
                         onKeyPress={ this.onKeyPress }
-                    />
+                    /> */}
                 </div>
             </div>
         )
