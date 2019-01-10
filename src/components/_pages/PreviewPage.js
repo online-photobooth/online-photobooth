@@ -2,7 +2,7 @@ import React from 'react';
 import Webcam from "react-webcam";
 import CaptureButton from '../buttons/CaptureButton';
 import Countdown from '../countdown/Countdown';
-// import axios from 'axios';
+import axios from 'axios';
 import { css } from '@emotion/core';
 import { SyncLoader } from 'react-spinners';
 
@@ -25,10 +25,10 @@ class PreviewPage extends React.Component {
     takePicture = async () => {
         this.setState({ requestIsSend: true });
 
-        // const resp      = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
-        // const picture   = resp.data.image;
+        const resp      = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
+        const picture   = resp.data.image;
 
-        const picture   = 'https://bit.ly/2VzPl0Q';
+        // const picture   = 'https://bit.ly/2VzPl0Q';
 
         if (picture !== null)
         {
