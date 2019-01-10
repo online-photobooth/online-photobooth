@@ -27,7 +27,7 @@ class FinalPage extends React.Component {
 
     componentDidMount = () => {
       if(!this.props.location.state || !this.props.location.state.album) {
-        // this.props.history.push('/album')
+        this.props.history.push('/album')
       }
     }
 
