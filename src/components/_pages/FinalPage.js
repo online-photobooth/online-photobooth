@@ -69,7 +69,7 @@ class FinalPage extends React.Component {
             }
         }
 
-        console.log(this.state.emails_are_valid);
+        console.log('Are emails valid?', this.state.emails_are_valid);
         
         if (emails_are_valid)
         {
@@ -139,7 +139,6 @@ class FinalPage extends React.Component {
     }
 
     render = () => {
-        console.log(this.state.keyBoardIsOpen);
         return (
             <div className={ `FinalPage ${ this.state.keyBoardIsOpen ? 'open' : 'close' } `} onClick={ this.onKeyBoardExit }>
                 {/* <div className={`checkInputOverlay ${ this.state.keyBoardIsOpen ? 'open' : 'close' }`} onClick={ this.onKeyBoardExit }></div> */}
