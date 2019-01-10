@@ -72,23 +72,21 @@ p {
   width: 100%; }
 
 .PreviewPage {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  overflow: hidden; }
-
-.PreviewPage video {
-  object-fit: cover; }
-
-.PreviewPage .css-0 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+  overflow: hidden !important; }
+  .PreviewPage video {
+    object-fit: cover; }
+  .PreviewPage .css-0 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
 
 .ReviewPage .img_container {
   width: 100vw;

@@ -9,11 +9,6 @@ class SelectAbumPage extends React.Component {
         super(props);
         this.state = {
 			albums: [],
-			albums: [
-				{
-					"title": "hello",
-				}
-			],
             selectedAlbum: [],
 			newAlbum: '',
 			albumName: '',
@@ -28,7 +23,7 @@ class SelectAbumPage extends React.Component {
       if (!this.props.accessToken) 
       {
         console.log('redirecting from album to login');
-        // this.props.history.push('/login')
+        this.props.history.push('/login')
       } 
       else 
       {
