@@ -146,7 +146,7 @@ class FinalPage extends React.Component {
                     <div className="flex_container">
                         <div className="left">
                             <Heading>Je foto is verstuurd! Bekijk het album via de QR-code!</Heading>
-                            <QRCode value={'this.props.location.state.album.shareInfo.shareableUrl'} />
+                            <QRCode value={ this.props.location.state.album.shareInfo.shareableUrl } />
                         </div>
 
                         <div className="right">
