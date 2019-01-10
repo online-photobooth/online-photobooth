@@ -26,9 +26,10 @@ class FinalPage extends React.Component {
     }
 
     componentDidMount = () => {
-      if(!this.props.location.state || !this.props.location.state.album) {
-        this.props.history.push('/album')
-      }
+        if(!this.props.location.state || !this.props.location.state.album) 
+        {
+            this.props.history.push('/album')
+        }
     }
 
     onChangeHandler = (e) => {
@@ -178,7 +179,7 @@ class FinalPage extends React.Component {
                                     name='emails' 
                                     placeholder="email@example.com; email_2@example.com" 
                                     onChange={(e) => this.onChangeHandler(e)} 
-                                    value={ this.state.input } 
+                                    value={ this.state.emails } 
                                     className={ this.state.emails_are_valid ? '' : 'error' }
                                     onFocus={ this.onInputClick }
                                     autoComplete='off'
