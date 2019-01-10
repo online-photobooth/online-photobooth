@@ -111,10 +111,14 @@ p {
   align-items: center;
   justify-content: space-between; }
 
+.ReviewPage .RegularButton h1 {
+  margin: 0; }
+
 .SelectAlbumPage .albumOverview {
   border: 1px solid #00A685;
-  width: 70%;
-  border-radius: 10px; }
+  width: 100%;
+  border-radius: 10px;
+  width: 40rem; }
   .SelectAlbumPage .albumOverview form {
     width: 100%;
     background-color: #00A685;
@@ -152,6 +156,8 @@ p {
   padding: 1rem;
   flex-wrap: wrap;
   display: flex; }
+  .SelectAlbumPage .albums.one-item .SingleAlbum {
+    width: 100%; }
 
 .simple-keyboard {
   position: fixed;
@@ -201,6 +207,11 @@ p {
   display: flex;
   flex: 1;
   flex-grow: 1; }
+
+.FinalPage .left {
+  justify-content: center !important; }
+  .FinalPage .left h1 {
+    margin-bottom: 2rem; }
 
 .FinalPage .left, .FinalPage .right {
   width: 50%;

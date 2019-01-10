@@ -7,6 +7,16 @@
         flex-grow: 1;
     }
 
+    .left 
+    {
+        justify-content: center !important;
+
+        h1
+        {
+            margin-bottom: 2rem;
+        }
+    }
+
     .left, .right 
     {
         width: 50%;
