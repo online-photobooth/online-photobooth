@@ -201,66 +201,90 @@ p {
 #email3, #email4 {
   display: none; }
 
-.FinalPage .flex_container {
-  display: flex;
-  flex: 1;
-  flex-grow: 1; }
-
-.FinalPage .left {
-  justify-content: center !important; }
-  .FinalPage .left h1 {
+.FinalPage {
+  height: 100vh !important; }
+  .FinalPage .flex_container {
+    display: flex;
+    flex: 1;
+    flex-grow: 1; }
+  .FinalPage .left {
+    justify-content: center !important; }
+    .FinalPage .left h1 {
+      margin-bottom: 2rem; }
+  .FinalPage .left, .FinalPage .right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; }
+  .FinalPage .buttons {
+    display: flex;
+    margin: 0 -1rem; }
+  .FinalPage .RegularButton {
+    margin: 0 1rem 4rem 1rem !important; }
+    .FinalPage .RegularButton .Heading {
+      margin: 0; }
+  .FinalPage .Heading {
+    margin: 0 0 0.5rem 0; }
+  .FinalPage p {
     margin-bottom: 2rem; }
-
-.FinalPage .left, .FinalPage .right {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between; }
-
-.FinalPage .buttons {
-  display: flex;
-  margin: 0 -1rem; }
-
-.FinalPage .RegularButton {
-  margin: 0 1rem 4rem 1rem !important; }
-  .FinalPage .RegularButton .Heading {
-    margin: 0; }
-
-.FinalPage .Heading {
-  margin: 0 0 0.5rem 0; }
-
-.FinalPage p {
-  margin-bottom: 2rem; }
-
-.FinalPage form {
-  width: 90%; }
-  .FinalPage form input, .FinalPage form button {
+  .FinalPage form {
+    width: 90%; }
+    .FinalPage form input, .FinalPage form button {
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 1rem; }
+    .FinalPage form input {
+      border: 2px solid #000;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      z-index: 98 !important; }
+      .FinalPage form input.error {
+        border: 2px solid red; }
+    .FinalPage form label {
+      color: red;
+      font-size: 12px;
+      margin: 0.3rem 0 0 0.2rem; }
+    .FinalPage form .buttons {
+      margin: 0 -0.5rem; }
+    .FinalPage form button {
+      border: 2px solid #00A685;
+      color: #fff;
+      padding: 1rem;
+      background-color: #00A685;
+      margin: 1rem 0 0 0;
+      width: 100%;
+      transition: all 200ms ease-in-out 1s; }
+      .FinalPage form button:hover {
+        cursor: pointer; }
+  .FinalPage.open {
+    margin-top: -13rem; }
+  .FinalPage.close .keyboard_container {
+    height: 0 !important;
+    overflow: hidden;
+    margin-bottom: -10rem !important; }
+  .FinalPage .checkInputOverlay {
+    height: 100vh;
+    width: 100vw;
+    position: absolute; }
+    .FinalPage .checkInputOverlay.open {
+      display: block; }
+    .FinalPage .checkInputOverlay.close {
+      display: none; }
+  .FinalPage .keyboard_container {
     width: 100%;
-    box-sizing: border-box;
-    font-size: 1rem; }
-  .FinalPage form input {
-    border: 2px solid #000;
-    padding: 1rem 1.5rem;
-    font-size: 1rem; }
-    .FinalPage form input.error {
-      border: 2px solid red; }
-  .FinalPage form label {
-    color: red;
-    font-size: 12px;
-    margin: 0.3rem 0 0 0.2rem; }
-  .FinalPage form .buttons {
-    margin: 0 -0.5rem; }
-  .FinalPage form button {
-    border: 2px solid #00A685;
-    color: #fff;
-    padding: 1rem;
-    background-color: #00A685;
-    margin: 1rem 0 0 0;
-    width: 100%;
-    transition: all 200ms ease-in-out 1s; }
-    .FinalPage form button:hover {
-      cursor: pointer; }
+    height: 8rem;
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    transition: all 150ms ease-in-out; }
+    .FinalPage .keyboard_container .react-simple-keyboard {
+      background-color: #fff !important;
+      display: block !important;
+      position: inherit; }
+      .FinalPage .keyboard_container .react-simple-keyboard .hg-button {
+        height: 3rem !important;
+        border: 1px solid #000 !important; }
 
 .RegularButton {
   background-color: #00A685;

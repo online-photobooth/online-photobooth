@@ -6,6 +6,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { css } from '@emotion/core';
 import { SyncLoader } from 'react-spinners';
+import Keyboard from 'react-simple-keyboard';
+import 'react-simple-keyboard/build/css/index.css';
 
 class FinalPage extends React.Component {
     constructor (props) {
@@ -15,13 +17,17 @@ class FinalPage extends React.Component {
             emails_are_valid: true,
             email_is_sending: false,
             email_is_send: false,
-            error_sending_email: false
+            error_sending_email: false,
+            layoutName: "default",
+            input: "",
+            keyBoardIsOpen: false,
+            divClicked: false,
         };
     }
 
     componentDidMount = () => {
       if(!this.props.location.state || !this.props.location.state.album) {
-        this.props.history.push('/album')
+        // this.props.history.push('/album')
       }
     }
 
@@ -115,9 +121,27 @@ class FinalPage extends React.Component {
         }
     }
 
+    onKeyPress = (button) => {
+        console.log(button);
+    }
+
+    onKeyboardChange = (input) => {
+        this.setState({ input })
+    }
+
+    onInputClick = () => {
+        this.setState({ keyBoardIsOpen: true })        
+    }
+
+    onKeyBoardExit = () => {
+        this.setState({ keyBoardIsOpen: false })
+    }
+
     render = () => {
+        console.log(this.state.keyBoardIsOpen);
         return (
-            <div className='FinalPage'>
+            <div className={ `FinalPage ${ this.state.keyBoardIsOpen ? 'open' : 'close' } `} onClick={ this.onKeyBoardExit }>
+                <div className={`checkInputOverlay ${ this.state.keyBoardIsOpen ? 'open' : 'close' }`} onClick={ this.onKeyBoardExit }></div>
                 <div className="wrapper">
                     <div className="flex_container">
                         <div className="left">
@@ -154,9 +178,12 @@ class FinalPage extends React.Component {
                                     name='emails' 
                                     placeholder="email@example.com; email_2@example.com" 
                                     onChange={(e) => this.onChangeHandler(e)} 
-                                    value={ this.state.emails } 
+                                    value={ this.state.input } 
                                     className={ this.state.emails_are_valid ? '' : 'error' }
+                                    onFocus={ this.onInputClick }
+                                    autoComplete='off'
                                 />
+
                                 <label htmlFor="emails">{ this.state.emails_are_valid ? '' : 'Controleer of alle e-mail adressen juist zijn ingevuld.' }</label>
                                 <button className={ this.state.email_is_sending ? 'sending' : '' } type='submit'>
                                     { this.renderButtonContent() }
@@ -164,6 +191,16 @@ class FinalPage extends React.Component {
                             </form>
                         </div>
                     </div>
+                </div>
+
+                <div className='keyboard_container'>
+                    <Keyboard
+                        className='test'
+                        ref={ r => (this.keyboard = r) }
+                        layoutName={ this.state.layoutName }
+                        onChange={ this.onKeyboardChange }
+                        onKeyPress={ this.onKeyPress }
+                    />
                 </div>
             </div>
         )
