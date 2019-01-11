@@ -14,6 +14,7 @@ import LoginPage from '../_pages/LoginPage';
 import SelectAbumPage from '../_pages/SelectAlbumPage';
 import FinalPage from '../_pages/FinalPage';
 import EmailPage from '../_pages/EmailPage';
+import PrivacyPage from '../_pages/PrivacyPage';
 
 class App extends Component {
 	render() {
@@ -26,14 +27,15 @@ class App extends Component {
 				<Route exact path="/album" 	  	component={ SelectAbumPage } />
 				<Route exact path="/final" 	  	component={ FinalPage } />
 				<Route exact path="/email" 	  	component={ EmailPage } />
+				<Route exact path="/privacy" 	  	component={ PrivacyPage } />
 
 				<Footer />
 				
 				<div className="triangles">
-					<img className='t0' src={ T0 } alt="Traingle in the upperleft corner."/>
-					<img className='t1' src={ T1 } alt="Traingle in the upperright corner."/>
-					<img className='t2' src={ T2 } alt="Traingle in the bottomright corner."/>
-					<img className='t3' src={ T3 } alt="Traingle in the bottomleft corner."/>
+					<img className='t0' src={ T0 } alt="Triangle in the upperleft corner."/>
+					<img className='t1' src={ T1 } alt="Triangle in the upperright corner."/>
+					<img className='t2' src={ T2 } alt="Triangle in the bottomright corner."/>
+					<img className='t3' src={ T3 } alt="Triangle in the bottomleft corner."/>
 				</div>
 			</div>
 		);
