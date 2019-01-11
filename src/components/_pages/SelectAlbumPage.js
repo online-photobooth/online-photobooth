@@ -20,31 +20,31 @@ class SelectAbumPage extends React.Component {
     }
 
     componentDidMount = async () => {
-		if (!this.props.accessToken) 
-		{
-			console.log('redirecting from album to login');
-			this.props.history.push('/login')
-		} 
-		else 
-		{
-			try 
-			{
-				const resp = await axios.get('https://photoslibrary.googleapis.com/v1/sharedAlbums?excludeNonAppCreatedData=true', {
-					headers: {
-						Authorization: 'Bearer ' + this.props.accessToken
-					}
-				});
+      if (!this.props.accessToken) 
+      {
+        console.log('redirecting from album to login');
+        this.props.history.push('/login')
+      } 
+      else 
+      {
+        try 
+        {
+          const resp = await axios.get('https://photoslibrary.googleapis.com/v1/sharedAlbums', {
+            headers: {
+              Authorization: 'Bearer ' + this.props.accessToken
+            }
+          });
 
-				console.log(resp);
-				
-				const albums = resp.data.sharedAlbums;
-				this.setState({ albums });
-			} 
-			catch (error) 
-			{
-				console.log(error);
-			}
+          console.log(resp);
+          
+          const albums = resp.data.sharedAlbums;
+          this.setState({ albums });
+        } 
+        catch (error) 
+        {
+          console.log(error.response);
         }
+      }
     }
 
     setDefaultAlbum = (selectedAlbum) => {
@@ -129,8 +129,8 @@ class SelectAbumPage extends React.Component {
 						<div className="albumOverview">
 							<form onSubmit={(e) => this.createNewAlbum(e)}>
 								<input 
-									name='albumName' 
-									value={ this.state.albumName } 
+									name='newAlbum' 
+									value={ this.state.newAlbum } 
 									onChange={ this.onChangeHandler } 
 									placeholder='Maak een nieuw album aan'
 								/>
@@ -140,7 +140,7 @@ class SelectAbumPage extends React.Component {
 								</button>
 							</form>
 
-							<div className="albums">
+							<div className={ `albums ${ this.state.albums.length === 1 ? 'one-item' : '' } `}>
 								{ this.state.albums ? this.renderAlbums() : 'No albums found' }
 							</div>
 						</div>

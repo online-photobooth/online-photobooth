@@ -6,8 +6,6 @@ class RegularButton extends React.Component {
     render = () => {
         const { link, size, img, title }    = this.props;
 
-        console.log(link);
-
         if (link !== undefined) 
         {
             return (

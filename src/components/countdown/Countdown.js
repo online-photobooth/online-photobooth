@@ -5,7 +5,7 @@ class Countdown extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            timer: 1,
+            timer: 3,
             hideTimer: false
         };
     }

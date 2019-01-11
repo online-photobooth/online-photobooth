@@ -68,7 +68,7 @@ class LoginPage extends React.Component {
                             clientId={ process.env.REACT_APP_CLIENT_ID }
                             onSuccess={(resp) => this.successResponseGoogle(resp)}
                             onFailure={(resp) => this.responseGoogle(resp)}
-                            scope="profile email https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
+                            scope="profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
                             prompt="consent"
                             loginHint="kdgphotobooth@gmail.com"
                             render={renderProps => (

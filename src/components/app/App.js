@@ -13,6 +13,7 @@ import ShowPicturePage from '../_pages/ReviewPage';
 import LoginPage from '../_pages/LoginPage';
 import SelectAbumPage from '../_pages/SelectAlbumPage';
 import FinalPage from '../_pages/FinalPage';
+import EmailPage from '../_pages/EmailPage';
 
 class App extends Component {
 	render() {
@@ -24,6 +25,7 @@ class App extends Component {
 				<Route exact path="/login" 	  	component={ LoginPage } />
 				<Route exact path="/album" 	  	component={ SelectAbumPage } />
 				<Route exact path="/final" 	  	component={ FinalPage } />
+				<Route exact path="/email" 	  	component={ EmailPage } />
 
 				<Footer />
 				

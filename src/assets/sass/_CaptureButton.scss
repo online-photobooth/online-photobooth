@@ -15,5 +15,13 @@
     color: #fff;
     border: none;
     font-size: 4rem;
+    transition: all 150ms ease-in-out;
+    outline: none;
+
     &:hover { cursor: pointer; }
+
+    &.clicked 
+    {
+        margin-bottom: -300px;
+    }
 } 
