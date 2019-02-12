@@ -14,3 +14,6 @@ REACT_APP_SERVER_URL = http://192.168.1.42:8888 // IP Address of the Photobooth 
 ```
 
 yarn start
+
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c5490e54-6ff8-46fa-b8ff-7735771fb64d/deploy-status)](https://app.netlify.com/sites/kdgphotobooth/deploys)
