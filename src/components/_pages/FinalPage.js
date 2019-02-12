@@ -194,13 +194,13 @@ class FinalPage extends React.Component {
                 </div>
 
                 <div className='keyboard_container'>
-{                     <Keyboard
+{/*                     <Keyboard
                         className='test'
                         ref={ r => (this.keyboard = r) }
                         layoutName={ this.state.layoutName }
                         onChange={ this.onKeyboardChange }
                         onKeyPress={ this.onKeyPress }
-                    /> }
+                    /> */}
                 </div>
             </div>
         )
