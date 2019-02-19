@@ -140,7 +140,7 @@ class SelectAbumPage extends React.Component {
 								</button>
 							</form>
 
-							<div className={ `albums ${ this.state.albums.length === 1 ? 'one-item' : '' } `}>
+							<div className={ `albums ${ this.state.albums && this.state.albums.length === 1 ? 'one-item' : '' } `}>
 								{ this.state.albums ? this.renderAlbums() : 'No albums found' }
 							</div>
 						</div>
