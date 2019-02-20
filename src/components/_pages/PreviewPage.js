@@ -49,12 +49,13 @@ class PreviewPage extends React.Component {
     render = () => {
         console.log(this.state.requestIsSend);
         return (
-            <div className='PreviewPage' style='transform: rotateY(180deg);'>
+            <div className='PreviewPage'>
                 <Webcam 
                     width='100%'
                     height='100%'
                     audio={ false }
                     ref={ this.setRef }
+                    style='transform: rotateY(180deg)'
                 />
 
                 { this.renderCountDown() }
