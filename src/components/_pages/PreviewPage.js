@@ -55,7 +55,6 @@ class PreviewPage extends React.Component {
                     height='100%'
                     audio={ false }
                     ref={ this.setRef }
-                    style='transform: rotateY(180deg)'
                 />
 
                 { this.renderCountDown() }
