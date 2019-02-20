@@ -70,7 +70,7 @@ class LoginPage extends React.Component {
                             onFailure={(resp) => this.responseGoogle(resp)}
                             scope="profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
                             prompt="consent"
-                            loginHint="kdgphotobooth@gmail.com"
+                            loginHint="photobooth@kdg.be"
                             render={renderProps => (
                                 <RegularButton 
                                     img='check' 
