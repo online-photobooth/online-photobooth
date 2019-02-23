@@ -131,6 +131,7 @@ class FinalPage extends React.Component {
         this.setState({
             input: input
         });
+        console.log("Input changed", input);
     }
 
     onInputClick = () => {
