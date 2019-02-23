@@ -126,13 +126,16 @@ class FinalPage extends React.Component {
         console.log(button)
     }
 
-    onKeyboardChange = (input) => {
-        /*this.setState({ input })*/
+     /*onKeyboardChange = (input) => {
+        this.setState({ input })
+    }*/
+    
+    onKeyboardChange = input => {
         this.setState({
-            input: input
+          input: input
         });
         console.log("Input changed", input);
-    }
+    };
 
     onInputClick = () => {
         this.setState({ keyBoardIsOpen: true })        
