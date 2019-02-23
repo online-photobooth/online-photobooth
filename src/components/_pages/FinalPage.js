@@ -141,7 +141,7 @@ class FinalPage extends React.Component {
     render = () => {
         return (
             <div className={ `FinalPage ${ this.state.keyBoardIsOpen ? 'open' : 'close' } `} onClick={ this.onKeyBoardExit }>
-                {/* <div className={`checkInputOverlay ${ this.state.keyBoardIsOpen ? 'open' : 'close' }`} onClick={ this.onKeyBoardExit }></div> */}
+                { <div className={`checkInputOverlay ${ this.state.keyBoardIsOpen ? 'open' : 'close' }`} onClick={ this.onKeyBoardExit }></div> }
                 <div className="wrapper">
                     <div className="flex_container">
                         <div className="left">
