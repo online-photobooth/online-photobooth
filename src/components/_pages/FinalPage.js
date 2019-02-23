@@ -123,7 +123,7 @@ class FinalPage extends React.Component {
     }
 
     onKeyPress = (button) => {
-        console.log(button);
+        console.log(button)
     }
 
     onKeyboardChange = (input) => {
