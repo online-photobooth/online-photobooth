@@ -177,9 +177,10 @@ class FinalPage extends React.Component {
                             <form onSubmit={(e) => this.sendEmail(e)}>
                                 <input 
                                     name='emails' 
-                                    placeholder="email@example.com; email_2@example.com" 
+                                    /*placeholder="email@example.com; email_2@example.com"*/
+                                    placeholder={ this.state.input } 
                                     onChange={(e) => this.onChangeHandler(e)} 
-                                    value={ this.state.input } 
+                                    value={ this.state.emails } 
                                     className={ this.state.emails_are_valid ? '' : 'error' }
                                     onFocus={ this.onInputClick }
                                     autoComplete='off'
