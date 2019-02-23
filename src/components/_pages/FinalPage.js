@@ -126,16 +126,10 @@ class FinalPage extends React.Component {
         console.log(button)
     }
 
-     /*onKeyboardChange = (input) => {
+     onKeyboardChange = (input) => {
         this.setState({ input })
-    }*/
-    
-    onKeyboardChange = input => {
-        this.setState({
-          input: input
-        });
         console.log("Input changed", input);
-    };
+    }
 
     onInputClick = () => {
         this.setState({ keyBoardIsOpen: true })        
@@ -185,7 +179,7 @@ class FinalPage extends React.Component {
                                     name='emails' 
                                     placeholder="email@example.com; email_2@example.com" 
                                     onChange={(e) => this.onChangeHandler(e)} 
-                                    value={ this.state.emails } 
+                                    value={ this.state.input } 
                                     className={ this.state.emails_are_valid ? '' : 'error' }
                                     onFocus={ this.onInputClick }
                                     autoComplete='off'
