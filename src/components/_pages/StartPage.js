@@ -4,31 +4,36 @@ import Heading from '../titles/Heading';
 
 class StartPage extends React.Component {
     componentDidMount = () => {
-        if (!this.props.location.state || !this.props.location.state.album) 
-        {
-            this.props.history.push('/album')
-        }
+      const { location, history } = this.props;
+      if (!location.state || !location.state.album) {
+        history.push('/album');
+      }
     }
 
     render = () => {
-        return (
-            <div className='StartPage'>
-                <div className="wrapper">
-                    <div className="content">
-                        <Heading>
-                            Welkom op de { this.props.location.state ? this.props.location.state.album.title : ''}!
-                        </Heading>
-                        <RegularButton 
-                            img='camera' 
-                            alt='Large green button with camera icon in it.' 
-                            size='large' 
-                            title='Druk om verder te gaan.'
-                            onClick={() => this.props.history.push('/preview', { album: this.props.location.state.album })}
-                        />
-                    </div>
-                </div>
+      const { location, history } = this.props;
+
+      return (
+        <div className="StartPage">
+          <div className="wrapper">
+            <div className="content">
+              <Heading>
+                              Welkom op de
+                {' '}
+                { location.state ? location.state.album.title : ''}
+  !
+              </Heading>
+              <RegularButton
+                img="camera"
+                alt="Large green button with camera icon in it."
+                size="large"
+                title="Druk om verder te gaan."
+                onClick={() => history.push('/preview', { album: location.state.album })}
+              />
             </div>
-        )
+          </div>
+        </div>
+      );
     }
 }
 

@@ -9,33 +9,39 @@
     "url": "https://github.com/KdG-Photobooth/Photobooth.git"
   },
   "dependencies": {
+    "add": "^2.0.6",
     "art": "^0.10.3",
     "axios": "^0.18.0",
-    "babel-loader": "^8.0.4",
+    "babel-eslint": "^10.0.1",
     "emotion": "^10.0.6",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
     "node-sass-chokidar": "^1.3.4",
     "react": "^16.6.3",
     "react-addons-css-transition-group": "^15.6.2",
     "react-art-svg-renderer": "^0.0.1-rc.8",
     "react-dom": "^16.6.3",
-    "react-google-login": "^4.0.1",
+    "react-google-login": "^5.0.4",
     "react-qr-code": "^0.1.2",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1",
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.0",
     "react-simple-keyboard": "^1.14.2",
     "react-spinners": "^0.5.1",
     "react-webcam": "^1.0.4",
     "redux": "^4.0.1",
     "simple-ssh": "^1.0.0",
-    "ssh2": "^0.6.1"
+    "ssh2": "^0.8.4",
+    "yarn": "^1.15.2"
   },
   "scripts": {
     "watch-css": "node-sass-chokidar ./src/assets/sass -o ./public/style/ --watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/** --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

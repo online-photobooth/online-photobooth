@@ -1,9 +1,9 @@
-import { createStore } from 'redux'
+import { createStore } from 'redux';
 
 const initialState = {
   accessToken: '',
   googleUser: {},
-}
+};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -11,17 +11,17 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         accessToken: action.payload,
-      }
+      };
     case 'SET_GOOGLE_USER':
       return {
         ...state,
         googleUser: action.payload,
-      }
+      };
     default:
-      return state
+      return state;
   }
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer);
 
-export default store
+export default store;
