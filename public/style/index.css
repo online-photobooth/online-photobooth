@@ -295,6 +295,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .RegularButton {
   background-color: #00A685;
   border-radius: 200rem;
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
