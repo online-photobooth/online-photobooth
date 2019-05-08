@@ -8,13 +8,19 @@ class ReviewPage extends React.Component {
     super(props);
     this.state = {
       img: '',
+      images: [],
     };
   }
 
-  componentWillMount = () => {
+  componentWillMount = async () => {
     const { location } = this.props;
 
-    this.setState({ img: location.state.picture });
+    if (location.state.picture) {
+      this.setState({ img: location.state.picture });
+    } else if (location.state.pictures) {
+      const gif = await this.fetchGif(location.state.pictures)
+      this.setState({ img: gif });
+    }
   }
 
   componentDidMount = () => {
@@ -51,17 +57,37 @@ class ReviewPage extends React.Component {
     }
   }
 
+  fetchGif = async (images) => {
+    const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
+      images,
+    });
+
+    return resp;
+  }
+
+  renderImages = () => {
+    const { images } = this.state;
+
+    return images.map((image, i) => (<div className="mr-2" style={{width: '300px'}} key={i}><img src={image} width="100%" height="auto" alt="Taken by our photobooth." /></div>));
+  }
+
   render = () => {
-    const { img } = this.state;
+    const { img, images } = this.state;
 
     return (
       <div className="ReviewPage">
         <div className="wrapper">
           <div className="content">
-            <div className="img_container">
-              <img src={img} alt="Taken by our photobooth." />
-            </div>
-
+            { img && (
+              <div className="img_container">
+                <img src={img} alt="Taken by our photobooth." />
+              </div>
+            )}
+            { images && (
+              <div className="flex">
+                {this.renderImages()}
+              </div>
+            )}
             <div className="button_container">
               <RegularButton
                 size="small"

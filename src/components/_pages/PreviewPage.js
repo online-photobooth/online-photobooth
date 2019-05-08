@@ -11,6 +11,9 @@ class PreviewPage extends React.Component {
     this.state = {
       startCountdown: false,
       requestIsSend: false,
+      timer: 1,
+      totalPictures: 4,
+      pictures: [],
     };
   }
 
@@ -36,23 +39,49 @@ class PreviewPage extends React.Component {
       this.setState({ requestIsSend: false });
     }
 
-    history.push('/review', { picture, album: location.state.album });
+    history.push('/review', { picture, album: location.state.album, option: 'single' });
+  }
+
+  takeGif = async () => {
+    const { location, history } = this.props;
+    const { totalPictures, pictures } = this.state;
+
+    this.setState({ requestIsSend: true });
+
+    const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
+    this.setState({ pictures: [...pictures, resp.data.image] });
+
+    console.log('TCL: PreviewPage -> takeGif -> pictures', pictures);
+
+    this.setState({ totalPictures: totalPictures - 1 });
+
+    console.log('TCL: PreviewPage -> takeGif -> totalPictures', totalPictures);
+
+    if (totalPictures === 0) {
+      history.push('/review', { pictures, album: location.state.album, option: 'gif' });
+    } else {
+      this.setState({ startCountdown: false });
+      this.setState({ startCountdown: true });
+    }
+
+    this.setState({ requestIsSend: false });
   }
 
   setRef = (webcam) => {
     this.webcam = webcam;
   };
 
-  renderCountDown = () => {
+  renderCountDown = (option, timer) => {
     const { startCountdown } = this.state;
 
-    if (startCountdown) return <Countdown onDone={this.takePicture} />;
+    if (startCountdown) return <Countdown onDone={option === 'gif' ? this.takeGif : this.takePicture} timer={timer} />;
 
     return true;
   }
 
   render = () => {
-    const { requestIsSend } = this.state;
+    const { requestIsSend, timer } = this.state;
+    const { location } = this.props;
 
     console.log(requestIsSend);
     return (
@@ -64,7 +93,7 @@ class PreviewPage extends React.Component {
           ref={this.setRef}
         />
 
-        { this.renderCountDown() }
+        { this.renderCountDown(location.state.option, timer) }
 
         <SyncLoader
           color="#fff"

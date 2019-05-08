@@ -12,24 +12,33 @@ class StartPage extends React.Component {
 
     render = () => {
       const { location, history } = this.props;
+      const title = `Welkom op de ${location.state ? location.state.album.title : ''}!`;
 
       return (
         <div className="StartPage">
           <div className="wrapper">
             <div className="content">
-              <Heading>
-                              Welkom op de
-                {' '}
-                { location.state ? location.state.album.title : ''}
-  !
-              </Heading>
-              <RegularButton
-                img="camera"
-                alt="Large green button with camera icon in it."
-                size="large"
-                title="Druk om verder te gaan."
-                onClick={() => history.push('/preview', { album: location.state.album })}
-              />
+              <Heading>{title}</Heading>
+              <div className="flex">
+                <div
+                  className="mr-2"
+                >
+                  <RegularButton
+                    img="camera"
+                    alt="Take a single picture."
+                    size="large"
+                    title="Neem 1 foto."
+                    onClick={() => history.push('/preview', { album: location.state.album, option: 'single' })}
+                  />
+                </div>
+                <RegularButton
+                  img="camera"
+                  alt="Take a single picture."
+                  size="large"
+                  title="Neem een Gif."
+                  onClick={() => history.push('/preview', { album: location.state.album, option: 'gif' })}
+                />
+              </div>
             </div>
           </div>
         </div>

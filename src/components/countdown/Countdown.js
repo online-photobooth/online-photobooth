@@ -11,7 +11,8 @@ class Countdown extends React.Component {
   }
 
   componentDidMount = () => {
-    const { onDone } = this.props;
+    const { onDone, timer: newTimer } = this.props;
+    if (newTimer) { this.setState({ timer: newTimer }); }
 
     this.interval = setInterval(() => {
       const { timer } = this.state;

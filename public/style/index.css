@@ -77,6 +77,12 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .RegularButtonLink {
   text-decoration: none; }
 
+.flex {
+  display: flex; }
+
+.mr-2 {
+  margin-right: 0.5rem; }
+
 .StartPage {
   width: 100%; }
 
