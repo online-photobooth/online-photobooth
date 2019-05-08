@@ -8,7 +8,7 @@ class ReviewPage extends React.Component {
     super(props);
     this.state = {
       img: '',
-      images: [],
+      gif: false,
     };
   }
 
@@ -18,8 +18,8 @@ class ReviewPage extends React.Component {
     if (location.state.picture) {
       this.setState({ img: location.state.picture });
     } else if (location.state.pictures) {
-      const gif = await this.fetchGif(location.state.pictures)
-      this.setState({ img: gif });
+      await this.fetchGif(location.state.pictures);
+      this.setState({ gif: true });
     }
   }
 
@@ -68,25 +68,26 @@ class ReviewPage extends React.Component {
   renderImages = () => {
     const { images } = this.state;
 
-    return images.map((image, i) => (<div className="mr-2" style={{width: '300px'}} key={i}><img src={image} width="100%" height="auto" alt="Taken by our photobooth." /></div>));
+    return images.map((image, i) => (<div className="mr-2" style={{ width: '300px' }} key={i}><img src={image} width="100%" height="auto" alt="Taken by our photobooth." /></div>));
   }
 
   render = () => {
-    const { img, images } = this.state;
+    const { img, gif } = this.state;
 
     return (
       <div className="ReviewPage">
         <div className="wrapper">
           <div className="content">
-            { img && (
+            {img && (
               <div className="img_container">
                 <img src={img} alt="Taken by our photobooth." />
               </div>
             )}
-            { images && (
-              <div className="flex">
-                {this.renderImages()}
-              </div>
+            {gif && (
+              <video>
+                <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4`} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             )}
             <div className="button_container">
               <RegularButton
