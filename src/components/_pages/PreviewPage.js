@@ -48,16 +48,22 @@ class PreviewPage extends React.Component {
 
     this.setState({ requestIsSend: true });
 
+    await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`);
+    this.setState({ requestIsSend: false });
+
+    history.push('/review', { pictures, album: location.state.album, option: 'gif' });
+
     const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
     this.setState({ pictures: [...pictures, resp.data.image] });
-
-    console.log('TCL: PreviewPage -> takeGif -> pictures', pictures);
 
     this.setState({ totalPictures: totalPictures - 1 });
 
     console.log('TCL: PreviewPage -> takeGif -> totalPictures', totalPictures);
 
     if (totalPictures === 0) {
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`);
+      this.setState({ requestIsSend: false });
+
       history.push('/review', { pictures, album: location.state.album, option: 'gif' });
     } else {
       this.setState({ startCountdown: false });
@@ -83,7 +89,6 @@ class PreviewPage extends React.Component {
     const { requestIsSend, timer } = this.state;
     const { location } = this.props;
 
-    console.log(requestIsSend);
     return (
       <div className="PreviewPage">
         <Webcam

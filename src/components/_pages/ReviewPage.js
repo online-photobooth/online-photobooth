@@ -18,7 +18,6 @@ class ReviewPage extends React.Component {
     if (location.state.picture) {
       this.setState({ img: location.state.picture });
     } else if (location.state.pictures) {
-      await this.fetchGif(location.state.pictures);
       this.setState({ gif: true });
     }
   }
@@ -57,14 +56,6 @@ class ReviewPage extends React.Component {
     }
   }
 
-  fetchGif = async (images) => {
-    const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
-      images,
-    });
-
-    return resp;
-  }
-
   renderImages = () => {
     const { images } = this.state;
 
@@ -84,9 +75,8 @@ class ReviewPage extends React.Component {
               </div>
             )}
             {gif && (
-              <video>
+              <video autoPlay playsInline loop preload="none">
                 <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4`} type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
             )}
             <div className="button_container">
