@@ -75,7 +75,7 @@ class ReviewPage extends React.Component {
               </div>
             )}
             {gif && (
-              <video autoPlay playsInline loop preload="none">
+              <video autoPlay playsInline loop preload="none" style={{ width: '100vw' }}>
                 <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4`} type="video/mp4" />
               </video>
             )}
