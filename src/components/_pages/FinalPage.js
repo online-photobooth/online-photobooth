@@ -3,10 +3,8 @@ import QRCode from 'react-qr-code';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { SyncLoader } from 'react-spinners';
-import Keyboard from 'react-simple-keyboard';
 import Heading from '../titles/Heading';
 import RegularButton from '../buttons/RegularButton';
-import 'react-simple-keyboard/build/css/index.css';
 
 class FinalPage extends React.Component {
   constructor(props) {
@@ -17,10 +15,6 @@ class FinalPage extends React.Component {
       emailIsSending: false,
       emailIsSend: false,
       errorSendingEmail: false,
-      layoutName: 'default',
-      input: '',
-      keyBoardIsOpen: false,
-      divClicked: false,
     };
   }
 
@@ -109,63 +103,21 @@ class FinalPage extends React.Component {
     return "Verstuur foto's";
   }
 
-  onKeyPress = (button) => {
-    console.log(button);
-  }
-
-    onKeyboardChange = (input) => {
-      this.setState({ input });
-      console.log('Input changed', input);
-    }
-
-  onInputClick = () => {
-    this.setState({ keyBoardIsOpen: true });
-  }
-
-  onKeyBoardExit = () => {
-    this.setState({ keyBoardIsOpen: false });
-  }
-
   render = () => {
     const {
-      keyBoardIsOpen, emails, emailsAreValid, emailIsSending, layoutName,
+      emails, emailsAreValid, emailIsSending,
     } = this.state;
     const {
       location, history,
     } = this.props;
 
     return (
-      <div className={`FinalPage ${keyBoardIsOpen ? 'open' : 'close'} `} onClick={this.onKeyBoardExit} role="button" tabIndex="0">
-        { <div className={`checkInputOverlay ${keyBoardIsOpen ? 'open' : 'close'}`} onClick={this.onKeyBoardExit} role="button" tabIndex="0" /> }
+      <div className="FinalPage">
         <div className="wrapper">
           <div className="flex_container">
             <div className="left">
-              <Heading>Je foto is verstuurd! Bekijk het album via de QR-code!</Heading>
-              <QRCode value={location.state.album.shareInfo.shareableUrl} />
-            </div>
-
-            <div className="right">
-              <div className="buttons">
-                <RegularButton
-                  img="camera"
-                  alt="Large green button with camera icon in it."
-                  size="small"
-                  title="Neem een nieuwe foto"
-                  onClick={() => history.push('/', { album: location.state.album })}
-                />
-
-                <RegularButton
-                  img="home"
-                  alt="Large green button with camera icon in it."
-                  size="small"
-                  title="Afsluiten"
-                  onClick={() => history.push('/', { album: location.state.album })}
-                />
-              </div>
-              <Heading>Wil je de foto in je mailbox ontvangen?</Heading>
-
+              <Heading type="small">Wil je de foto in je mailbox ontvangen?</Heading>
               <p>Geef meerdere e-mail adressen op gescheiden door een puntkomma (;)</p>
-
               <form onSubmit={e => this.sendEmail(e)}>
                 <input
                   name="emails"
@@ -184,17 +136,31 @@ class FinalPage extends React.Component {
                 </button>
               </form>
             </div>
-          </div>
-        </div>
 
-        <div className="keyboard_container">
-          { <Keyboard
-            className="test"
-            ref={r => this.keyboard = r}
-            layoutName={layoutName}
-            onChange={input => this.onKeyboardChange(input)}
-            onKeyPress={this.onKeyPress}
-          /> }
+            <div className="right">
+              <Heading type="small">Bekijk je foto via de QR-code!</Heading>
+              <div className="mt-4">
+                <QRCode value={location.state.album.shareInfo.shareableUrl} />
+              </div>
+              <div className="flex mt-16">
+                <RegularButton
+                  img="camera"
+                  alt="Camera icon."
+                  size="small"
+                  title="Neem een nieuwe foto"
+                  onClick={() => history.push('/', { album: location.state.album })}
+                />
+
+                <RegularButton
+                  img="home"
+                  alt="House icon."
+                  size="small"
+                  title="Afsluiten"
+                  onClick={() => history.push('/', { album: location.state.album })}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

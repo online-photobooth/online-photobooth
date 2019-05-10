@@ -48,7 +48,9 @@ class PreviewPage extends React.Component {
 
     this.setState({ requestIsSend: true });
 
-    await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`);
+    await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
+      frame: 2,
+    });
     this.setState({ requestIsSend: false });
 
     history.push('/review', { pictures, album: location.state.album, option: 'gif' });

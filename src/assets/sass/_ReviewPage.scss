@@ -3,9 +3,9 @@
 
     .img_container 
     {
-        width: 100vw;
+        max-width: 100vw;
         overflow: hidden;
-        height: 100vh;
+        max-height: 100vh;
         margin-bottom: -2rem;
 
         img 

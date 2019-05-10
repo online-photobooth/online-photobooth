@@ -83,6 +83,18 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .mr-2 {
   margin-right: 0.5rem; }
 
+.mt-2 {
+  margin-top: 0.5rem; }
+
+.mt-4 {
+  margin-top: 1rem; }
+
+.mt-8 {
+  margin-top: 2rem; }
+
+.mt-16 {
+  margin-top: 4rem; }
+
 .StartPage {
   width: 100%; }
 
@@ -104,9 +116,9 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     align-items: center; }
 
 .ReviewPage .img_container {
-  width: 100vw;
+  max-width: 100vw;
   overflow: hidden;
-  height: 100vh;
+  max-height: 100vh;
   margin-bottom: -2rem; }
   .ReviewPage .img_container img {
     height: 100%;
@@ -219,11 +231,9 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .FinalPage {
   height: 100vh !important; }
   .FinalPage .flex_container {
-    display: flex;
-    flex: 1;
-    flex-grow: 1; }
+    display: flex; }
   .FinalPage .left {
-    justify-content: center !important; }
+    justify-content: start !important; }
     .FinalPage .left h1 {
       margin-bottom: 2rem; }
   .FinalPage .left, .FinalPage .right {
@@ -232,9 +242,6 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     flex-direction: column;
     align-items: center;
     justify-content: space-between; }
-  .FinalPage .buttons {
-    display: flex;
-    margin: 0 -1rem; }
   .FinalPage .RegularButton {
     margin: 0 1rem 4rem 1rem !important; }
     .FinalPage .RegularButton .Heading {
@@ -272,31 +279,6 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
       transition: all 200ms ease-in-out 1s; }
       .FinalPage form button:hover {
         cursor: pointer; }
-  .FinalPage.close .keyboard_container {
-    height: 0 !important;
-    overflow: hidden; }
-  .FinalPage .checkInputOverlay {
-    height: 100vh;
-    width: 100vw;
-    position: absolute; }
-    .FinalPage .checkInputOverlay.open {
-      display: block; }
-    .FinalPage .checkInputOverlay.close {
-      display: none; }
-  .FinalPage .keyboard_container {
-    width: 100%;
-    height: 8rem;
-    position: absolute;
-    bottom: 0;
-    margin: auto;
-    transition: all 150ms ease-in-out; }
-    .FinalPage .keyboard_container .react-simple-keyboard {
-      background-color: #fff !important;
-      display: block !important;
-      position: inherit; }
-      .FinalPage .keyboard_container .react-simple-keyboard .hg-button {
-        height: 3rem !important;
-        border: 1px solid #000 !important; }
 
 .RegularButton {
   background-color: #00A685;
