@@ -18,7 +18,7 @@ class FinalPage extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     const { location, history } = this.props;
 
     if (!location.state || !location.state.album) {
@@ -130,9 +130,9 @@ class FinalPage extends React.Component {
                   autoComplete="off"
                 />
 
-                <label htmlFor="emails">{ emailsAreValid ? '' : 'Controleer of alle e-mail adressen juist zijn ingevuld.' }</label>
+                <label htmlFor="emails">{emailsAreValid ? '' : 'Controleer of alle e-mail adressen juist zijn ingevuld.'}</label>
                 <button className={emailIsSending ? 'sending' : ''} type="submit">
-                  { this.renderButtonContent() }
+                  {this.renderButtonContent()}
                 </button>
               </form>
             </div>
