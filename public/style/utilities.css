@@ -1,6 +1,12 @@
 .flex {
   display: flex; }
 
+.justify-center {
+  justify-content: center; }
+
+.items-center {
+  align-items: center; }
+
 .mr-2 {
   margin-right: 0.5rem; }
 
