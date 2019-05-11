@@ -10,7 +10,7 @@ const CaptureButton = ({ onClick }) => {
 
   return (
     <button className={`CaptureButton ${isClicked ? 'clicked' : ''}`} onClick={onClickHandler} type="button">
-      <i className="fas fa-camera-retro" />
+      Start
     </button>
   );
 };

@@ -10,7 +10,7 @@ const RegularButton = ({
       <Link to={`/${link}`} className="RegularButtonLink">
         <div className={`RegularButton ${size}`}>
           <img src={`./style/img/${img}.png`} alt="test" />
-          <Heading type="heading--4">{ title }</Heading>
+          <Heading type="heading--4">{title}</Heading>
         </div>
       </Link>
     );
@@ -18,8 +18,8 @@ const RegularButton = ({
 
   return (
     <button className={`RegularButton ${size}`} onClick={onClick} type="button">
-      <img src={`./style/img/${img}.png`} alt="test" />
-      <Heading type="heading--4">{ title }</Heading>
+      <img src={`./style/img/${img}.png`} alt="test" style={{ marginBottom: title ? '1.2rem' : '0' }} />
+      <Heading type="heading--4">{title}</Heading>
     </button>
   );
 };

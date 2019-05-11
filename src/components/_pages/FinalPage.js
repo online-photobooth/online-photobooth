@@ -143,19 +143,18 @@ class FinalPage extends React.Component {
                 <QRCode value={location.state.album.shareInfo.shareableUrl} />
               </div>
               <div className="flex mt-16">
-                <RegularButton
+                {/* <RegularButton
                   img="camera"
                   alt="Camera icon."
                   size="small"
                   title="Neem een nieuwe foto"
                   onClick={() => history.push('/', { album: location.state.album })}
-                />
+                /> */}
 
                 <RegularButton
                   img="home"
                   alt="House icon."
                   size="small"
-                  title="Afsluiten"
                   onClick={() => history.push('/', { album: location.state.album })}
                 />
               </div>

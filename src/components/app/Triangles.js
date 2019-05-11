@@ -6,7 +6,7 @@ import T2 from '../../assets/img/Triangle_2.png';
 import T3 from '../../assets/img/Triangle_3.png';
 
 const Triangles = () => {
-  if (window.location.pathname === '/preview' || window.location.pathname === '/review') {
+  if (window.location.pathname === '/preview' || window.location.pathname === '/review' || window.location.pathname === '/final') {
     return '';
   }
 

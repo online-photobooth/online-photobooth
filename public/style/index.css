@@ -290,8 +290,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   align-items: center;
   color: #fff; }
   .RegularButton img {
-    width: 35%;
-    margin-bottom: 1.2rem; }
+    width: 50%; }
   .RegularButton a {
     text-decoration: none; }
   .RegularButton:hover {
@@ -319,7 +318,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   justify-content: center;
   color: #fff;
   border: none;
-  font-size: 4rem;
+  font-size: 3rem;
   transition: all 150ms ease-in-out;
   outline: none; }
   .CaptureButton:hover {
