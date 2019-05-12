@@ -18,10 +18,10 @@ class PreviewPage extends React.Component {
   }
 
   componentDidMount = () => {
-    const { location } = this.props;
+    const { location, history } = this.props;
 
     if (!location.state || !location.state.album) {
-      // this.props.history.push('/album')
+      history.push('/album');
     }
   }
 
@@ -100,7 +100,7 @@ class PreviewPage extends React.Component {
           ref={this.setRef}
         />
 
-        { this.renderCountDown(location.state.option, timer) }
+        {this.renderCountDown((location.state && location.state.option) || 3, timer)}
 
         <SyncLoader
           color="#fff"

@@ -12,7 +12,7 @@ class ReviewPage extends React.Component {
     };
   }
 
-  componentWillMount = async () => {
+  componentWillMount = () => {
     const { location } = this.props;
 
     if (location.state.picture) {
@@ -28,12 +28,6 @@ class ReviewPage extends React.Component {
     if (!location.state || !location.state.album) {
       history.push('/album');
     }
-  }
-
-  goBack = () => {
-    const { history } = this.props;
-
-    history.goBack();
   }
 
   uploadPicture = async () => {
@@ -64,6 +58,7 @@ class ReviewPage extends React.Component {
 
   render = () => {
     const { img, gif } = this.state;
+    const { history } = this.props;
 
     return (
       <div className="ReviewPage">
@@ -84,7 +79,7 @@ class ReviewPage extends React.Component {
                 size="small"
                 img="refresh"
                 title="Opnieuw"
-                onClick={this.goBack}
+                onClick={history.goBack}
               />
 
               <RegularButton
