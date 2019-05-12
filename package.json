@@ -36,7 +36,7 @@
     "yarn": "^1.15.2"
   },
   "scripts": {
-    "watch-css": "node-sass-chokidar ./src/assets/sass -o ./public/style/ --watch",
+    "css": "node-sass-chokidar ./src/assets/sass -o ./public/style/ --watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
