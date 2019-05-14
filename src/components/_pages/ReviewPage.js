@@ -25,6 +25,8 @@ class ReviewPage extends React.Component {
       this.setState({ img: location.state.picture });
     } else {
       this.setState({ gif: true });
+      const video = document.getElementById('gif');
+      console.log('TCL: ReviewPage -> componentDidMount -> video', video);
     }
   }
 
@@ -64,8 +66,8 @@ class ReviewPage extends React.Component {
               </div>
             )}
             {gif && (
-              <video autoPlay playsInline loop preload="none">
-                <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4`} type="video/mp4" />
+              <video autoPlay playsInline loop id="gif">
+                <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4?t=${new Date()}`} type="video/mp4" />
               </video>
             )}
             <div className="button_container">
