@@ -34,6 +34,10 @@ class SelectAbumPage extends React.Component {
         console.log(resp);
 
         const albums = resp.data.sharedAlbums;
+        const framesId = albums.find(el => el.title.toLowerCase() === 'frames').id;
+
+        await this.setFrames(framesId);
+
         this.setState({ albums });
       } catch (error) {
         console.log(error.response);
@@ -47,7 +51,7 @@ class SelectAbumPage extends React.Component {
     history.push('/', { album: selectedAlbum });
   }
 
-  renderAlbums = albums => albums.map(album => (
+  renderAlbums = albums => albums.filter(el => el.title.toLowerCase() !== 'frames').map(album => (
     <SingleAlbum key={album.id} album={album} onClick={this.setDefaultAlbum} />
   ))
 
@@ -112,6 +116,31 @@ class SelectAbumPage extends React.Component {
     return true;
   }
 
+  setFrames = async (framesId) => {
+    const { dispatch, accessToken } = this.props;
+
+    // Fetch Frames Album
+    try {
+      const resp = await axios.post('https://photoslibrary.googleapis.com/v1/mediaItems:search', {
+        albumId: framesId,
+      }, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      console.log(resp);
+
+      const frames = resp.data.mediaItems;
+      dispatch({
+        type: 'SET_FRAMES',
+        payload: frames,
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
+
   render = () => {
     const { albums, newAlbum } = this.state;
 
@@ -136,7 +165,7 @@ class SelectAbumPage extends React.Component {
               </form>
 
               <div className={`albums ${albums && albums.length === 1 ? 'one-item' : ''} `}>
-                { albums ? this.renderAlbums(albums) : 'No albums found' }
+                {albums ? this.renderAlbums(albums) : 'No albums found'}
               </div>
             </div>
           </div>
