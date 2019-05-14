@@ -2,11 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Heading from '../titles/Heading';
 
-const SelectFramePage = ({ frames }) => {
-  console.log('TCL: SelectFramePage -> frames', frames);
+const SelectFramePage = ({ frames, dispatch, history }) => {
+  const setFrame = async (frame) => {
+    await dispatch({
+      type: 'SET_FRAME',
+      payload: frame,
+    });
+    history.push('/preview');
+  };
 
   const renderImages = () => frames.map(frame => (
-    <img key={frame.id} src={frame.baseUrl} alt="Kdg Frame" />
+    <button key={frame.id} onClick={() => setFrame(frame)} type="button">
+      <img src={frame.baseUrl} alt="Kdg Frame" />
+    </button>
   ));
 
   return (

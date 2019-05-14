@@ -12,48 +12,42 @@ class ReviewPage extends React.Component {
     };
   }
 
-  componentWillMount = () => {
-    const { location } = this.props;
+  componentDidMount = () => {
+    const {
+      location, history, format, album,
+    } = this.props;
 
-    if (location.state.picture) {
+    if (!album) {
+      history.push('/album');
+    }
+
+    if (format === 'single') {
       this.setState({ img: location.state.picture });
-    } else if (location.state.pictures) {
+    } else {
       this.setState({ gif: true });
     }
   }
 
-  componentDidMount = () => {
-    const { location, history } = this.props;
-
-    if (!location.state || !location.state.album) {
-      history.push('/album');
-    }
-  }
-
   uploadPicture = async () => {
-    const { location, history, accessToken } = this.props;
+    const {
+      history, accessToken, album,
+    } = this.props;
 
     try {
-      history.push('/final', { album: location.state.album });
+      history.push('/final');
       const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/uploadLastImageTaken`, {
         token: accessToken,
-        album: location.state.album.id,
+        album: album.id,
       });
 
       console.log(resp);
 
       if (resp.status === 200) {
-        history.push('/final', { album: location.state.album });
+        history.push('/final');
       }
     } catch (error) {
       console.log(error);
     }
-  }
-
-  renderImages = () => {
-    const { images } = this.state;
-
-    return images.map((image, i) => (<div className="mr-2" style={{ width: '300px' }} key={i}><img src={image} width="100%" height="auto" alt="Taken by our photobooth." /></div>));
   }
 
   render = () => {
@@ -70,7 +64,7 @@ class ReviewPage extends React.Component {
               </div>
             )}
             {gif && (
-              <video autoPlay playsInline loop preload="none" style={{ width: '100vw' }}>
+              <video autoPlay playsInline loop preload="none">
                 <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4`} type="video/mp4" />
               </video>
             )}
@@ -98,6 +92,8 @@ class ReviewPage extends React.Component {
 
 const mapStateToProps = state => ({
   accessToken: state.accessToken,
+  format: state.format,
+  album: state.album,
 });
 
 export default connect(mapStateToProps)(ReviewPage);

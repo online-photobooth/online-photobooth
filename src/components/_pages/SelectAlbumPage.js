@@ -41,14 +41,23 @@ class SelectAbumPage extends React.Component {
         this.setState({ albums });
       } catch (error) {
         console.log(error.response);
+
+        if (error.response.status === 401) {
+          history.push('/login');
+        }
       }
     }
   }
 
   setDefaultAlbum = (selectedAlbum) => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
 
-    history.push('/', { album: selectedAlbum });
+    dispatch({
+      type: 'SET_ALBUM',
+      payload: selectedAlbum,
+    });
+
+    history.push('/');
   }
 
   renderAlbums = albums => albums.filter(el => el.title.toLowerCase() !== 'frames').map(album => (
@@ -56,7 +65,7 @@ class SelectAbumPage extends React.Component {
   ))
 
   createNewAlbum = async (e) => {
-    const { accessToken, history } = this.props;
+    const { accessToken, history, dispatch } = this.props;
     const { newAlbum } = this.state;
 
     e.preventDefault();
@@ -107,7 +116,12 @@ class SelectAbumPage extends React.Component {
       };
       console.log(selectedAlbum);
 
-      history.push('/', { album: selectedAlbum });
+      dispatch({
+        type: 'SET_ALBUM',
+        payload: selectedAlbum,
+      });
+
+      history.push('/');
     } catch (error) {
       console.log('Sharing album went wrong');
       console.log(error.response);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Webcam from 'react-webcam';
 import axios from 'axios';
 import { SyncLoader } from 'react-spinners';
@@ -10,25 +11,24 @@ class PreviewPage extends React.Component {
     super(props);
     this.state = {
       startCountdown: false,
-      requestIsSend: false,
+      loading: false,
       timer: 1,
       totalPictures: 4,
-      pictures: [],
     };
   }
 
   componentDidMount = () => {
-    const { location, history } = this.props;
+    const { album, history } = this.props;
 
-    if (!location.state || !location.state.album) {
+    if (!album) {
       history.push('/album');
     }
   }
 
   takePicture = async () => {
-    const { location, history } = this.props;
+    const { history } = this.props;
 
-    this.setState({ requestIsSend: true });
+    this.setState({ loading: true });
 
     const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
     const picture = resp.data.image;
@@ -36,43 +36,50 @@ class PreviewPage extends React.Component {
     // const picture   = 'https://bit.ly/2VzPl0Q';
 
     if (picture !== null) {
-      this.setState({ requestIsSend: false });
+      this.setState({ loading: false });
     }
 
-    history.push('/review', { picture, album: location.state.album, option: 'single' });
+    history.push('/review', { picture });
   }
 
   takeGif = async () => {
-    const { location, history } = this.props;
-    const { totalPictures, pictures } = this.state;
+    const { history, frame } = this.props;
+    const { totalPictures } = this.state;
+    const [width, height] = [1200, 800];
 
-    this.setState({ requestIsSend: true });
+    this.setState({ loading: true });
 
-    await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
-      frame: 2,
-    });
-    this.setState({ requestIsSend: false });
+    try {
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
+        frame: `${frame.baseUrl}=w${width}-h${height}`,
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
-    history.push('/review', { pictures, album: location.state.album, option: 'gif' });
+    this.setState({ loading: false });
 
-    const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
-    this.setState({ pictures: [...pictures, resp.data.image] });
+    history.push('/review');
+
+    await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
 
     this.setState({ totalPictures: totalPictures - 1 });
 
     console.log('TCL: PreviewPage -> takeGif -> totalPictures', totalPictures);
 
     if (totalPictures === 0) {
-      await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`);
-      this.setState({ requestIsSend: false });
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
+        frame,
+      });
+      this.setState({ loading: false });
 
-      history.push('/review', { pictures, album: location.state.album, option: 'gif' });
+      history.push('/review');
     } else {
       this.setState({ startCountdown: false });
       this.setState({ startCountdown: true });
     }
 
-    this.setState({ requestIsSend: false });
+    this.setState({ loading: false });
   }
 
   setRef = (webcam) => {
@@ -88,8 +95,8 @@ class PreviewPage extends React.Component {
   }
 
   render = () => {
-    const { requestIsSend, timer } = this.state;
-    const { location } = this.props;
+    const { loading, timer } = this.state;
+    const { format } = this.props;
 
     return (
       <div className="PreviewPage">
@@ -100,12 +107,12 @@ class PreviewPage extends React.Component {
           ref={this.setRef}
         />
 
-        {this.renderCountDown((location.state && location.state.option) || 3, timer)}
+        {this.renderCountDown(format, timer || 3)}
 
         <SyncLoader
           color="#fff"
           size={50}
-          loading={requestIsSend}
+          loading={loading}
         />
 
         <CaptureButton onClick={() => this.setState({ startCountdown: true })} />
@@ -114,4 +121,10 @@ class PreviewPage extends React.Component {
   }
 }
 
-export default PreviewPage;
+const mapStateToProps = state => ({
+  album: state.album,
+  format: state.format,
+  frame: state.frame,
+});
+
+export default connect(mapStateToProps)(PreviewPage);

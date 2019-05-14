@@ -18,10 +18,10 @@ class FinalPage extends React.Component {
     };
   }
 
-  componentWillMount = () => {
-    const { location, history } = this.props;
+  componentDidMount = () => {
+    const { album, history } = this.props;
 
-    if (!location.state || !location.state.album) {
+    if (!album) {
       history.push('/album');
     }
   }
@@ -31,7 +31,7 @@ class FinalPage extends React.Component {
   }
 
   sendEmail = async (e) => {
-    const { location, accessToken } = this.props;
+    const { album, accessToken } = this.props;
     const { emailsAreValid } = this.state;
 
     e.preventDefault();
@@ -65,9 +65,9 @@ class FinalPage extends React.Component {
       try {
         const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/sendPictureToEmail`, {
           token: accessToken,
-          title: location.state.album.title,
+          title: album.title,
           email: e.target.emails.value,
-          albumLink: location.state.album.shareInfo.shareableUrl,
+          albumLink: album.shareInfo.shareableUrl,
         });
 
         if (resp.status === 200) this.setState({ emailIsSending: false, emailIsSend: true, errorSendingEmail: false });
@@ -108,7 +108,7 @@ class FinalPage extends React.Component {
       emails, emailsAreValid, emailIsSending,
     } = this.state;
     const {
-      location, history,
+      history, album,
     } = this.props;
 
     return (
@@ -137,26 +137,28 @@ class FinalPage extends React.Component {
               </form>
             </div>
 
-            <div className="">
-              <Heading type="small">Bekijk je foto via de QR-code!</Heading>
-              <div className="mt-4">
-                <QRCode value={location.state.album.shareInfo.shareableUrl} />
+            { album && album.shareInfo && (
+              <div className="">
+                <Heading type="small">Bekijk je foto via de QR-code!</Heading>
+                <div className="mt-4">
+                  <QRCode value={album.shareInfo.shareableUrl} />
+                </div>
               </div>
-            </div>
+            )}
             <div className="flex">
               {/* <RegularButton
                   img="camera"
                   alt="Camera icon."
                   size="small"
                   title="Neem een nieuwe foto"
-                  onClick={() => history.push('/', { album: location.state.album })}
+                  onClick={() => history.push('/')}
                 /> */}
 
               <RegularButton
                 img="home"
                 alt="House icon."
                 size="small"
-                onClick={() => history.push('/', { album: location.state.album })}
+                onClick={() => history.push('/')}
               />
             </div>
           </div>
@@ -168,6 +170,7 @@ class FinalPage extends React.Component {
 
 const mapStateToProps = state => ({
   accessToken: state.accessToken,
+  album: state.album,
 });
 
 export default connect(mapStateToProps)(FinalPage);

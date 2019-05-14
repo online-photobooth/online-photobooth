@@ -1,49 +1,59 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
 
-class StartPage extends React.Component {
-  componentDidMount = () => {
-    const { location, history } = this.props;
-    if (!location.state || !location.state.album) {
+const StartPage = ({ album, dispatch, history }) => {
+  useEffect(() => () => {
+    if (!album) {
       history.push('/album');
     }
-  }
+  });
 
-  render = () => {
-    const { location, history } = this.props;
-    const title = `Welkom op de ${location.state ? location.state.album.title : ''}!`;
+  const setFormat = async (format) => {
+    await dispatch({
+      type: 'SET_FORMAT',
+      payload: format,
+    });
 
-    return (
-      <div className="StartPage">
-        <div className="wrapper">
-          <div className="content">
-            <Heading>{title}</Heading>
-            <div className="flex">
-              <div
-                className="mr-2"
-              >
-                <RegularButton
-                  img="camera"
-                  alt="Take a single picture."
-                  size="large"
-                  title="Neem 1 foto."
-                  onClick={() => history.push('/frame', { album: location.state.album, option: 'single' })}
-                />
-              </div>
+    history.push('/frame');
+  };
+
+  const title = `Welkom op de ${album ? album.title : ''}!`;
+
+  return (
+    <div className="StartPage">
+      <div className="wrapper">
+        <div className="content">
+          <Heading>{title}</Heading>
+          <div className="flex">
+            <div
+              className="mr-2"
+            >
               <RegularButton
                 img="camera"
                 alt="Take a single picture."
                 size="large"
-                title="Neem een Gif."
-                onClick={() => history.push('/frame', { album: location.state.album, option: 'gif' })}
+                title="Neem 1 foto."
+                onClick={() => setFormat('single')}
               />
             </div>
+            <RegularButton
+              img="camera"
+              alt="Take a single picture."
+              size="large"
+              title="Neem een Gif."
+              onClick={() => setFormat('gif')}
+            />
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default StartPage;
+const mapStateToProps = state => ({
+  album: state.album,
+});
+
+export default connect(mapStateToProps)(StartPage);
