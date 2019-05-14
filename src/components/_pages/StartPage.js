@@ -34,15 +34,15 @@ const StartPage = ({ album, dispatch, history }) => {
                 img="camera"
                 alt="Take a single picture."
                 size="large"
-                title="Neem 1 foto."
+                title="Maak een foto"
                 onClick={() => setFormat('single')}
               />
             </div>
             <RegularButton
-              img="camera"
+              img="film"
               alt="Take a single picture."
               size="large"
-              title="Neem een Gif."
+              title="Maak een GIF"
               onClick={() => setFormat('gif')}
             />
           </div>

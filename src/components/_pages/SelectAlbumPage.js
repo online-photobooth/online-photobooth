@@ -38,6 +38,8 @@ class SelectAbumPage extends React.Component {
 
         await this.setFrames(framesId);
 
+        this.setRefreshTimeout(framesId);
+
         this.setState({ albums });
       } catch (error) {
         console.log(error.response);
@@ -130,18 +132,31 @@ class SelectAbumPage extends React.Component {
     return true;
   }
 
+  setRefreshTimeout = (framesId) => {
+    const oneMin = 60 * 1000;
+    const refreshDeadline = 55 * oneMin;
+
+    console.log(`Refreshing frames in ${
+      Math.floor(refreshDeadline / oneMin).toString()
+    } minutes`);
+
+    setTimeout(() => this.setFrames(framesId), refreshDeadline);
+  }
+
   setFrames = async (framesId) => {
     const { dispatch, accessToken } = this.props;
 
     // Fetch Frames Album
     try {
-      const resp = await axios.post('https://photoslibrary.googleapis.com/v1/mediaItems:search', {
-        albumId: framesId,
-      }, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
+      const resp = await axios.post('https://photoslibrary.googleapis.com/v1/mediaItems:search',
+        {
+          albumId: framesId,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
 
       console.log(resp);
 
