@@ -28,11 +28,21 @@
 .mt-4 {
   margin-top: 1rem; }
 
+.mr-4 {
+  margin-right: 1rem; }
+
 .mt-8 {
   margin-top: 2rem; }
 
 .mt-16 {
   margin-top: 4rem; }
 
+.mr-16 {
+  margin-right: 4rem; }
+
 .h-30 {
   min-height: 35vh; }
+
+.button-none {
+  border: none;
+  padding: 0; }

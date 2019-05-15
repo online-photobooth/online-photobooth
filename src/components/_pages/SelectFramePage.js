@@ -13,7 +13,7 @@ const SelectFramePage = ({ frames, dispatch, history }) => {
   };
 
   const renderImages = () => frames.map(frame => (
-    <button key={frame.id} onClick={() => setFrame(frame)} type="button">
+    <button key={frame.id} onClick={() => setFrame(frame)} type="button" className="button-none mr-16">
       <img src={frame.baseUrl} alt="Kdg Frame" />
     </button>
   ));
