@@ -57,7 +57,7 @@ class PreviewPage extends React.Component {
       console.log(error);
     }
 
-    this.setState({ loading: false });
+    await this.setState({ loading: false });
 
     history.push('/review');
 

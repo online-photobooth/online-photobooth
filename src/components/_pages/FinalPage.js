@@ -114,10 +114,10 @@ class FinalPage extends React.Component {
     return (
       <div className="FinalPage">
         <div className="wrapper">
-          <div className="flex justify-center items-center">
-            <div className="">
-              <Heading type="small">Wil je de foto in je mailbox ontvangen?</Heading>
-              <p>Geef meerdere e-mail adressen op gescheiden door een puntkomma (;)</p>
+          <div className="flex justify-between items-end" style={{ minWidth: '70vw' }}>
+            <div className="flex flex-col justify-between items-center h-30">
+              <Heading type="small">Foto in je mailbox?</Heading>
+              <p>Meer email adressen? Gebruik (;)</p>
               <form onSubmit={e => this.sendEmail(e)}>
                 <input
                   name="emails"
@@ -138,26 +138,18 @@ class FinalPage extends React.Component {
             </div>
 
             { album && album.shareInfo && (
-              <div className="">
-                <Heading type="small">Bekijk je foto via de QR-code!</Heading>
+              <div className="flex flex-col justify-between items-center h-30">
+                <Heading type="small">Foto via QR?</Heading>
                 <div className="mt-4">
                   <QRCode value={album.shareInfo.shareableUrl} />
                 </div>
               </div>
             )}
-            <div className="flex">
-              {/* <RegularButton
-                  img="camera"
-                  alt="Camera icon."
-                  size="small"
-                  title="Neem een nieuwe foto"
-                  onClick={() => history.push('/')}
-                /> */}
-
+            <div className="flex justify-center items-center h-30">
               <RegularButton
                 img="home"
                 alt="House icon."
-                size="small"
+                size="large"
                 onClick={() => history.push('/')}
               />
             </div>

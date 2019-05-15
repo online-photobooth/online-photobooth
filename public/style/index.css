@@ -80,6 +80,9 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .flex {
   display: flex; }
 
+.flex-col {
+  flex-direction: column; }
+
 .justify-center {
   justify-content: center; }
 
@@ -88,6 +91,12 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 
 .items-center {
   align-items: center; }
+
+.items-end {
+  align-items: flex-end; }
+
+.m-0 {
+  margin: 0; }
 
 .mr-2 {
   margin-right: 0.5rem; }
@@ -103,6 +112,9 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 
 .mt-16 {
   margin-top: 4rem; }
+
+.h-30 {
+  min-height: 35vh; }
 
 .StartPage {
   width: 100%; }
@@ -251,14 +263,6 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     flex-direction: column;
     align-items: center;
     justify-content: space-between; }
-  .FinalPage .RegularButton {
-    margin: 0 1rem 4rem 1rem !important; }
-    .FinalPage .RegularButton .Heading {
-      margin: 0; }
-  .FinalPage .Heading {
-    margin: 0 0 0.5rem 0; }
-  .FinalPage p {
-    margin-bottom: 2rem; }
   .FinalPage form {
     width: 90%; }
     .FinalPage form input, .FinalPage form button {
@@ -306,8 +310,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     cursor: pointer; }
   .RegularButton.small {
     width: 180px;
-    height: 180px;
-    margin: 2rem; }
+    height: 180px; }
   .RegularButton.large {
     width: 400px;
     height: 400px; }
