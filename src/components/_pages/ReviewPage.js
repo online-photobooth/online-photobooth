@@ -25,8 +25,6 @@ class ReviewPage extends React.Component {
       this.setState({ img: location.state.picture });
     } else {
       this.setState({ gif: true });
-      const video = document.getElementById('gif');
-      console.log('TCL: ReviewPage -> componentDidMount -> video', video);
     }
   }
 

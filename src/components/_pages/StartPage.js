@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
+import Triangles from '../app/Triangles';
 
 const StartPage = ({ album, dispatch, history }) => {
   useEffect(() => () => {
@@ -23,6 +24,7 @@ const StartPage = ({ album, dispatch, history }) => {
 
   return (
     <div className="StartPage">
+      <Triangles />
       <div className="wrapper">
         <div className="content">
           <Heading>{title}</Heading>

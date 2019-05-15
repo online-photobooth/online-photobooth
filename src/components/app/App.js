@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Footer from '../footer/Footer';
-import Triangles from './Triangles';
 
 // Pages
 import StartPage from '../_pages/StartPage';
@@ -27,9 +26,6 @@ const App = () => (
     <Route exact path="/privacy" component={PrivacyPage} />
 
     <Footer />
-
-    <Triangles />
-
   </div>
 );
 

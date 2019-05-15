@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Heading from '../titles/Heading';
+import Triangles from '../app/Triangles';
 
 const SelectFramePage = ({ frames, dispatch, history }) => {
   const setFrame = async (frame) => {
@@ -19,6 +20,7 @@ const SelectFramePage = ({ frames, dispatch, history }) => {
 
   return (
     <div className="SelectAlbumPage">
+      <Triangles />
       <div className="wrapper">
         <div className="content">
           <Heading>Selecteer een Frame.</Heading>

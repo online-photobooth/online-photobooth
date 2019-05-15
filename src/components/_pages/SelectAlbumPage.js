@@ -140,7 +140,10 @@ class SelectAbumPage extends React.Component {
       Math.floor(refreshDeadline / oneMin).toString()
     } minutes`);
 
-    setTimeout(() => this.setFrames(framesId), refreshDeadline);
+    setTimeout(() => {
+      this.setFrames(framesId);
+      this.setRefreshTimeout(framesId);
+    }, refreshDeadline);
   }
 
   setFrames = async (framesId) => {

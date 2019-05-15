@@ -96,16 +96,20 @@ class PreviewPage extends React.Component {
 
   render = () => {
     const { loading, timer } = this.state;
-    const { format } = this.props;
+    const { format, frame } = this.props;
+    const overlay = `${frame.baseUrl}=w1920-h1080`;
 
     return (
       <div className="PreviewPage">
-        <Webcam
-          width="100%"
-          height="100%"
-          audio={false}
-          ref={this.setRef}
-        />
+        <div className="flex justify-center items-center" style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <Webcam
+            height="100%"
+            audio={false}
+            ref={this.setRef}
+            style={{ position: 'absolute' }}
+          />
+          <img src={overlay} alt="" style={{ position: 'absolute', height: '100%' }} />
+        </div>
 
         {this.renderCountDown(format, timer || 3)}
 
