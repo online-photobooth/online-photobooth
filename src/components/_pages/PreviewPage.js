@@ -5,6 +5,7 @@ import axios from 'axios';
 import { SyncLoader } from 'react-spinners';
 import Countdown from '../countdown/Countdown';
 import CaptureButton from '../buttons/CaptureButton';
+import { checkRefresh } from '../services/refreshLogin';
 
 class PreviewPage extends React.Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class PreviewPage extends React.Component {
     if (!album) {
       history.push('/album');
     }
+
+    checkRefresh();
   }
 
   takePicture = async () => {

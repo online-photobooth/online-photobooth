@@ -1,54 +1,52 @@
 import { createStore } from 'redux';
+import throttle from 'lodash/throttle';
+import { loadState, saveState } from './localStorage';
 
 const initialState = {
-  accessToken: JSON.parse(localStorage.getItem('accessToken')) || '',
-  googleUser: JSON.parse(localStorage.getItem('googleUser')) || {},
-  frames: JSON.parse(localStorage.getItem('frames')) || [],
-  frame: JSON.parse(localStorage.getItem('frame')) || {},
-  album: JSON.parse(localStorage.getItem('album')) || {},
-  format: JSON.parse(localStorage.getItem('format')) || '',
+  accessToken: '',
+  googleUser: {},
+  frames: [],
+  frame: {},
+  album: {},
+  format: '',
+  expiresAt: '',
 };
+
+const persistedState = loadState();
 
 function reducer(state = initialState, action) {
   switch (action.type) {
   case 'SET_ACCESS_TOKEN':
-    localStorage.setItem('accessToken', JSON.stringify(action.payload));
-
     return {
       ...state,
       accessToken: action.payload,
     };
+  case 'SET_EXPIRES_AT':
+    return {
+      ...state,
+      expiresAt: action.payload,
+    };
   case 'SET_GOOGLE_USER':
-    localStorage.setItem('googleUser', JSON.stringify(action.payload));
-
     return {
       ...state,
       googleUser: action.payload,
     };
   case 'SET_FRAMES':
-    localStorage.setItem('frames', JSON.stringify(action.payload));
-
     return {
       ...state,
       frames: action.payload,
     };
   case 'SET_FRAME':
-    localStorage.setItem('frame', JSON.stringify(action.payload));
-
     return {
       ...state,
       frame: action.payload,
     };
   case 'SET_FORMAT':
-    localStorage.setItem('format', JSON.stringify(action.payload));
-
     return {
       ...state,
       format: action.payload,
     };
   case 'SET_ALBUM':
-    localStorage.setItem('album', JSON.stringify(action.payload));
-
     return {
       ...state,
       album: action.payload,
@@ -58,6 +56,10 @@ function reducer(state = initialState, action) {
   }
 }
 
-const store = createStore(reducer);
+const store = createStore(reducer, persistedState);
+
+store.subscribe(throttle(() => {
+  saveState(store.getState());
+}, 1000));
 
 export default store;

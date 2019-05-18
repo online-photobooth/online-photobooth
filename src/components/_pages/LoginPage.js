@@ -14,11 +14,14 @@ class LoginPage extends React.Component {
     const { dispatch, history } = this.props;
 
     console.log(googleUser);
-    this.setRefreshTimeout(googleUser.tokenObj.expires_at);
-
     dispatch({
       type: 'SET_ACCESS_TOKEN',
       payload: googleUser.tokenObj.access_token,
+    });
+
+    dispatch({
+      type: 'SET_EXPIRES_AT',
+      payload: googleUser.tokenObj.expires_at,
     });
 
     dispatch({
@@ -27,35 +30,6 @@ class LoginPage extends React.Component {
     });
 
     history.push('/album');
-  }
-
-  setRefreshTimeout = (expiresAt) => {
-    const oneMin = 60 * 1000;
-    const refreshDeadline = Math.max(5 * oneMin, expiresAt - Date.now() - (5 * oneMin));
-
-    console.log(`Refreshing credentials in ${
-      Math.floor(refreshDeadline / oneMin).toString()
-    } minutes`);
-
-    setTimeout(this.reloadAuthToken, refreshDeadline);
-  }
-
-  reloadAuthToken = async () => {
-    const { dispatch, googleUser } = this.props;
-
-    try {
-      const tokenObj = await googleUser.reloadAuthResponse();
-
-      dispatch({
-        type: 'SET_ACCESS_TOKEN',
-        payload: tokenObj.access_token,
-      });
-
-      this.setRefreshTimeout(tokenObj.expires_at);
-    } catch (error) {
-      console.log('Could not refresh token');
-      console.log(error.response);
-    }
   }
 
   render = () => (

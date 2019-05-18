@@ -38,13 +38,11 @@ class SelectAbumPage extends React.Component {
 
         await this.setFrames(framesId);
 
-        this.setRefreshTimeout(framesId);
-
         this.setState({ albums });
       } catch (error) {
         console.log(error.response);
 
-        if (error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
           history.push('/login');
         }
       }
@@ -130,20 +128,6 @@ class SelectAbumPage extends React.Component {
     }
 
     return true;
-  }
-
-  setRefreshTimeout = (framesId) => {
-    const oneMin = 60 * 1000;
-    const refreshDeadline = 55 * oneMin;
-
-    console.log(`Refreshing frames in ${
-      Math.floor(refreshDeadline / oneMin).toString()
-    } minutes`);
-
-    setTimeout(() => {
-      this.setFrames(framesId);
-      this.setRefreshTimeout(framesId);
-    }, refreshDeadline);
   }
 
   setFrames = async (framesId) => {

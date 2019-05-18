@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
 import Triangles from '../app/Triangles';
+import { checkRefresh } from '../services/refreshLogin';
 
-const StartPage = ({ album, dispatch, history }) => {
-  useEffect(() => () => {
+const StartPage = ({
+  album, dispatch, history, expiresAt, googleUser,
+}) => {
+  useEffect(() => {
     if (!album) {
       history.push('/album');
     }
+
+    checkRefresh(expiresAt, dispatch, googleUser);
   });
 
   const setFormat = async (format) => {
@@ -56,6 +61,8 @@ const StartPage = ({ album, dispatch, history }) => {
 
 const mapStateToProps = state => ({
   album: state.album,
+  expiresAt: state.expiresAt,
+  googleUser: state.googleUser,
 });
 
 export default connect(mapStateToProps)(StartPage);
