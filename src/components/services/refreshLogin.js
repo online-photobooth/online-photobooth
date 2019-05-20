@@ -21,7 +21,7 @@ export const reloadAuthToken = async (dispatch, googleUser) => {
 
 export const checkRefresh = (expiresAt, dispatch, googleUser) => {
   const oneMin = 60 * 1000;
-  const threshold = 60;
+  const threshold = 5;
   if (expiresAt - Date.now() < (threshold * oneMin)) {
     console.log('refreshing', expiresAt - Date.now() < (threshold * oneMin));
     reloadAuthToken(dispatch, googleUser);

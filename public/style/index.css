@@ -327,7 +327,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 
 .CaptureButton {
   position: absolute;
-  background-color: red;
+  background-color: #ac5a96;
   width: 150px;
   height: 150px;
   border-radius: 150px;
