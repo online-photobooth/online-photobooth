@@ -1,5 +1,4 @@
 export const reloadAuthToken = async (dispatch, googleUser) => {
-  console.log('TCL: reloadAuthToken -> googleUser', Object.getOwnPropertyNames(googleUser));
   try {
     const tokenObj = await googleUser.reloadAuthResponse();
     console.log('TCL: reloadAuthToken -> tokenObj', tokenObj);
@@ -19,13 +18,17 @@ export const reloadAuthToken = async (dispatch, googleUser) => {
   }
 };
 
-export const checkRefresh = (expiresAt, dispatch, googleUser) => {
+export const checkRefresh = async (expiresAt, dispatch, googleUser) => {
   const oneMin = 60 * 1000;
   const threshold = 5;
-  if (expiresAt - Date.now() < (threshold * oneMin)) {
-    console.log('refreshing', expiresAt - Date.now() < (threshold * oneMin));
-    reloadAuthToken(dispatch, googleUser);
-  } else {
-    console.log('not refreshing', expiresAt - Date.now(), (threshold * oneMin));
-  }
+  return new Promise(async (resolve) => {
+    if (expiresAt - Date.now() < (threshold * oneMin)) {
+      console.log('refreshing', expiresAt - Date.now() < (threshold * oneMin));
+      await reloadAuthToken(dispatch, googleUser);
+    } else {
+      console.log('not refreshing', expiresAt - Date.now(), (threshold * oneMin));
+    }
+
+    resolve();
+  });
 };

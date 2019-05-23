@@ -9,7 +9,7 @@ const StartPage = ({
   album, dispatch, history, expiresAt, googleUser,
 }) => {
   useEffect(() => {
-    if (!album) {
+    if (!album.title) {
       history.push('/album');
     }
 
