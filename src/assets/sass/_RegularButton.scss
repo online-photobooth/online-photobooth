@@ -1,6 +1,8 @@
+@import 'variables';
+
 .RegularButton 
 {
-    background-color: #00A685; 
+    background-color: $color-s; 
     border-radius: 200rem; 
     border: none;
     display: flex; 

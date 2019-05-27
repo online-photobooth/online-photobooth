@@ -304,7 +304,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
         cursor: pointer; }
 
 .RegularButton {
-  background-color: #00A685;
+  background-color: #34bedc;
   border-radius: 200rem;
   border: none;
   display: flex;
