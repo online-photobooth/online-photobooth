@@ -9,7 +9,7 @@ class Footer extends React.Component {
 
     return (
       <div>
-        <p>Wanneer ik een foto neem accepteer ik dat deze wordt geüpload op de website van kdg.be</p>
+        <p>KdG mag deze foto’s gebruiken op al haar communicatiekanalen. </p>
       </div>
     );
   }
