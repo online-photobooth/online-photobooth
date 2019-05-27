@@ -47,6 +47,11 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     .wrapper {
       width: 1200px; } }
 
+@font-face {
+  font-family: 'KdgRegular';
+  src: url("/fonts/KdG-Regular.eot");
+  src: url("/fonts/KdG-Regular.woff") format("woff"), url("/fonts/KdG-Regular.ttf") format("truetype"); }
+
 .App .triangles {
   width: 100%;
   height: 100%; }
@@ -362,7 +367,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .Heading {
   margin: 0 0 2rem 0;
   text-align: center;
-  width: 60%; }
+  font-family: KdgRegular; }
   .Heading.heading--0 {
     font-size: 78px; }
   .Heading.heading--1 {

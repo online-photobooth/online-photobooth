@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { connect } from 'react-redux';
-import RegularButton from '../buttons/RegularButton';
+import BaseButton from '../buttons/BaseButton';
 import Heading from '../titles/Heading';
 
 class LoginPage extends React.Component {
@@ -33,29 +33,26 @@ class LoginPage extends React.Component {
   }
 
   render = () => (
-    <div className="StartPage">
-      <div className="wrapper">
-        <div className="content">
-          <Heading type="heading--2">Welkom op de KdG Photobooth!</Heading>
+    <div className="flex">
+      <img src="/style/img/movie-strip.png" alt="Movie Strip" />
+      <div className="">
+        <Heading type="heading--2">Welkom op de KdG Photobooth.</Heading>
 
-          <GoogleLogin
-            clientId={process.env.REACT_APP_CLIENT_ID}
-            onSuccess={resp => this.successResponseGoogle(resp)}
-            onFailure={resp => this.responseGoogle(resp)}
-            scope="profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
-            prompt="consent"
-            loginHint="photobooth@kdg.be"
-            render={renderProps => (
-              <RegularButton
-                img="check"
-                alt="Login button."
-                size="large"
-                title="Druk om in te loggen."
-                onClick={renderProps.onClick}
-              />
-            )}
-          />
-        </div>
+        <GoogleLogin
+          clientId={process.env.REACT_APP_CLIENT_ID}
+          onSuccess={resp => this.successResponseGoogle(resp)}
+          onFailure={resp => this.responseGoogle(resp)}
+          scope="profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
+          prompt="consent"
+          loginHint="photobooth@kdg.be"
+          render={renderProps => (
+            <BaseButton
+              onClick={renderProps.onClick}
+            >
+              Let's get this party started!
+            </BaseButton>
+          )}
+        />
       </div>
     </div>
   )
