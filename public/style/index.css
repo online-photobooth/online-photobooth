@@ -1,7 +1,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif; }
+  font-family: ProximaNova, 'Arial', sans-serif; }
 
 p {
   margin: 0;
@@ -375,7 +375,8 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   .Heading.heading--2 {
     font-size: 50px; }
   .Heading.heading--3 {
-    font-size: 45px; }
+    font-size: 45px;
+    font-weight: 500; }
   .Heading.heading--4 {
     font-size: 18px; }
 

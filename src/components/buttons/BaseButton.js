@@ -6,12 +6,15 @@ const BaseButton = ({ onClick, children }) => (
   <button
     className={
       css`
-    padding: 16px 24px;
+    padding: 24px 28px;
     background-color: ${colorS};
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 600;
-    border-radius: 0;`
-    }
+    font-family: 'Proxima Nova', sans-serif;
+    border-radius: 0;
+    border: none;
+    box-shadow: 0px 0.5px 1px 0px rgba(29,29,27,0.75);
+    `}
     onClick={onClick}
     type="button"
   >

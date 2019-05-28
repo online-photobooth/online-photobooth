@@ -73,7 +73,7 @@ class LoginPage extends React.Component {
 
           <div className={
             css`
-            height: 100%;
+            height: 40%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -90,7 +90,7 @@ class LoginPage extends React.Component {
                 <BaseButton
                   onClick={renderProps.onClick}
                 >
-                  Let's get this party started!
+                  {'Let\'s get this party started!'}
                 </BaseButton>
               )}
             />
