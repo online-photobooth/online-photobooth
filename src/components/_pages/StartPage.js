@@ -10,6 +10,7 @@ const StartPage = ({
 }) => {
   useEffect(() => {
     if (!album.title) {
+      console.log('Startpage TCL: album', album.title);
       history.push('/album');
     }
 

@@ -56,16 +56,14 @@ class LoginPage extends React.Component {
           `}
         >
           <img
-            className={
-              css`
+            className={css`
             max-height: 100%;
           `}
             src="/style/img/movie-strip.png"
             alt="Movie Strip"
           />
         </div>
-        <div className={
-          css`
+        <div className={css`
         display: flex;
         flex-direction: column;
       `}>

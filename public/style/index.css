@@ -353,19 +353,8 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   .CaptureButton.clicked {
     margin-bottom: -300px; }
 
-.Footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding-left: 5rem;
-  padding-bottom: 1rem; }
-
-.Footer img {
-  width: 17rem;
-  padding-bottom: 1rem; }
-
 .Heading {
-  margin: 0 0 2rem 0;
+  margin: 0;
   text-align: center;
   font-family: KdgRegular; }
   .Heading.heading--0 {

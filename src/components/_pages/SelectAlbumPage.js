@@ -1,15 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { css } from 'emotion';
 import Heading from '../titles/Heading';
-import SingleAlbum from '../albums/SingleAlbum';
+import CreateAlbumForm from '../albums/CreateAlbumForm';
 
 class SelectAbumPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       albums: [],
-      newAlbum: '',
     };
   }
 
@@ -49,10 +49,14 @@ class SelectAbumPage extends React.Component {
     }
   }
 
-  setDefaultAlbum = (selectedAlbum) => {
+  setDefaultAlbum = async (event) => {
     const { history, dispatch } = this.props;
+    const { albums } = this.state;
+    const selectedAlbum = albums.find(({ id }) => id === event.target.value);
+    console.log('TCL: SelectAbumPage -> setDefaultAlbum -> event', event);
+    console.log('TCL: SelectAbumPage -> setDefaultAlbum -> selectedAlbum', selectedAlbum);
 
-    dispatch({
+    await dispatch({
       type: 'SET_ALBUM',
       payload: selectedAlbum,
     });
@@ -61,74 +65,8 @@ class SelectAbumPage extends React.Component {
   }
 
   renderAlbums = albums => albums.filter(el => el.title.toLowerCase() !== 'frames').map(album => (
-    <SingleAlbum key={album.id} album={album} onClick={this.setDefaultAlbum} />
+    <option key={album.id} value={album.id} className={css`margin-bottom: 8px;`}>{album.title}</option>
   ))
-
-  createNewAlbum = async (e) => {
-    const { accessToken, history, dispatch } = this.props;
-    const { newAlbum } = this.state;
-
-    e.preventDefault();
-    if (newAlbum === '') return false;
-
-    let newAlbumResponse;
-
-    // CREATE ALBUM
-    try {
-      newAlbumResponse = await axios({
-        method: 'POST',
-        url: 'https://photoslibrary.googleapis.com/v1/albums',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-type': 'application/json',
-        },
-        data: {
-          album: { title: newAlbum },
-        },
-      });
-      console.log(newAlbumResponse);
-    } catch (error) {
-      console.log('Creating album went wrong');
-      console.log(error.response);
-    }
-
-    // SHARE ALBUM
-    try {
-      const shareAlbumResponse = await axios({
-        method: 'POST',
-        url: `https://photoslibrary.googleapis.com/v1/albums/${newAlbumResponse.data.id}:share`,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-type': 'application/json',
-        },
-        data: {
-          sharedAlbumOptions: {
-            isCollaborative: 'false',
-            isCommentable: 'false',
-          },
-        },
-      });
-
-      console.log(shareAlbumResponse);
-      const selectedAlbum = {
-        ...newAlbumResponse.data,
-        ...shareAlbumResponse.data,
-      };
-      console.log(selectedAlbum);
-
-      dispatch({
-        type: 'SET_ALBUM',
-        payload: selectedAlbum,
-      });
-
-      history.push('/');
-    } catch (error) {
-      console.log('Sharing album went wrong');
-      console.log(error.response);
-    }
-
-    return true;
-  }
 
   setFrames = async (framesId) => {
     const { dispatch, accessToken } = this.props;
@@ -158,32 +96,42 @@ class SelectAbumPage extends React.Component {
   }
 
   render = () => {
-    const { albums, newAlbum } = this.state;
+    const { albums } = this.state;
 
     return (
       <div className="SelectAlbumPage">
         <div className="wrapper">
-          <div className="content">
-            <Heading>Selecteer een Album.</Heading>
+          <div>
+            <Heading
+              type="heading--3"
+              className={css`
+                  margin-bottom: 24px;
+                `}
+            >
+              Selecteer een album.
+            </Heading>
 
-            <div className="albumOverview">
-              <form onSubmit={e => this.createNewAlbum(e)}>
-                <input
-                  name="newAlbum"
-                  value={newAlbum}
-                  onChange={this.onChangeHandler}
-                  placeholder="Maak een nieuw album aan"
-                />
-
-                <button type="submit">
-                  AANMAKEN
-                </button>
-              </form>
-
-              <div className={`albums ${albums && albums.length === 1 ? 'one-item' : ''} `}>
+            <div
+              className={css`
+              display: flex;
+              justify-content: center;
+              margin-bottom: 48px;
+                `}
+            >
+              <select
+                multiple
+                className={css`
+                width: 80%;
+                font-size: 20px;
+                padding: 8px 16px;
+                min-height: 200px;
+              `}
+                onChange={this.setDefaultAlbum}
+              >
                 {albums ? this.renderAlbums(albums) : 'No albums found'}
-              </div>
+              </select>
             </div>
+            <CreateAlbumForm />
           </div>
         </div>
       </div>
