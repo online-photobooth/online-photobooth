@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { css } from 'emotion';
 import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
-import Triangles from '../app/Triangles';
 import { checkRefresh } from '../services/refreshLogin';
 
 const StartPage = ({
@@ -26,33 +26,45 @@ const StartPage = ({
     history.push('/frame');
   };
 
-  const title = `Welkom op de ${album ? album.title : ''}!`;
-
   return (
     <div className="StartPage">
-      <Triangles />
       <div className="wrapper">
-        <div className="content">
-          <Heading>{title}</Heading>
-          <div className="flex">
-            <div
-              className="mr-2"
-            >
+        <div className={css`
+          width: 50%;
+          `}
+        >
+          <Heading
+            type="heading--2"
+            className={css`
+                  margin-bottom: 24px;
+                `}
+          >
+            Wat wil je maken?
+          </Heading>
+          <div className={css`
+          display: flex;
+          justify-content: space-between;
+          `}
+          >
+            <div>
               <RegularButton
                 img="camera"
                 alt="Take a single picture."
                 size="large"
-                title="Maak een foto"
                 onClick={() => setFormat('single')}
+                title="Een foto"
               />
             </div>
-            <RegularButton
-              img="film"
-              alt="Take a single picture."
-              size="large"
-              title="Maak een GIF"
-              onClick={() => setFormat('gif')}
-            />
+
+            <div>
+              <RegularButton
+                img="film"
+                alt="Take a single picture."
+                size="large"
+                onClick={() => setFormat('gif')}
+                title="Een GIF"
+              />
+            </div>
           </div>
         </div>
       </div>

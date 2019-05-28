@@ -1,7 +1,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: ProximaNova, 'Arial', sans-serif; }
+  font-family: Proxima Nova, 'Arial', sans-serif; }
 
 p {
   margin: 0;
@@ -318,7 +318,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   align-items: center;
   color: #fff; }
   .RegularButton img {
-    width: 50%; }
+    width: 60%; }
   .RegularButton a {
     text-decoration: none; }
   .RegularButton:hover {
@@ -327,8 +327,8 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     width: 180px;
     height: 180px; }
   .RegularButton.large {
-    width: 400px;
-    height: 400px; }
+    width: 250px;
+    height: 250px; }
 
 .CaptureButton {
   position: absolute;
@@ -356,7 +356,8 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .Heading {
   margin: 0;
   text-align: center;
-  font-family: KdgRegular; }
+  font-family: KdgRegular;
+  font-weight: 500; }
   .Heading.heading--0 {
     font-size: 78px; }
   .Heading.heading--1 {
@@ -364,8 +365,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   .Heading.heading--2 {
     font-size: 50px; }
   .Heading.heading--3 {
-    font-size: 45px;
-    font-weight: 500; }
+    font-size: 45px; }
   .Heading.heading--4 {
     font-size: 18px; }
 

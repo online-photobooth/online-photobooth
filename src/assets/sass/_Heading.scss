@@ -3,10 +3,11 @@
     margin: 0;
     text-align: center;
     font-family: KdgRegular;
+    font-weight: 500;
 
     &.heading--0 { font-size: 78px; }
     &.heading--1 { font-size: 60px; }
     &.heading--2 { font-size: 50px; }
-    &.heading--3 { font-size: 45px; font-weight: 500; }
+    &.heading--3 { font-size: 45px; }
     &.heading--4 { font-size: 18px; }
 }
