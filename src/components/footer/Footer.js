@@ -2,22 +2,16 @@ import React from 'react';
 import { css } from 'emotion';
 
 class Footer extends React.Component {
-  renderFooter = () => {
-    if (window.location.pathname === '/preview' || window.location.pathname === '/review' || window.location.pathname === '/final') {
-      return '';
-    }
-
-    return (
-      <div className={css`
+  renderFooter = () => (
+    <div className={css`
       text-transform: uppercase;
       font-size: 12px;
       letter-spacing: 0.1em;
       `}
-      >
-        <p>KdG mag deze foto’s gebruiken op al haar communicatiekanalen. </p>
-      </div>
-    );
-  }
+    >
+      <p>KdG mag deze foto’s gebruiken op al haar communicatiekanalen. </p>
+    </div>
+  )
 
   render = () => (
     <div className={css`

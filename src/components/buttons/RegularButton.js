@@ -4,8 +4,11 @@ import { css } from 'emotion';
 import Heading from '../titles/Heading';
 
 const RegularButton = ({
-  link, size, img, title, onClick,
+  link, size, img, title, onClick, text, className,
 }) => {
+  const renderImage = <img src={`./style/img/${img}.png`} alt="test" />;
+  const renderText = <span className="Heading heading--0 m-0">{text}</span>;
+
   if (link !== undefined) {
     return (
       <Link to={`/${link}`} className="RegularButtonLink">
@@ -22,10 +25,12 @@ const RegularButton = ({
     display: flex;
     flex-direction: column;
     justify-content: center;
+    ${className}
     `}
     >
       <button className={`RegularButton ${size}`} onClick={onClick} type="button">
-        <img src={`./style/img/${img}.png`} alt="test" style={{ marginBottom: title ? '1.2rem' : '0' }} />
+        {img && renderImage}
+        {text && renderText}
       </button>
       <span className={css`
         font-size: 32px;

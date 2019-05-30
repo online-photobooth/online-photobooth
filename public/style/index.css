@@ -101,7 +101,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   align-items: flex-end; }
 
 .m-0 {
-  margin: 0; }
+  margin: 0 !important; }
 
 .mr-2 {
   margin-right: 0.5rem; }
@@ -359,7 +359,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   font-family: KdgRegular;
   font-weight: 500; }
   .Heading.heading--0 {
-    font-size: 78px; }
+    font-size: 88px; }
   .Heading.heading--1 {
     font-size: 60px; }
   .Heading.heading--2 {

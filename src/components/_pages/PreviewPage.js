@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import Webcam from 'react-webcam';
 import axios from 'axios';
 import { SyncLoader } from 'react-spinners';
+import { css } from 'emotion';
 import Countdown from '../countdown/Countdown';
-import CaptureButton from '../buttons/CaptureButton';
+import RegularButton from '../buttons/RegularButton';
 import { checkRefresh } from '../services/refreshLogin';
+import Heading from '../titles/Heading';
 
 class PreviewPage extends React.Component {
   constructor(props) {
@@ -104,12 +106,37 @@ class PreviewPage extends React.Component {
 
     return (
       <div className="PreviewPage">
-        <div className="flex justify-center items-center" style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <div
+          className={css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        `}
+        >
+          <div
+            className={css`
+        position: absolute;
+        top: 20vh;
+        `}>
+            <Heading
+              type="heading--3"
+            >
+              Ready. Set.
+            </Heading>
+            <RegularButton
+              text="Go!"
+              size="large"
+              onClick={() => this.setState({ startCountdown: true })}
+            />
+          </div>
           <Webcam
             height="100%"
             audio={false}
             ref={this.setRef}
-            style={{ position: 'absolute' }}
+            className={css`position: 'absolute'`}
           />
           <img src={overlay} alt="" style={{ position: 'absolute', height: '100%' }} />
         </div>
@@ -121,8 +148,6 @@ class PreviewPage extends React.Component {
           size={50}
           loading={loading}
         />
-
-        <CaptureButton onClick={() => this.setState({ startCountdown: true })} />
       </div>
     );
   }
