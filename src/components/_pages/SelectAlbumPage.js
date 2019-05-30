@@ -104,9 +104,6 @@ class SelectAbumPage extends React.Component {
           <div>
             <Heading
               type="heading--3"
-              className={css`
-                  margin-bottom: 24px;
-                `}
             >
               Selecteer een album.
             </Heading>

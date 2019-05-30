@@ -35,9 +35,6 @@ const StartPage = ({
         >
           <Heading
             type="heading--2"
-            className={css`
-                  margin-bottom: 24px;
-                `}
           >
             Wat wil je maken?
           </Heading>

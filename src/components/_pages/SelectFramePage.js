@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { css } from 'emotion';
 import Heading from '../titles/Heading';
-import Triangles from '../app/Triangles';
 
 const SelectFramePage = ({ frames, dispatch, history }) => {
   const setFrame = async (frame) => {
@@ -14,16 +14,15 @@ const SelectFramePage = ({ frames, dispatch, history }) => {
 
   const renderImages = () => frames.map(frame => (
     <button key={frame.id} onClick={() => setFrame(frame)} type="button" className="button-none mr-16">
-      <img src={frame.baseUrl} alt="Kdg Frame" />
+      <img src={frame.baseUrl} alt="Kdg Frame" className={css`border: 1px solid black;`} />
     </button>
   ));
 
   return (
     <div className="SelectAlbumPage">
-      <Triangles />
       <div className="wrapper">
         <div className="content">
-          <Heading>Selecteer een Frame.</Heading>
+          <Heading type="heading--3">Kies je Frame</Heading>
 
           <div className="flex justify-between">
             {frames && renderImages()}

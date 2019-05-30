@@ -75,9 +75,6 @@ const CreateAlbumForm = ({ accessToken, history, dispatch }) => {
     <form onSubmit={e => createNewAlbum(e)}>
       <Heading
         type="heading--3"
-        className={css`
-                  margin-bottom: 24px;
-                `}
       >
         Of maak een nieuw album aan
 
