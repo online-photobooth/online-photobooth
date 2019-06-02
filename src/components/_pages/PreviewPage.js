@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Webcam from 'react-webcam';
+// import Webcam from 'react-webcam';
 import axios from 'axios';
 import { SyncLoader } from 'react-spinners';
 import { css } from 'emotion';
-import Countdown from '../countdown/Countdown';
-import RegularButton from '../buttons/RegularButton';
+import CountdownButton from '../countdown/CountdownButton';
 import { checkRefresh } from '../services/refreshLogin';
 import Heading from '../titles/Heading';
 
@@ -13,7 +12,6 @@ class PreviewPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startCountdown: false,
       loading: false,
       timer: 1,
       totalPictures: 4,
@@ -79,9 +77,6 @@ class PreviewPage extends React.Component {
       this.setState({ loading: false });
 
       history.push('/review');
-    } else {
-      this.setState({ startCountdown: false });
-      this.setState({ startCountdown: true });
     }
 
     this.setState({ loading: false });
@@ -91,18 +86,11 @@ class PreviewPage extends React.Component {
     this.webcam = webcam;
   };
 
-  renderCountDown = (option, timer) => {
-    const { startCountdown } = this.state;
-
-    if (startCountdown) return <Countdown onDone={option === 'gif' ? this.takeGif : this.takePicture} timer={timer} />;
-
-    return true;
-  }
-
   render = () => {
     const { loading, timer } = this.state;
-    const { format, frame } = this.props;
-    const overlay = `${frame.baseUrl}=w1920-h1080`;
+    // const { format, frame } = this.props;
+    const { format } = this.props;
+    // const overlay = `${frame.baseUrl}=w1920-h1080`;
 
     return (
       <div className="PreviewPage">
@@ -119,29 +107,28 @@ class PreviewPage extends React.Component {
           <div
             className={css`
         position: absolute;
-        top: 20vh;
+        top: 15vh;
         `}>
             <Heading
               type="heading--3"
             >
               Ready. Set.
             </Heading>
-            <RegularButton
+            <CountdownButton
+              onDone={format === 'gif' ? this.takeGif : this.takePicture}
+              timer={timer || 3}
               text="Go!"
               size="large"
-              onClick={() => this.setState({ startCountdown: true })}
             />
           </div>
-          <Webcam
+          {/* <Webcam
             height="100%"
             audio={false}
             ref={this.setRef}
             className={css`position: 'absolute'`}
           />
-          <img src={overlay} alt="" style={{ position: 'absolute', height: '100%' }} />
+          <img src={overlay} alt="" style={{ position: 'absolute', height: '100%' }} /> */}
         </div>
-
-        {this.renderCountDown(format, timer || 3)}
 
         <SyncLoader
           color="#fff"

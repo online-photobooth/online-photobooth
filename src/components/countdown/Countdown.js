@@ -35,9 +35,9 @@ class Countdown extends React.Component {
     const { hideTimer, timer } = this.state;
 
     return (
-      <div className="Countdown">
+      <div>
         <div className="flash_screen" />
-        { (hideTimer) ? '' : <h1>{ timer }</h1> }
+        {(hideTimer) ? '' : <h1>{timer}</h1>}
       </div>
     );
   }
