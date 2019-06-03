@@ -6,14 +6,14 @@ import Heading from '../titles/Heading';
 const RegularButton = ({
   link, size, img, title, onClick, text, className,
 }) => {
-  const renderImage = <img src={`./style/img/${img}.png`} alt="test" />;
+  const renderImage = <img src={`./images/icons/${img}.png`} alt="" />;
   const renderText = <span className="Heading heading--0 m-0">{text}</span>;
 
   if (link !== undefined) {
     return (
       <Link to={`/${link}`} className="RegularButtonLink">
         <div className={`RegularButton ${size}`}>
-          <img src={`./style/img/${img}.png`} alt="test" />
+          <img src={`./images/icons/${img}.png`} alt="" />
           <Heading type="heading--4">{title}</Heading>
         </div>
       </Link>

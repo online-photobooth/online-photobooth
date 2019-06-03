@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import RegularButton from '../buttons/RegularButton';
 
 const Countdown = ({
@@ -7,32 +7,34 @@ const Countdown = ({
   size = 'large',
   text = '',
 }) => {
-  let countdown;
   const [counting, setCounting] = useState(false);
   const [localTimer, setLocalTimer] = useState(timer);
-  console.log('Mount: counting', counting);
+  const latestCount = useRef(localTimer);
 
-  function startCountdown() {
-    console.log('Start: counting', counting);
-    setCounting(true);
-    countdown = setInterval(() => {
-      if (localTimer !== 0) {
-        setLocalTimer(localTimer - 1);
-      } else {
-        setCounting(false);
-        setLocalTimer(timer);
-        clearInterval(countdown);
-        onDone();
+  useEffect(
+    () => {
+      latestCount.current = localTimer;
+
+      if (counting) {
+        setTimeout(() => {
+          if (latestCount.current > 0) {
+            setLocalTimer(latestCount.current - 1);
+          } else {
+            setCounting(false);
+            setLocalTimer(timer);
+            onDone();
+          }
+        }, 1000);
       }
-    }, 1000);
-  }
+    },
+  );
 
   return (
     <RegularButton
       className="flash_screen"
-      text={counting ? text : localTimer}
+      text={counting ? localTimer : text}
       size={size}
-      onClick={() => startCountdown()}
+      onClick={() => setCounting(true)}
     />
   );
 };

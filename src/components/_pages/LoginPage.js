@@ -59,7 +59,7 @@ class LoginPage extends React.Component {
             className={css`
             max-height: 100%;
           `}
-            src="/style/img/movie-strip.png"
+            src="/images/icons/movie-strip.png"
             alt="Movie Strip"
           />
         </div>

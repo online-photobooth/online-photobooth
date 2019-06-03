@@ -4,7 +4,7 @@ import { css } from 'emotion';
 import Heading from '../titles/Heading';
 
 const SelectFramePage = ({ dispatch, history }) => {
-  const frames = ['/images/frames/frame_1.png', '/images/frames/frame_2.png'];
+  const frames = ['frame_1.png', 'frame_2.png'];
 
   const setFrame = async (frame) => {
     await dispatch({
@@ -16,7 +16,7 @@ const SelectFramePage = ({ dispatch, history }) => {
 
   const renderImages = () => frames.map(frame => (
     <button key={frame} onClick={() => setFrame(frame)} type="button" className="button-none mr-16">
-      <img src={frame} alt="Kdg Frame" className={css`border: 1px solid black; max-width: 40vw;`} />
+      <img src={`/images/frames/${frame}`} alt="Kdg Frame" className={css`border: 1px solid black; max-width: 40vw;`} />
     </button>
   ));
 

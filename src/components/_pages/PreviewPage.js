@@ -13,7 +13,7 @@ class PreviewPage extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      timer: 1,
+      timer: 3,
       totalPictures: 4,
     };
   }
@@ -113,12 +113,14 @@ class PreviewPage extends React.Component {
             >
               Ready. Set.
             </Heading>
-            <CountdownButton
-              onDone={format === 'gif' ? this.takeGif : this.takePicture}
-              timer={timer || 3}
-              text="Go!"
-              size="large"
-            />
+            {!loading && (
+              <CountdownButton
+                onDone={format === 'gif' ? this.takeGif : this.takePicture}
+                timer={timer || 3}
+                text="Go!"
+                size="large"
+              />
+            )}
           </div>
           {/* <Webcam
             height="100%"

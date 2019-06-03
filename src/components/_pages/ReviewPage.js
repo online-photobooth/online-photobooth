@@ -78,7 +78,7 @@ class ReviewPage extends React.Component {
 
               <RegularButton
                 size="small"
-                img="check"
+                img="heart"
                 title="Oke!"
                 onClick={this.uploadPicture}
               />
