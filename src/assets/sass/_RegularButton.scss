@@ -28,8 +28,12 @@
 
     &.small
     {
-        width: 180px; 
-        height: 180px;
+        width: 120px; 
+        height: 120px;
+      img
+      { 
+          width: 70%;
+      }
     }
 
     &.large 

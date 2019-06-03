@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { css } from 'emotion';
 import RegularButton from '../buttons/RegularButton';
 
 class ReviewPage extends React.Component {
@@ -55,35 +56,57 @@ class ReviewPage extends React.Component {
     const { history } = this.props;
 
     return (
-      <div className="ReviewPage">
-        <div className="wrapper">
-          <div className="content">
-            {img && (
-              <div className="img_container">
-                <img src={img} alt="Taken by our photobooth." />
-              </div>
-            )}
-            {gif && (
-              <video autoPlay playsInline loop id="gif">
-                <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4?t=${new Date()}`} type="video/mp4" />
-              </video>
-            )}
-            <div className="button_container">
-              <RegularButton
-                size="small"
-                img="refresh"
-                title="Opnieuw"
-                onClick={history.goBack}
-              />
-
-              <RegularButton
-                size="small"
-                img="heart"
-                title="Oke!"
-                onClick={this.uploadPicture}
-              />
+      <div className={css`
+        display: flex;
+        margin: 40px;
+        max-width: 100vw;
+        justify-content: flex-end;
+      `}
+      >
+        <div className={css`
+        width: 70vw;
+        `}
+        >
+          {img && (
+            <div className="img_container">
+              <img src={img} alt="Taken by our photobooth." />
             </div>
-          </div>
+          )}
+          {gif && (
+            <video
+              autoPlay
+              playsInline
+              loop
+              id="gif"
+              className={css`
+            max-width: 100%;
+            `}
+            >
+              <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4?t=${new Date()}`} type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className={css`
+          width: 20vw;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        `}
+        >
+          <RegularButton
+            size="small"
+            img="heart"
+            title="Bewaren"
+            onClick={this.uploadPicture}
+            className={css`margin-bottom: 100px;`}
+          />
+          <RegularButton
+            size="small"
+            img="refresh"
+            title="Opnieuw"
+            onClick={history.goBack}
+          />
         </div>
       </div>
     );
