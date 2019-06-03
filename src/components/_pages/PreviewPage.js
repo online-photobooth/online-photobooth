@@ -48,13 +48,12 @@ class PreviewPage extends React.Component {
   takeGif = async () => {
     const { history, frame } = this.props;
     const { totalPictures } = this.state;
-    const [width, height] = [1200, 800];
 
     this.setState({ loading: true });
 
     try {
       await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
-        frame: `${frame.baseUrl}=w${width}-h${height}`,
+        frame,
       });
     } catch (error) {
       console.log(error);

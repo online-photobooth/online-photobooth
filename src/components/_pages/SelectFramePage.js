@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { css } from 'emotion';
 import Heading from '../titles/Heading';
 
-const SelectFramePage = ({ frames, dispatch, history }) => {
+const SelectFramePage = ({ dispatch, history }) => {
+  const frames = ['/images/frames/frame_1.png', '/images/frames/frame_2.png'];
+
   const setFrame = async (frame) => {
     await dispatch({
       type: 'SET_FRAME',
@@ -13,8 +15,8 @@ const SelectFramePage = ({ frames, dispatch, history }) => {
   };
 
   const renderImages = () => frames.map(frame => (
-    <button key={frame.id} onClick={() => setFrame(frame)} type="button" className="button-none mr-16">
-      <img src={frame.baseUrl} alt="Kdg Frame" className={css`border: 1px solid black;`} />
+    <button key={frame} onClick={() => setFrame(frame)} type="button" className="button-none mr-16">
+      <img src={frame} alt="Kdg Frame" className={css`border: 1px solid black; max-width: 40vw;`} />
     </button>
   ));
 
@@ -24,7 +26,12 @@ const SelectFramePage = ({ frames, dispatch, history }) => {
         <div className="content">
           <Heading type="heading--3">Kies je Frame</Heading>
 
-          <div className="flex justify-between">
+          <div className={css`
+            display: flex;
+            justify-content: space-between;
+            max-width: 100vw;
+          `}
+          >
             {frames && renderImages()}
           </div>
         </div>

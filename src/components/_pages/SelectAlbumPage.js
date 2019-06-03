@@ -34,9 +34,6 @@ class SelectAbumPage extends React.Component {
         console.log(resp);
 
         const albums = resp.data.sharedAlbums;
-        const framesId = albums.find(el => el.title.toLowerCase() === 'frames').id;
-
-        await this.setFrames(framesId);
 
         this.setState({ albums });
       } catch (error) {
@@ -53,7 +50,6 @@ class SelectAbumPage extends React.Component {
     const { history, dispatch } = this.props;
     const { albums } = this.state;
     const selectedAlbum = albums.find(({ id }) => id === event.target.value);
-    console.log('TCL: SelectAbumPage -> setDefaultAlbum -> event', event);
     console.log('TCL: SelectAbumPage -> setDefaultAlbum -> selectedAlbum', selectedAlbum);
 
     await dispatch({
