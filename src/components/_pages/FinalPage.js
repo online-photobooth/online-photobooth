@@ -173,7 +173,7 @@ class FinalPage extends React.Component {
                     id="emails"
                     onChange={e => this.onChangeHandler(e)}
                     value={emails}
-                    className={emailsAreValid ? '' : 'error', css`
+                    className={css`
                       border-radius: 0;
                       padding: 4px;
                       flex: 1 1 auto;
