@@ -4,7 +4,7 @@ import { css } from 'emotion';
 import Heading from '../titles/Heading';
 
 const RegularButton = ({
-  link, size, img, title, onClick, text, className,
+  link, size, img, title, onClick, text, className, children,
 }) => {
   const renderImage = <img src={`./images/icons/${img}.png`} alt="" />;
   const renderText = <span className="Heading heading--0 m-0">{text}</span>;
@@ -31,6 +31,7 @@ const RegularButton = ({
       <button className={`RegularButton ${size}`} onClick={onClick} type="button">
         {img && renderImage}
         {text && renderText}
+        {children}
       </button>
       <span className={css`
         font-size: 32px;

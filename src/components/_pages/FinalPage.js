@@ -3,8 +3,10 @@ import QRCode from 'react-qr-code';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { SyncLoader } from 'react-spinners';
+import { css } from 'emotion';
 import Heading from '../titles/Heading';
 import RegularButton from '../buttons/RegularButton';
+import BaseButton from '../buttons/BaseButton';
 
 class FinalPage extends React.Component {
   constructor(props) {
@@ -100,7 +102,7 @@ class FinalPage extends React.Component {
       return 'Verzenden voltooid!';
     }
 
-    return "Verstuur foto's";
+    return 'Stuur';
   }
 
   render = () => {
@@ -112,47 +114,96 @@ class FinalPage extends React.Component {
     } = this.props;
 
     return (
-      <div className="FinalPage">
-        <div className="wrapper">
-          <div className="flex justify-between items-end" style={{ minWidth: '70vw' }}>
-            <div className="flex flex-col justify-between items-center h-30">
-              <Heading type="small">Foto in je mailbox?</Heading>
-              <p>Meer email adressen? Gebruik (;)</p>
+      <div className={css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+      `}
+      >
+        <div className={css`
+            width: 70vw;
+            display: flex;
+            flex-direction: column;
+            align-items: space-between;
+          `}
+        >
+          <Heading type="heading--3">Hoe wil je je foto ontvangen?</Heading>
+          { album && album.shareInfo && (
+            <div className={css`
+            width: 70vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+          `}>
+              <div className={css`
+                  display: flex;
+                  justify-content: space-around;
+                  width: 100%;
+                  margin-top: 16px;
+                `}
+              >
+                <RegularButton title="Per mail" size="large" img="camera" />
+                <RegularButton title="Via QRcode" size="large">
+                  <QRCode
+                    value={album.shareInfo.shareableUrl}
+                    size={156}
+                  />
+                </RegularButton>
+              </div>
+            </div>
+          )}
+
+          <div className={css`
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 40px;
+            `}
+          >
+            <div>
               <form onSubmit={e => this.sendEmail(e)}>
-                <input
-                  name="emails"
-                  id="emails"
-                  placeholder="email@example.com; email_2@example.com"
-                  onChange={e => this.onChangeHandler(e)}
-                  value={emails}
-                  className={emailsAreValid ? '' : 'error'}
-                  onFocus={this.onInputClick}
-                  autoComplete="off"
-                />
+                <div className={css`
+                    display: flex;
+                  `}
+                >
+                  <input
+                    name="emails"
+                    id="emails"
+                    onChange={e => this.onChangeHandler(e)}
+                    value={emails}
+                    className={emailsAreValid ? '' : 'error', css`
+                      border-radius: 0;
+                      padding: 4px;
+                      flex: 1 1 auto;
+                      border: 1px solid black;
+                      margin-right: 12px;
+                      font-size: 24px;
+                    `}
+                    onFocus={this.onInputClick}
+                    autoComplete="off"
+                  />
+                  <div className={css``}>
+                    <BaseButton className={emailIsSending ? 'sending' : ''} type="submit">
+                      {this.renderButtonContent()}
+                    </BaseButton>
+                  </div>
+                </div>
 
                 <label htmlFor="emails">{emailsAreValid ? '' : 'Controleer of alle e-mail adressen juist zijn ingevuld.'}</label>
-                <button className={emailIsSending ? 'sending' : ''} type="submit">
-                  {this.renderButtonContent()}
-                </button>
+
               </form>
+              <p>Meerdere mailadressen? Scheid ze met ;</p>
+
             </div>
 
-            { album && album.shareInfo && (
-              <div className="flex flex-col justify-between items-center h-30">
-                <Heading type="small">Foto via QR?</Heading>
-                <div className="mt-4">
-                  <QRCode value={album.shareInfo.shareableUrl} />
-                </div>
-              </div>
-            )}
-            <div className="flex justify-center items-center h-30">
-              <RegularButton
-                img="home"
-                alt="House icon."
-                size="large"
-                onClick={() => history.push('/')}
-              />
-            </div>
+            <RegularButton
+              img="home"
+              alt="House icon."
+              size="small"
+              onClick={() => history.push('/')}
+            />
           </div>
         </div>
       </div>

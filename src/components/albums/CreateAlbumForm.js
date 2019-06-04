@@ -77,7 +77,6 @@ const CreateAlbumForm = ({ accessToken, history, dispatch }) => {
         type="heading--3"
       >
         Of maak een nieuw album aan
-
       </Heading>
       <div
         className={css`
