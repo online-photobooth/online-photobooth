@@ -58,9 +58,11 @@ class ReviewPage extends React.Component {
     return (
       <div className={css`
         display: flex;
-        margin: 40px;
         max-width: 100vw;
+        width: 100vw;
+        height: 100vh;
         justify-content: flex-end;
+        align-items: center;
       `}
       >
         <div className={css`

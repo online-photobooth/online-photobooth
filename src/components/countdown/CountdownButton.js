@@ -17,7 +17,7 @@ const Countdown = ({
 
       if (counting) {
         setTimeout(() => {
-          if (latestCount.current > 0) {
+          if (latestCount.current > 1) {
             setLocalTimer(latestCount.current - 1);
           } else {
             setCounting(false);

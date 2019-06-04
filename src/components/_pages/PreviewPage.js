@@ -7,6 +7,7 @@ import { css } from 'emotion';
 import CountdownButton from '../countdown/CountdownButton';
 import { checkRefresh } from '../services/refreshLogin';
 import Heading from '../titles/Heading';
+import { colorS } from '../../assets/variables';
 
 class PreviewPage extends React.Component {
   constructor(props) {
@@ -35,8 +36,6 @@ class PreviewPage extends React.Component {
 
     const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
     const picture = resp.data.image;
-
-    // const picture   = 'https://bit.ly/2VzPl0Q';
 
     if (picture !== null) {
       this.setState({ loading: false });
@@ -76,9 +75,9 @@ class PreviewPage extends React.Component {
       this.setState({ loading: false });
 
       history.push('/review');
+    } else {
+      this.setState({ loading: false });
     }
-
-    this.setState({ loading: false });
   }
 
   setRef = (webcam) => {
@@ -87,9 +86,7 @@ class PreviewPage extends React.Component {
 
   render = () => {
     const { loading, timer } = this.state;
-    // const { format, frame } = this.props;
     const { format } = this.props;
-    // const overlay = `${frame.baseUrl}=w1920-h1080`;
 
     return (
       <div className="PreviewPage">
@@ -132,7 +129,7 @@ class PreviewPage extends React.Component {
         </div>
 
         <SyncLoader
-          color="#fff"
+          color={colorS}
           size={50}
           loading={loading}
         />
