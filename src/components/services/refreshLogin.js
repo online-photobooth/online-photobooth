@@ -15,16 +15,21 @@ export const reloadAuthToken = async (dispatch, googleUser) => {
   } catch (error) {
     console.log('Could not refresh token');
     console.log(error);
+    throw error;
   }
 };
 
 export const checkRefresh = async (expiresAt, dispatch, googleUser) => {
   const oneMin = 60 * 1000;
   const threshold = 5;
-  return new Promise(async (resolve) => {
+  return new Promise(async (resolve, reject) => {
     if (expiresAt - Date.now() < (threshold * oneMin)) {
       console.log('refreshing', expiresAt - Date.now() < (threshold * oneMin));
-      await reloadAuthToken(dispatch, googleUser);
+      try {
+        await reloadAuthToken(dispatch, googleUser);
+      } catch (error) {
+        reject(error);
+      }
     } else {
       console.log('not refreshing', expiresAt - Date.now(), (threshold * oneMin));
     }

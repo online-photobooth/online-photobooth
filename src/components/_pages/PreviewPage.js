@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { SyncLoader } from 'react-spinners';
 import { css } from 'emotion';
+import { colorS } from '../../assets/variables';
 import CountdownButton from '../countdown/CountdownButton';
 import { checkRefresh } from '../services/refreshLogin';
 import Heading from '../titles/Heading';
-import { colorS } from '../../assets/variables';
 
 class PreviewPage extends React.Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class PreviewPage extends React.Component {
     this.state = {
       loading: false,
       timer: 3,
-      totalPictures: 4,
     };
   }
 
@@ -46,9 +45,14 @@ class PreviewPage extends React.Component {
 
   takeGif = async () => {
     const { history, frame } = this.props;
-    const { totalPictures } = this.state;
 
     this.setState({ loading: true });
+
+    try {
+      await axios.get(`${process.env.REACT_APP_SERVER_URL}/takeGif`);
+    } catch (error) {
+      console.log(error);
+    }
 
     try {
       await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
@@ -61,23 +65,6 @@ class PreviewPage extends React.Component {
     await this.setState({ loading: false });
 
     history.push('/review');
-
-    await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
-
-    this.setState({ totalPictures: totalPictures - 1 });
-
-    console.log('TCL: PreviewPage -> takeGif -> totalPictures', totalPictures);
-
-    if (totalPictures === 0) {
-      await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
-        frame,
-      });
-      this.setState({ loading: false });
-
-      history.push('/review');
-    } else {
-      this.setState({ loading: false });
-    }
   }
 
   setRef = (webcam) => {
