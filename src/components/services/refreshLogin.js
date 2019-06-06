@@ -1,5 +1,12 @@
+import store from '../../store';
+
+const state = store.getState();
+
 export const reloadAuthToken = async (dispatch, googleUser) => {
   try {
+    if (!googleUser.entries.includes('reloadAuthResponse')) {
+      throw Error('login');
+    }
     const tokenObj = await googleUser.reloadAuthResponse();
     console.log('TCL: reloadAuthToken -> tokenObj', tokenObj);
 
@@ -19,7 +26,10 @@ export const reloadAuthToken = async (dispatch, googleUser) => {
   }
 };
 
-export const checkRefresh = async (expiresAt, dispatch, googleUser) => {
+export const checkRefresh = async () => {
+  const { expiresAt } = state;
+  const { googleUser } = state;
+  const { dispatch } = store;
   const oneMin = 60 * 1000;
   const threshold = 5;
   return new Promise(async (resolve, reject) => {

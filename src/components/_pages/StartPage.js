@@ -6,7 +6,7 @@ import Heading from '../titles/Heading';
 import { checkRefresh } from '../services/refreshLogin';
 
 const StartPage = ({
-  album, dispatch, history, expiresAt, googleUser,
+  album, dispatch, history,
 }) => {
   useEffect(() => {
     if (!album.title) {
@@ -14,7 +14,7 @@ const StartPage = ({
       history.push('/album');
     }
 
-    checkRefresh(expiresAt, dispatch, googleUser);
+    checkRefresh();
   });
 
   const setFormat = async (format) => {
