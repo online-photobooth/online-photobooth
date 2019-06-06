@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'KdgRegular';
+  src: url('/fonts/KdG-Regular.eot');
+  src: 
+       url('/fonts/KdG-Regular.woff') format('woff'),
+       url('/fonts/KdG-Regular.ttf')  format('truetype'),
+}
+
 .App 
 {
     .triangles 

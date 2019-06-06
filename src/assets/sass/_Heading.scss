@@ -1,10 +1,11 @@
 .Heading 
 {
-    margin: 0 0 2rem 0;
+    margin: 0 0 32px 0;
     text-align: center;
-    width: 60%;
+    font-family: KdgRegular;
+    font-weight: 500;
 
-    &.heading--0 { font-size: 78px; }
+    &.heading--0 { font-size: 88px; }
     &.heading--1 { font-size: 60px; }
     &.heading--2 { font-size: 50px; }
     &.heading--3 { font-size: 45px; }

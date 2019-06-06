@@ -1,7 +1,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif; }
+  font-family: Proxima Nova, 'Arial', sans-serif; }
 
 p {
   margin: 0;
@@ -47,6 +47,11 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     .wrapper {
       width: 1200px; } }
 
+@font-face {
+  font-family: 'KdgRegular';
+  src: url("/fonts/KdG-Regular.eot");
+  src: url("/fonts/KdG-Regular.woff") format("woff"), url("/fonts/KdG-Regular.ttf") format("truetype"); }
+
 .App .triangles {
   width: 100%;
   height: 100%; }
@@ -77,6 +82,55 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .RegularButtonLink {
   text-decoration: none; }
 
+.flex {
+  display: flex; }
+
+.flex-col {
+  flex-direction: column; }
+
+.justify-center {
+  justify-content: center; }
+
+.justify-between {
+  justify-content: space-between; }
+
+.items-center {
+  align-items: center; }
+
+.items-end {
+  align-items: flex-end; }
+
+.m-0 {
+  margin: 0 !important; }
+
+.mr-2 {
+  margin-right: 0.5rem; }
+
+.mt-2 {
+  margin-top: 0.5rem; }
+
+.mt-4 {
+  margin-top: 1rem; }
+
+.mr-4 {
+  margin-right: 1rem; }
+
+.mt-8 {
+  margin-top: 2rem; }
+
+.mt-16 {
+  margin-top: 4rem; }
+
+.mr-16 {
+  margin-right: 4rem; }
+
+.h-30 {
+  min-height: 35vh; }
+
+.button-none {
+  border: none;
+  padding: 0; }
+
 .StartPage {
   width: 100%; }
 
@@ -98,9 +152,9 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     align-items: center; }
 
 .ReviewPage .img_container {
-  width: 100vw;
+  max-width: 100vw;
   overflow: hidden;
-  height: 100vh;
+  max-height: 100vh;
   margin-bottom: -2rem; }
   .ReviewPage .img_container img {
     height: 100%;
@@ -213,11 +267,9 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
 .FinalPage {
   height: 100vh !important; }
   .FinalPage .flex_container {
-    display: flex;
-    flex: 1;
-    flex-grow: 1; }
+    display: flex; }
   .FinalPage .left {
-    justify-content: center !important; }
+    justify-content: start !important; }
     .FinalPage .left h1 {
       margin-bottom: 2rem; }
   .FinalPage .left, .FinalPage .right {
@@ -226,17 +278,6 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
     flex-direction: column;
     align-items: center;
     justify-content: space-between; }
-  .FinalPage .buttons {
-    display: flex;
-    margin: 0 -1rem; }
-  .FinalPage .RegularButton {
-    margin: 0 1rem 4rem 1rem !important; }
-    .FinalPage .RegularButton .Heading {
-      margin: 0; }
-  .FinalPage .Heading {
-    margin: 0 0 0.5rem 0; }
-  .FinalPage p {
-    margin-bottom: 2rem; }
   .FinalPage form {
     width: 90%; }
     .FinalPage form input, .FinalPage form button {
@@ -266,58 +307,34 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
       transition: all 200ms ease-in-out 1s; }
       .FinalPage form button:hover {
         cursor: pointer; }
-  .FinalPage.close .keyboard_container {
-    height: 0 !important;
-    overflow: hidden; }
-  .FinalPage .checkInputOverlay {
-    height: 100vh;
-    width: 100vw;
-    position: absolute; }
-    .FinalPage .checkInputOverlay.open {
-      display: block; }
-    .FinalPage .checkInputOverlay.close {
-      display: none; }
-  .FinalPage .keyboard_container {
-    width: 100%;
-    height: 8rem;
-    position: absolute;
-    bottom: 0;
-    margin: auto;
-    transition: all 150ms ease-in-out; }
-    .FinalPage .keyboard_container .react-simple-keyboard {
-      background-color: #fff !important;
-      display: block !important;
-      position: inherit; }
-      .FinalPage .keyboard_container .react-simple-keyboard .hg-button {
-        height: 3rem !important;
-        border: 1px solid #000 !important; }
 
 .RegularButton {
-  background-color: #00A685;
+  background-color: #34bedc;
   border-radius: 200rem;
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #fff; }
   .RegularButton img {
-    width: 35%;
-    margin-bottom: 1.2rem; }
+    width: 60%; }
   .RegularButton a {
     text-decoration: none; }
   .RegularButton:hover {
     cursor: pointer; }
   .RegularButton.small {
-    width: 180px;
-    height: 180px;
-    margin: 2rem; }
+    width: 120px;
+    height: 120px; }
+    .RegularButton.small img {
+      width: 70%; }
   .RegularButton.large {
-    width: 400px;
-    height: 400px; }
+    width: 250px;
+    height: 250px; }
 
 .CaptureButton {
   position: absolute;
-  background-color: red;
+  background-color: #ac5a96;
   width: 150px;
   height: 150px;
   border-radius: 150px;
@@ -330,7 +347,7 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   justify-content: center;
   color: #fff;
   border: none;
-  font-size: 4rem;
+  font-size: 3rem;
   transition: all 150ms ease-in-out;
   outline: none; }
   .CaptureButton:hover {
@@ -338,23 +355,13 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
   .CaptureButton.clicked {
     margin-bottom: -300px; }
 
-.Footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding-left: 5rem;
-  padding-bottom: 1rem; }
-
-.Footer img {
-  width: 17rem;
-  padding-bottom: 1rem; }
-
 .Heading {
-  margin: 0 0 2rem 0;
+  margin: 0 0 32px 0;
   text-align: center;
-  width: 60%; }
+  font-family: KdgRegular;
+  font-weight: 500; }
   .Heading.heading--0 {
-    font-size: 78px; }
+    font-size: 88px; }
   .Heading.heading--1 {
     font-size: 60px; }
   .Heading.heading--2 {

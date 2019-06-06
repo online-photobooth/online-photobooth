@@ -1,7 +1,9 @@
+$pink: #ac5a96;
+
 .CaptureButton 
 { 
     position: absolute; 
-    background-color: red; 
+    background-color: $pink; 
     width: 150px;
     height: 150px;
     border-radius: 150px;
@@ -14,7 +16,7 @@
     justify-content: center;
     color: #fff;
     border: none;
-    font-size: 4rem;
+    font-size: 3rem;
     transition: all 150ms ease-in-out;
     outline: none;
 

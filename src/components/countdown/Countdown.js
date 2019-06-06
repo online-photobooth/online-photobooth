@@ -2,41 +2,45 @@ import React from 'react';
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Countdown extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            timer: 3,
-            hideTimer: false
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      timer: 3,
+      hideTimer: false,
+    };
+  }
 
-    componentDidMount = () => {
-        this.interval   = setInterval(() => {
-            if (this.state.timer !== 0)
-            {
-                this.setState({ timer: this.state.timer - 1 });
-            }
-            else 
-            {
-                this.setState({ timer: 0, hideTimer: true });
-                clearInterval(this.interval);
-                this.props.onDone();
-            }
-        }, 1000)
-    }
+  componentDidMount = () => {
+    const { onDone, timer: newTimer } = this.props;
+    if (newTimer) { this.setState({ timer: newTimer }); }
 
-    componentWillUnmount = () => {
+    this.interval = setInterval(() => {
+      const { timer } = this.state;
+
+      if (timer !== 0) {
+        this.setState({ timer: timer - 1 });
+      } else {
+        this.setState({ timer: 0, hideTimer: true });
         clearInterval(this.interval);
-    }
-    
-    render = () => {
-        return (
-            <div className='Countdown'>
-                <div className="flash_screen"></div>
-                { (this.state.hideTimer) ? '' : <h1>{ this.state.timer }</h1> }
-            </div>
-        )
-    }
+        onDone();
+      }
+    }, 1000);
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    const { hideTimer, timer } = this.state;
+
+    return (
+      <div>
+        <div className="flash_screen" />
+        {(hideTimer) ? '' : <h1>{timer}</h1>}
+      </div>
+    );
+  }
 }
 
 export default Countdown;

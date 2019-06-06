@@ -1,158 +1,136 @@
 import React from 'react';
-import Heading from '../titles/Heading';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import SingleAlbum from '../albums/SingleAlbum';
+import { css } from 'emotion';
+import Heading from '../titles/Heading';
+import CreateAlbumForm from '../albums/CreateAlbumForm';
 
 class SelectAbumPage extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-			albums: [],
-            selectedAlbum: [],
-			newAlbum: '',
-			albumName: '',
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      albums: [],
+    };
+  }
 
-    onChangeHandler = (e) => {
-        this.setState({ [e.target.name]: e.target.value})
-    }
+  onChangeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-    componentDidMount = async () => {
-      if (!this.props.accessToken) 
-      {
-        console.log('redirecting from album to login');
-        this.props.history.push('/login')
-      } 
-      else 
-      {
-        try 
-        {
-          const resp = await axios.get('https://photoslibrary.googleapis.com/v1/sharedAlbums', {
-            headers: {
-              Authorization: 'Bearer ' + this.props.accessToken
-            }
-          });
+  componentDidMount = async () => {
+    const { accessToken, history } = this.props;
 
-          console.log(resp);
-          
-          const albums = resp.data.sharedAlbums;
-          this.setState({ albums });
-        } 
-        catch (error) 
-        {
-          console.log(error.response);
+    if (!accessToken) {
+      console.log('redirecting from album to login');
+      history.push('/login');
+    } else {
+      try {
+        const resp = await axios.get('https://photoslibrary.googleapis.com/v1/sharedAlbums', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        console.log(resp);
+
+        const albums = resp.data.sharedAlbums;
+
+        this.setState({ albums });
+      } catch (error) {
+        console.log(error.response);
+
+        if (error.response && error.response.status === 401) {
+          history.push('/login');
         }
       }
     }
+  }
 
-    setDefaultAlbum = (selectedAlbum) => {
-        this.setState({ selectedAlbum });
-        this.props.history.push('/', { album: selectedAlbum })
+  setDefaultAlbum = async (event) => {
+    const { history, dispatch } = this.props;
+    const { albums } = this.state;
+    const selectedAlbum = albums.find(({ id }) => id === event.target.value);
+
+    await dispatch({
+      type: 'SET_ALBUM',
+      payload: selectedAlbum,
+    });
+
+    history.push('/');
+  }
+
+  renderAlbums = albums => albums.filter(el => el.title.toLowerCase() !== 'frames').map(album => (
+    <option key={album.id} value={album.id} className={css`margin-bottom: 8px;`}>{album.title}</option>
+  ))
+
+  setFrames = async (framesId) => {
+    const { dispatch, accessToken } = this.props;
+
+    // Fetch Frames Album
+    try {
+      const resp = await axios.post('https://photoslibrary.googleapis.com/v1/mediaItems:search',
+        {
+          albumId: framesId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+      const frames = resp.data.mediaItems;
+      dispatch({
+        type: 'SET_FRAMES',
+        payload: frames,
+      });
+    } catch (error) {
+      console.log(error.response);
     }
+  }
 
-    renderAlbums = () => {
-        return this.state.albums.map((album, i) => (
-			<SingleAlbum key={ i } album={ album } onClick={ this.setDefaultAlbum }/>
-        ))
-    }
+  render = () => {
+    const { albums } = this.state;
 
-    createNewAlbum = async (e) => {
-        e.preventDefault()
-		if(this.state.newAlbum === '') return false
-		
-        // CREATE ALBUM
-		try 
-		{
-			const resp = await axios({
-				method: 'POST',
-				url: 'https://photoslibrary.googleapis.com/v1/albums', 
-				headers: {
-				Authorization: 'Bearer ' + this.props.accessToken,
-				'Content-type': 'application/json',
-				},
-				data: {
-				'album': {'title': this.state.newAlbum}
-				}
-			})
+    return (
+      <div className="SelectAlbumPage">
+        <div className="wrapper">
+          <div>
+            <Heading
+              type="heading--3"
+            >
+              Selecteer een album.
+            </Heading>
 
-          	console.log(resp);
-          	// SHARE ALBUM
-			try 
-			{
-				const resp2 = await axios({
-					method: 'POST',
-					url: `https://photoslibrary.googleapis.com/v1/albums/${resp.data.id}:share`, 
-					headers: {
-						Authorization: 'Bearer ' + this.props.accessToken,
-						'Content-type': 'application/json',
-					},
-					data: {
-						'sharedAlbumOptions': {
-						'isCollaborative': 'false',
-						'isCommentable': 'false'
-						}
-					}
-					});
-
-				console.log(resp2)
-				const selectedAlbum = {
-					...resp.data,
-					...resp2.data
-				}
-				console.log(selectedAlbum);
-				
-				this.setState({ selectedAlbum })
-				this.props.history.push('/', { album: selectedAlbum })
-			} 
-			catch (error) 
-			{
-				console.log('Sharing album went wrong')
-				console.log(error.response)
-			}
-		} 
-		catch (error) 
-		{
-          console.log('Creating album went wrong')
-          console.log(error.response);
-        }
-    }
-
-    render = () => {
-        return (
-            <div className='SelectAlbumPage'>
-                <div className='wrapper'>
-					<div className="content">
-						<Heading>Selecteer een Album.</Heading>
-
-						<div className="albumOverview">
-							<form onSubmit={(e) => this.createNewAlbum(e)}>
-								<input 
-									name='newAlbum' 
-									value={ this.state.newAlbum } 
-									onChange={ this.onChangeHandler } 
-									placeholder='Maak een nieuw album aan'
-								/>
-
-								<button type='submit'>
-									AANMAKEN
-								</button>
-							</form>
-
-							<div className={ `albums ${ this.state.albums && this.state.albums.length === 1 ? 'one-item' : '' } `}>
-								{ this.state.albums ? this.renderAlbums() : 'No albums found' }
-							</div>
-						</div>
-					</div>
-                </div>
+            <div
+              className={css`
+              display: flex;
+              justify-content: center;
+              margin-bottom: 48px;
+                `}
+            >
+              <select
+                multiple
+                className={css`
+                width: 80%;
+                font-size: 20px;
+                padding: 8px 16px;
+                min-height: 200px;
+              `}
+                onChange={this.setDefaultAlbum}
+              >
+                {albums ? this.renderAlbums(albums) : 'No albums found'}
+              </select>
             </div>
-        )
-    }
+            <CreateAlbumForm />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state) => ({
-  	accessToken: state.accessToken
+const mapStateToProps = state => ({
+  accessToken: state.accessToken,
 });
 
 export default connect(mapStateToProps)(SelectAbumPage);

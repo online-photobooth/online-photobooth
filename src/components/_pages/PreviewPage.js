@@ -1,74 +1,146 @@
 import React from 'react';
-import Webcam from "react-webcam";
-import CaptureButton from '../buttons/CaptureButton';
-import Countdown from '../countdown/Countdown';
+import { connect } from 'react-redux';
+import Webcam from 'react-webcam';
 import axios from 'axios';
-import { css } from '@emotion/core';
 import { SyncLoader } from 'react-spinners';
+import { css } from 'emotion';
+import { colorS } from '../../assets/variables';
+import CountdownButton from '../countdown/CountdownButton';
+import { checkRefresh } from '../services/refreshLogin';
+import Heading from '../titles/Heading';
 
 class PreviewPage extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            startCountdown: false,
-            requestIsSend: false,
-        };
-    }
-
-    componentDidMount = () => {
-        if (!this.props.location.state || !this.props.location.state.album) 
-        {
-            // this.props.history.push('/album')
-        }
-    }
-    
-    takePicture = async () => {
-        this.setState({ requestIsSend: true });
-
-        const resp      = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
-        const picture   = resp.data.image;
-
-        // const picture   = 'https://bit.ly/2VzPl0Q';
-
-        if (picture !== null)
-        {
-            this.setState({ requestIsSend: false });
-        }
-
-        this.props.history.push('/review', { picture, album: this.props.location.state.album });
-    }
-
-    setRef = (webcam) => {
-        this.webcam = webcam;
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      timer: 3,
     };
+  }
 
-    renderCountDown = () => {
-        if (this.state.startCountdown) return <Countdown onDone={ this.takePicture }/>
+  componentDidMount = () => {
+    const { album, history } = this.props;
+
+    if (!album) {
+      history.push('/album');
     }
-    
-    render = () => {
-        console.log(this.state.requestIsSend);
-        return (
-            <div className='PreviewPage'>
-                <Webcam 
-                    width='100%'
-                    height='100%'
-                    audio={ false }
-                    ref={ this.setRef }
-                />
 
-                { this.renderCountDown() }
+    checkRefresh();
+  }
 
-                <SyncLoader
-                    color='#fff'
-                    size={ 50 }
-                    loading={ this.state.requestIsSend }
-                />
+  takePicture = async () => {
+    const { history } = this.props;
 
-                <CaptureButton onClick={ (e) => this.setState({ startCountdown: true }) }/>
-            </div>
-        )
+    this.setState({ loading: true });
+
+    const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
+    const picture = resp.data.image;
+
+    if (picture !== null) {
+      this.setState({ loading: false });
     }
+
+    history.push('/review', { picture });
+  }
+
+  takeGif = async () => {
+    const { history, frame } = this.props;
+
+    this.setState({ loading: true });
+
+    try {
+      await axios.get(`${process.env.REACT_APP_SERVER_URL}/takeGif`);
+    } catch (error) {
+      console.log(error);
+      this.setState({ loading: false });
+
+      return;
+    }
+
+    try {
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
+        frame,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    await this.setState({ loading: false });
+
+    history.push('/review');
+  }
+
+  setRef = (webcam) => {
+    this.webcam = webcam;
+  };
+
+  render = () => {
+    const { loading, timer } = this.state;
+    const { format, frame } = this.props;
+
+    return (
+      <div className="PreviewPage">
+        <div
+          className={css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        `}
+        >
+          <div
+            className={css`
+        position: absolute;
+        z-index: 3;
+        top: 15vh;
+        `}>
+            <Heading
+              type="heading--3"
+            >
+              Ready. Set.
+            </Heading>
+            {!loading && (
+              <CountdownButton
+                onDone={format === 'gif' ? this.takeGif : this.takePicture}
+                timer={timer || 3}
+                text="Go!"
+                size="large"
+              />
+            )}
+          </div>
+          <Webcam
+            height="70%"
+            audio={false}
+            ref={this.setRef}
+            className={css`position: 'absolute'`}
+          />
+          <img
+            src={`/images/frames/${frame}`}
+            alt="Frame"
+            className={css`
+          position: absolute; 
+          height: 70%;
+          width: auto;
+          `}
+          />
+        </div>
+
+        <SyncLoader
+          color={colorS}
+          size={50}
+          loading={loading}
+        />
+      </div>
+    );
+  }
 }
 
-export default PreviewPage;
+const mapStateToProps = state => ({
+  album: state.album,
+  format: state.format,
+  frame: state.frame,
+});
+
+export default connect(mapStateToProps)(PreviewPage);

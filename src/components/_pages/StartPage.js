@@ -1,35 +1,78 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { css } from 'emotion';
 import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
+import { checkRefresh } from '../services/refreshLogin';
 
-class StartPage extends React.Component {
-    componentDidMount = () => {
-        if (!this.props.location.state || !this.props.location.state.album) 
-        {
-            this.props.history.push('/album')
-        }
+const StartPage = ({
+  album, dispatch, history,
+}) => {
+  useEffect(() => {
+    if (!album.title) {
+      console.log('Startpage TCL: album', album.title);
+      history.push('/album');
     }
 
-    render = () => {
-        return (
-            <div className='StartPage'>
-                <div className="wrapper">
-                    <div className="content">
-                        <Heading>
-                            Welkom op de { this.props.location.state ? this.props.location.state.album.title : ''}!
-                        </Heading>
-                        <RegularButton 
-                            img='camera' 
-                            alt='Large green button with camera icon in it.' 
-                            size='large' 
-                            title='Druk om verder te gaan.'
-                            onClick={() => this.props.history.push('/preview', { album: this.props.location.state.album })}
-                        />
-                    </div>
-                </div>
+    checkRefresh();
+  });
+
+  const setFormat = async (format) => {
+    await dispatch({
+      type: 'SET_FORMAT',
+      payload: format,
+    });
+
+    history.push('/frame');
+  };
+
+  return (
+    <div className="StartPage">
+      <div className="wrapper">
+        <div className={css`
+          width: 50%;
+          `}
+        >
+          <Heading
+            type="heading--2"
+          >
+            Wat wil je maken?
+          </Heading>
+          <div className={css`
+          display: flex;
+          justify-content: space-between;
+          `}
+          >
+            <div>
+              <RegularButton
+                img="camera"
+                alt="Take a single picture."
+                size="large"
+                onClick={() => setFormat('single')}
+                title="Een foto"
+              />
             </div>
-        )
-    }
-}
 
-export default StartPage;
+            <div>
+              <RegularButton
+                img="film"
+                alt="Take a single picture."
+                size="large"
+                onClick={() => setFormat('gif')}
+                title="Een GIF"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const mapStateToProps = state => ({
+  album: state.album,
+  expiresAt: state.expiresAt,
+  googleUser: state.googleUser,
+});
+
+export default connect(mapStateToProps)(StartPage);
