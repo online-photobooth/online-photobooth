@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import Webcam from 'react-webcam';
+import Webcam from 'react-webcam';
 import axios from 'axios';
 import { SyncLoader } from 'react-spinners';
 import { css } from 'emotion';
@@ -76,7 +76,7 @@ class PreviewPage extends React.Component {
 
   render = () => {
     const { loading, timer } = this.state;
-    const { format } = this.props;
+    const { format, frame } = this.props;
 
     return (
       <div className="PreviewPage">
@@ -93,6 +93,7 @@ class PreviewPage extends React.Component {
           <div
             className={css`
         position: absolute;
+        z-index: 3;
         top: 15vh;
         `}>
             <Heading
@@ -109,13 +110,21 @@ class PreviewPage extends React.Component {
               />
             )}
           </div>
-          {/* <Webcam
-            height="100%"
+          <Webcam
+            height="70%"
             audio={false}
             ref={this.setRef}
             className={css`position: 'absolute'`}
           />
-          <img src={overlay} alt="" style={{ position: 'absolute', height: '100%' }} /> */}
+          <img
+            src={`/images/frames/${frame}`}
+            alt="Frame"
+            className={css`
+          position: absolute; 
+          height: 70%;
+          width: auto;
+          `}
+          />
         </div>
 
         <SyncLoader
