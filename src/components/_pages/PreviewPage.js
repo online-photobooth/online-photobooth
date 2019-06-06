@@ -52,6 +52,9 @@ class PreviewPage extends React.Component {
       await axios.get(`${process.env.REACT_APP_SERVER_URL}/takeGif`);
     } catch (error) {
       console.log(error);
+      this.setState({ loading: false });
+
+      return;
     }
 
     try {
