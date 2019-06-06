@@ -93,9 +93,14 @@ class ReviewPage extends React.Component {
             `}
           >
             {img && (
-              <div className="img_container">
-                <img src={img} alt="Taken by our photobooth." />
-              </div>
+              <img
+                src={img}
+                alt="Taken by our photobooth."
+                className={css`
+              max-width: 100%;
+              height: auto;
+              max-height: 100%;`}
+              />
             )}
             {gif && (
               <video
