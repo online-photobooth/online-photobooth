@@ -50,7 +50,6 @@ class SelectAbumPage extends React.Component {
     const { history, dispatch } = this.props;
     const { albums } = this.state;
     const selectedAlbum = albums.find(({ id }) => id === event.target.value);
-    console.log('TCL: SelectAbumPage -> setDefaultAlbum -> selectedAlbum', selectedAlbum);
 
     await dispatch({
       type: 'SET_ALBUM',
@@ -78,8 +77,6 @@ class SelectAbumPage extends React.Component {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-
-      console.log(resp);
 
       const frames = resp.data.mediaItems;
       dispatch({

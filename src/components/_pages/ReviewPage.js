@@ -51,6 +51,8 @@ class ReviewPage extends React.Component {
 
       if (resp.status === 200) {
         history.push('/final');
+      } else {
+        console.log(resp);
       }
     } catch (error) {
       if (error.response.status === 401) {
@@ -59,6 +61,8 @@ class ReviewPage extends React.Component {
         } catch (refreshError) {
           console.log(refreshError);
         }
+      } else {
+        console.log(error);
       }
     } finally {
       this.setState({ loading: false });

@@ -4,9 +4,6 @@ const state = store.getState();
 
 export const reloadAuthToken = async (dispatch, googleUser) => {
   try {
-    if (!googleUser.entries.includes('reloadAuthResponse')) {
-      throw Error('login');
-    }
     const tokenObj = await googleUser.reloadAuthResponse();
     console.log('TCL: reloadAuthToken -> tokenObj', tokenObj);
 
@@ -21,7 +18,6 @@ export const reloadAuthToken = async (dispatch, googleUser) => {
     });
   } catch (error) {
     console.log('Could not refresh token');
-    console.log(error);
     throw error;
   }
 };
