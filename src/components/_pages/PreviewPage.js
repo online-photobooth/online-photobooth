@@ -29,11 +29,11 @@ class PreviewPage extends React.Component {
   }
 
   takePicture = async () => {
-    const { history, frame } = this.props;
+    const { history, frame, filter } = this.props;
 
     this.setState({ loading: true });
 
-    const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/takePicture`, { frame });
+    const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/takePicture`, { frame, filter });
     const picture = resp.data.image;
 
     if (picture !== null) {
@@ -44,7 +44,7 @@ class PreviewPage extends React.Component {
   }
 
   takeGif = async () => {
-    const { history, frame } = this.props;
+    const { history, frame, filter } = this.props;
 
     this.setState({ loading: true });
 
@@ -60,6 +60,7 @@ class PreviewPage extends React.Component {
     try {
       await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
         frame,
+        filter,
       });
     } catch (error) {
       console.log(error);
@@ -141,6 +142,7 @@ const mapStateToProps = state => ({
   album: state.album,
   format: state.format,
   frame: state.frame,
+  filter: state.filter,
 });
 
 export default connect(mapStateToProps)(PreviewPage);

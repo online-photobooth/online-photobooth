@@ -11,7 +11,7 @@ const SelectFramePage = ({ dispatch, history }) => {
       type: 'SET_FRAME',
       payload: frame,
     });
-    history.push('/preview');
+    history.push('/filter');
   };
 
   const renderImages = () => frames.map(frame => (

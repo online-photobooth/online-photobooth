@@ -28,6 +28,9 @@ export const checkRefresh = async () => {
   const { dispatch } = store;
   const oneMin = 60 * 1000;
   const threshold = 5;
+
+  if (!googleUser.reloadAuthResponse) return false;
+
   return new Promise(async (resolve, reject) => {
     if (expiresAt - Date.now() < (threshold * oneMin)) {
       console.log('refreshing', expiresAt - Date.now() < (threshold * oneMin));

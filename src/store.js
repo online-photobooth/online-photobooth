@@ -7,6 +7,7 @@ const initialState = {
   googleUser: {},
   frames: [],
   frame: {},
+  filter: {},
   album: {},
   format: '',
   expiresAt: '',
@@ -40,6 +41,11 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       frame: action.payload,
+    };
+  case 'SET_FILTER':
+    return {
+      ...state,
+      filter: action.payload,
     };
   case 'SET_FORMAT':
     return {
