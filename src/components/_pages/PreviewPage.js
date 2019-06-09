@@ -29,11 +29,11 @@ class PreviewPage extends React.Component {
   }
 
   takePicture = async () => {
-    const { history } = this.props;
+    const { history, frame } = this.props;
 
     this.setState({ loading: true });
 
-    const resp = await axios.get(`${process.env.REACT_APP_SERVER_URL}/takePicture`);
+    const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/takePicture`, { frame });
     const picture = resp.data.image;
 
     if (picture !== null) {
