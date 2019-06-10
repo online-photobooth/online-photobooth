@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
-import throttle from 'lodash/throttle';
-import { loadState, saveState } from './localStorage';
+// import throttle from 'lodash/throttle';
+// import { loadState, saveState } from './localStorage';
 
 const initialState = {
   accessToken: '',
@@ -13,7 +13,7 @@ const initialState = {
   expiresAt: '',
 };
 
-const persistedState = loadState();
+// const persistedState = loadState();
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -62,11 +62,11 @@ function reducer(state = initialState, action) {
   }
 }
 
-const store = createStore(reducer, persistedState);
-// const store = createStore(reducer);
+// const store = createStore(reducer, persistedState);
+const store = createStore(reducer);
 
-store.subscribe(throttle(() => {
-  saveState(store.getState());
-}, 1000));
+// store.subscribe(throttle(() => {
+//   saveState(store.getState());
+// }, 1000));
 
 export default store;
