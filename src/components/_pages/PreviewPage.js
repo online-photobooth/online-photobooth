@@ -7,6 +7,7 @@ import { css } from 'emotion';
 import { colorS } from '../../assets/variables';
 import CountdownButton from '../countdown/CountdownButton';
 import { checkRefresh } from '../services/refreshLogin';
+import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
 
 class PreviewPage extends React.Component {
@@ -37,14 +38,15 @@ class PreviewPage extends React.Component {
 
     this.setState({ loading: true });
 
-    const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/takePicture`, { frame, filter });
-    const picture = resp.data.image;
+    try {
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/takePicture`, { frame, filter });
+      this.setState({ loading: false });
 
-    if (picture !== null) {
+      history.push('/review');
+    } catch (error) {
+      console.log(error);
       this.setState({ loading: false });
     }
-
-    history.push('/review', { picture });
   }
 
   takeGif = async () => {
@@ -53,7 +55,9 @@ class PreviewPage extends React.Component {
     this.setState({ loading: true });
 
     try {
-      await axios.get(`${process.env.REACT_APP_SERVER_URL}/takeGif`);
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/takeGif`, {
+        filter,
+      });
     } catch (error) {
       console.log(error);
       this.setState({ loading: false });
@@ -64,7 +68,6 @@ class PreviewPage extends React.Component {
     try {
       await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
         frame,
-        filter,
       });
     } catch (error) {
       console.log(error);
@@ -81,7 +84,7 @@ class PreviewPage extends React.Component {
 
   render = () => {
     const { loading, timer } = this.state;
-    const { format, frame } = this.props;
+    const { format, frame, history } = this.props;
 
     return (
       <div className="PreviewPage">
@@ -137,6 +140,20 @@ class PreviewPage extends React.Component {
           color={colorS}
           size={50}
           loading={loading}
+        />
+
+        <RegularButton
+          img="home"
+          alt="House icon."
+          title="Home"
+          size="small"
+          onClick={() => history.push('/')}
+          className={css`
+          position: absolute;
+          z-index: 3;
+          right: 5vh;
+          bottom: 5vh;
+          `}
         />
       </div>
     );

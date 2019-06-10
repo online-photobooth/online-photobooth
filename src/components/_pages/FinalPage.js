@@ -34,10 +34,9 @@ class FinalPage extends React.Component {
   }
 
   sendEmail = async (e) => {
+    await checkRefresh();
     const { album, accessToken, format } = this.props;
     const { emailsAreValid } = this.state;
-
-    await checkRefresh();
 
     e.preventDefault();
     console.log('Sending mail!');

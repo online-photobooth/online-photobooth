@@ -10,7 +10,6 @@ class ReviewPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      img: '',
       gif: false,
       loading: false,
     };
@@ -18,26 +17,24 @@ class ReviewPage extends React.Component {
 
   componentDidMount = () => {
     const {
-      location, history, format, album,
+      history, format, album,
     } = this.props;
 
     if (!album) {
       history.push('/album');
     }
 
-    if (format === 'single') {
-      this.setState({ img: location.state.picture });
-    } else {
+    if (format !== 'single') {
       this.setState({ gif: true });
     }
   }
 
   uploadPicture = async () => {
+    await checkRefresh();
+
     const {
       history, accessToken, album, format,
     } = this.props;
-
-    await checkRefresh();
 
     this.setState({ loading: true });
 
@@ -72,7 +69,7 @@ class ReviewPage extends React.Component {
   }
 
   render = () => {
-    const { img, gif, loading } = this.state;
+    const { gif, loading } = this.state;
     const { history } = this.props;
 
     return (
@@ -94,9 +91,9 @@ class ReviewPage extends React.Component {
             width: 70vw;
             `}
           >
-            {img && (
+            {!gif && (
               <img
-                src={img}
+                src={`${process.env.REACT_APP_SERVER_URL}/images/picture.jpg?t=${new Date()}`}
                 alt="Taken by our photobooth."
                 className={css`
               max-width: 100%;
@@ -114,7 +111,7 @@ class ReviewPage extends React.Component {
                 max-width: 100%;
                 `}
               >
-                <source src={`${process.env.REACT_APP_SERVER_URL}/video.mp4?t=${new Date()}`} type="video/mp4" />
+                <source src={`${process.env.REACT_APP_SERVER_URL}/videos/video.mp4?t=${new Date()}`} type="video/mp4" />
               </video>
             )}
           </div>
@@ -138,6 +135,14 @@ class ReviewPage extends React.Component {
               img="refresh"
               title="Opnieuw"
               onClick={history.goBack}
+              className={css`margin-bottom: 100px;`}
+            />
+            <RegularButton
+              img="home"
+              alt="House icon."
+              title="Home"
+              size="small"
+              onClick={() => history.push('/')}
             />
           </div>
         </div>

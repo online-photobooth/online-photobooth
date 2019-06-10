@@ -8,18 +8,22 @@ const SelectFramePage = ({ dispatch, history }) => {
   const filters = [
     {
       name: '#NoFilter',
+      filter: 'normal',
       image: 'original.png',
     },
     {
       name: 'Valencia',
+      filter: 'valencia',
       image: 'valencia.png',
     },
     {
       name: 'Juno',
+      filter: 'juno',
       image: 'juno.png',
     },
     {
       name: 'Inkwell',
+      filter: 'inkwell',
       image: 'inkwell.png',
     },
   ];
@@ -33,7 +37,7 @@ const SelectFramePage = ({ dispatch, history }) => {
   };
 
   const renderImages = () => filters.map(filter => (
-    <RegularButton title={filter.name} size="large" key={filter.name} onClick={() => setFilter(filter.image)} type="button" className={css`margin-right: 24px;`}>
+    <RegularButton title={filter.name} size="large" key={filter.name} onClick={() => setFilter(filter.filter)} type="button" className={css`margin-right: 24px;`}>
       <img src={`/images/filters/${filter.image}`} alt="Kdg Filter" />
     </RegularButton>
   ));
