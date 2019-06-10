@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from 'emotion';
+import { connect } from 'react-redux';
 import Heading from '../titles/Heading';
 import RegularButton from '../buttons/RegularButton';
 
@@ -57,4 +58,4 @@ const SelectFramePage = ({ dispatch, history }) => {
   );
 };
 
-export default SelectFramePage;
+export default connect()(SelectFramePage);
