@@ -18,14 +18,18 @@ class PreviewPage extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const { album, history } = this.props;
 
     if (!album) {
       history.push('/album');
     }
 
-    checkRefresh();
+    try {
+      await checkRefresh();
+    } catch (error) {
+      history.push('/login');
+    }
   }
 
   takePicture = async () => {
@@ -112,7 +116,8 @@ class PreviewPage extends React.Component {
             )}
           </div>
           <Webcam
-            height="70%"
+            height="800"
+            width="1200"
             audio={false}
             ref={this.setRef}
             className={css`position: 'absolute'`}
@@ -121,9 +126,9 @@ class PreviewPage extends React.Component {
             src={`/images/frames/${frame}`}
             alt="Frame"
             className={css`
-          position: absolute; 
-          height: 70%;
-          width: auto;
+            position: absolute; 
+            height: 800px;
+            width: 1200px;
           `}
           />
         </div>

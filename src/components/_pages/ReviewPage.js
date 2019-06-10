@@ -37,6 +37,8 @@ class ReviewPage extends React.Component {
       history, accessToken, album, format,
     } = this.props;
 
+    await checkRefresh();
+
     this.setState({ loading: true });
 
     const formatUrl = format === 'single' ? 'uploadLastImageTaken' : 'uploadLastGifTaken';

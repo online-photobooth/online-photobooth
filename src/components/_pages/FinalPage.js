@@ -7,6 +7,7 @@ import { css } from 'emotion';
 import Heading from '../titles/Heading';
 import RegularButton from '../buttons/RegularButton';
 import BaseButton from '../buttons/BaseButton';
+import { checkRefresh } from '../services/refreshLogin';
 
 class FinalPage extends React.Component {
   constructor(props) {
@@ -33,8 +34,10 @@ class FinalPage extends React.Component {
   }
 
   sendEmail = async (e) => {
-    const { album, accessToken } = this.props;
+    const { album, accessToken, format } = this.props;
     const { emailsAreValid } = this.state;
+
+    await checkRefresh();
 
     e.preventDefault();
     console.log('Sending mail!');
@@ -70,6 +73,7 @@ class FinalPage extends React.Component {
           title: album.title,
           email: e.target.emails.value,
           albumLink: album.shareInfo.shareableUrl,
+          format,
         });
 
         if (resp.status === 200) this.setState({ emailIsSending: false, emailIsSend: true, errorSendingEmail: false });
@@ -214,6 +218,7 @@ class FinalPage extends React.Component {
 const mapStateToProps = state => ({
   accessToken: state.accessToken,
   album: state.album,
+  format: state.format,
 });
 
 export default connect(mapStateToProps)(FinalPage);

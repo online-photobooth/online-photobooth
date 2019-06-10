@@ -1,7 +1,5 @@
 import store from '../../store';
 
-const state = store.getState();
-
 export const reloadAuthToken = async (dispatch, googleUser) => {
   try {
     const tokenObj = await googleUser.reloadAuthResponse();
@@ -23,13 +21,11 @@ export const reloadAuthToken = async (dispatch, googleUser) => {
 };
 
 export const checkRefresh = async () => {
-  const { expiresAt } = state;
-  const { googleUser } = state;
+  const state = store.getState();
+  const { expiresAt, googleUser } = state;
   const { dispatch } = store;
   const oneMin = 60 * 1000;
   const threshold = 5;
-
-  if (!googleUser.reloadAuthResponse) return false;
 
   return new Promise(async (resolve, reject) => {
     if (expiresAt - Date.now() < (threshold * oneMin)) {
