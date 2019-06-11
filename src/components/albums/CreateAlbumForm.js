@@ -65,7 +65,7 @@ const CreateAlbumForm = ({ accessToken, history, dispatch }) => {
       history.push('/');
     } catch (error) {
       console.log('Sharing album went wrong');
-      console.log(error.response);
+      console.log(error);
     }
 
     return true;

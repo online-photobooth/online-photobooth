@@ -90,6 +90,7 @@ class SelectAbumPage extends React.Component {
 
   render = () => {
     const { albums } = this.state;
+    const { history } = this.props;
 
     return (
       <div className="SelectAlbumPage">
@@ -121,7 +122,7 @@ class SelectAbumPage extends React.Component {
                 {albums ? this.renderAlbums(albums) : 'No albums found'}
               </select>
             </div>
-            <CreateAlbumForm />
+            <CreateAlbumForm history={history} />
           </div>
         </div>
       </div>
