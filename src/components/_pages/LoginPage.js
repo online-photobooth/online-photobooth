@@ -5,15 +5,13 @@ import { css } from 'emotion';
 import BaseButton from '../buttons/BaseButton';
 import Heading from '../titles/Heading';
 
-class LoginPage extends React.Component {
-  responseGoogle = (resp) => {
+const LoginPage = ({ dispatch, history }) => {
+  const responseGoogle = (resp) => {
     console.log('Login failed.');
     console.log(resp);
-  }
+  };
 
-  successResponseGoogle = (googleUser) => {
-    const { dispatch, history } = this.props;
-
+  const successResponseGoogle = (googleUser) => {
     console.log(googleUser);
     dispatch({
       type: 'SET_ACCESS_TOKEN',
@@ -31,17 +29,26 @@ class LoginPage extends React.Component {
     });
 
     history.push('/album');
-  }
+  };
 
-  render = () => (
+  return (
     <div className={
       css`
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      position: relative;
     `}
     >
+      <div className={css` position: absolute; top: 10px; right: 10px;`}>
+        <BaseButton
+          size="small"
+          onClick={() => history.push('/settings')}
+        >
+    Settings
+        </BaseButton>
+      </div>
       <div className={
         css`
         display: flex;
@@ -67,7 +74,7 @@ class LoginPage extends React.Component {
         display: flex;
         flex-direction: column;
       `}>
-          <Heading type="heading--3">Welkom op de KdG photobooth.</Heading>
+          <Heading type="heading--3">Welkom op de Online Photobooth.</Heading>
 
           <div className={
             css`
@@ -79,11 +86,10 @@ class LoginPage extends React.Component {
           >
             <GoogleLogin
               clientId={process.env.REACT_APP_CLIENT_ID}
-              onSuccess={resp => this.successResponseGoogle(resp)}
-              onFailure={resp => this.responseGoogle(resp)}
+              onSuccess={resp => successResponseGoogle(resp)}
+              onFailure={resp => responseGoogle(resp)}
               scope="profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
               prompt="consent"
-              loginHint="photobooth@kdg.be"
               render={renderProps => (
                 <BaseButton
                   onClick={renderProps.onClick}
@@ -96,8 +102,8 @@ class LoginPage extends React.Component {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => ({
   googleUser: state.googleUser,

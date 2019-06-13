@@ -11,6 +11,7 @@ const initialState = {
   album: {},
   format: '',
   expiresAt: '',
+  settings: {},
 };
 
 // const persistedState = loadState();
@@ -56,6 +57,11 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       album: action.payload,
+    };
+  case 'SET_SETTINGS':
+    return {
+      ...state,
+      settings: action.payload,
     };
   default:
     return state;

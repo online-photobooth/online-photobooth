@@ -59,34 +59,9 @@ class SelectAbumPage extends React.Component {
     history.push('/');
   }
 
-  renderAlbums = albums => albums.filter(el => el.title.toLowerCase() !== 'frames').map(album => (
+  renderAlbums = albums => albums.map(album => (
     <option key={album.id} value={album.id} className={css`margin-bottom: 8px;`}>{album.title}</option>
   ))
-
-  setFrames = async (framesId) => {
-    const { dispatch, accessToken } = this.props;
-
-    // Fetch Frames Album
-    try {
-      const resp = await axios.post('https://photoslibrary.googleapis.com/v1/mediaItems:search',
-        {
-          albumId: framesId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-
-      const frames = resp.data.mediaItems;
-      dispatch({
-        type: 'SET_FRAMES',
-        payload: frames,
-      });
-    } catch (error) {
-      console.log(error.response);
-    }
-  }
 
   render = () => {
     const { albums } = this.state;

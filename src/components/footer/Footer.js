@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from 'emotion';
+import { colorS } from '../../assets/variables';
 
 class Footer extends React.Component {
   renderFooter = () => (
@@ -9,7 +10,13 @@ class Footer extends React.Component {
       letter-spacing: 0.1em;
       `}
     >
-      <p>KdG mag deze foto’s gebruiken op al haar communicatiekanalen. </p>
+      <p>
+        <span>
+      Made by the awesome
+          <a href="https://jordypereira.be" target="_blank" rel="noopener noreferrer" className={css`color: ${colorS}; text-decoration: none;`}> Jordy Pereira</a>
+!
+        </span>
+      </p>
     </div>
   )
 

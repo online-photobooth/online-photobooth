@@ -13,11 +13,13 @@ import SelectFilterPage from '../_pages/SelectFilterPage';
 import FinalPage from '../_pages/FinalPage';
 import EmailPage from '../_pages/EmailPage';
 import PrivacyPage from '../_pages/PrivacyPage';
+import Settings from '../_pages/Settings';
 
 const App = () => (
   <div className="App">
     <Route exact path="/" component={StartPage} />
     <Route exact path="/frame" component={SelectFramePage} />
+    <Route exact path="/settings" component={Settings} />
     <Route exact path="/filter" component={SelectFilterPage} />
     <Route exact path="/preview" component={PreviewPage} />
     <Route exact path="/review" component={ShowPicturePage} />

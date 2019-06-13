@@ -1,14 +1,16 @@
 import React from 'react';
 import { css } from 'emotion';
-import { colorS } from '../../assets/variables';
+import { colorT, colorP } from '../../assets/variables';
 
-const BaseButton = ({ onClick, type = 'button', children }) => (
+const BaseButton = ({
+  onClick, type = 'button', children, size = 'large', activated = 'false',
+}) => (
   <button
     className={
       css`
-    padding: 20px 28px;
-    background-color: ${colorS};
-    font-size: 32px;
+    padding: ${size === 'large' ? '20px 28px' : '10px 14px'};
+    background-color: ${activated ? colorP : colorT};
+    font-size: ${size === 'large' ? '32px' : '20px'};
     font-weight: 600;
     font-family: 'Proxima Nova', sans-serif;
     border-radius: 0;
