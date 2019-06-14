@@ -4,7 +4,7 @@ import { css } from 'emotion';
 import Heading from '../titles/Heading';
 import BaseButton from '../buttons/BaseButton';
 
-const Settings = ({ dispatch, history }) => {
+const Settings = ({ dispatch, history, storeSettings }) => {
   const [settings, setSettings] = useState({
     camera: 'http://localhost:8888',
     ffmpeg: 'http://localhost:8888',
@@ -13,7 +13,7 @@ const Settings = ({ dispatch, history }) => {
       gif: true,
       single: true,
     },
-    filters: [],
+    filters: storeSettings.filters || [],
   });
 
   const filters = [
@@ -108,7 +108,7 @@ Single Picture
 };
 
 const mapStateToProps = state => ({
-  frames: state.frames,
+  storeSettings: state.settings,
 });
 
 export default connect(mapStateToProps)(Settings);

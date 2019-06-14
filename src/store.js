@@ -11,7 +11,7 @@ const initialState = {
   album: {},
   format: '',
   expiresAt: '',
-  settings: {},
+  settings: localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : {},
 };
 
 // const persistedState = loadState();
@@ -59,6 +59,7 @@ function reducer(state = initialState, action) {
       album: action.payload,
     };
   case 'SET_SETTINGS':
+    localStorage.setItem('settings', JSON.stringify(action.payload));
     return {
       ...state,
       settings: action.payload,
