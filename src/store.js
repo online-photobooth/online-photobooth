@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 // import throttle from 'lodash/throttle';
 // import { loadState, saveState } from './localStorage';
+import { colorP, colorS, colorT } from './assets/variables';
 
 const initialState = {
   accessToken: '',
@@ -11,7 +12,24 @@ const initialState = {
   album: {},
   format: '',
   expiresAt: '',
-  settings: localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : {},
+  settings: localStorage.getItem('settings') ? JSON.parse(localStorage.getItem('settings')) : {
+    camera: 'http://localhost:8888',
+    ffmpeg: 'http://localhost:8888',
+    canvas: 'http://localhost:8888',
+    format: {
+      gif: true,
+      single: true,
+    },
+    filters: [],
+    colors: {
+      primary: colorP,
+      secondary: colorS,
+      tertiary: colorT,
+    },
+    text: {
+      footer: '',
+    },
+  },
 };
 
 // const persistedState = loadState();

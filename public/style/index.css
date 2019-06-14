@@ -279,29 +279,11 @@ p, img, h1, h2, h3, h4, h5, h6, .RegularButton {
       .FinalPage form button:hover {
         cursor: pointer; }
 
-.RegularButton {
-  background-color: #F56565;
-  border-radius: 200rem;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff; }
-  .RegularButton img {
-    width: 60%; }
-  .RegularButton a {
-    text-decoration: none; }
-  .RegularButton:hover {
-    cursor: pointer; }
-  .RegularButton.small {
-    width: 120px;
-    height: 120px; }
-    .RegularButton.small img {
-      width: 70%; }
-  .RegularButton.large {
-    width: 250px;
-    height: 250px; }
+.RegularButton a {
+  text-decoration: none; }
+
+.RegularButton:hover {
+  cursor: pointer; }
 
 .CaptureButton {
   position: absolute;

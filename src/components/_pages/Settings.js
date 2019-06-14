@@ -5,16 +5,7 @@ import Heading from '../titles/Heading';
 import BaseButton from '../buttons/BaseButton';
 
 const Settings = ({ dispatch, history, storeSettings }) => {
-  const [settings, setSettings] = useState({
-    camera: 'http://localhost:8888',
-    ffmpeg: 'http://localhost:8888',
-    canvas: 'http://localhost:8888',
-    format: {
-      gif: true,
-      single: true,
-    },
-    filters: storeSettings.filters || [],
-  });
+  const [settings, setSettings] = useState(storeSettings);
 
   const filters = [
     'normal', 'clarendon', 'gingham', 'moon', 'lark', 'reyes',
@@ -103,6 +94,30 @@ Single Picture
       <div className={css`display: flex; flex-flow: wrap; max-width: 70vw; align-items: center;`}>
         {renderFilters()}
       </div>
+      <Heading>Theme Colors</Heading>
+      <div>
+        <div>
+          Primary Color:
+          {' '}
+          <input type="color" value={settings.colors.primary} onChange={e => setSettings({ ...settings, colors: { ...settings.colors, primary: e.target.value } })} />
+        </div>
+        <div>
+          Secondary Color:
+          {' '}
+          <input type="color" value={settings.colors.secondary} onChange={e => setSettings({ ...settings, colors: { ...settings.colors, secondary: e.target.value } })} />
+        </div>
+        <div>
+          Tertiary Color:
+          {' '}
+          <input type="color" value={settings.colors.tertiary} onChange={e => setSettings({ ...settings, colors: { ...settings.colors, tertiary: e.target.value } })} />
+        </div>
+      </div>
+      <Heading>Text</Heading>
+      <div>
+        Footer text
+        <input type="text" value={settings.text.footer} onChange={e => setSettings({ ...settings, text: { ...settings.text, footer: e.target.value } })} />
+      </div>
+      <hr className={css` margin-bottom: 80px;`} />
     </div>
   );
 };

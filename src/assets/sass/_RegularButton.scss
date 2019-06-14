@@ -2,20 +2,6 @@
 
 .RegularButton 
 {
-    background-color: $color-s; 
-    border-radius: 200rem; 
-    border: none;
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    color: #fff; 
-
-    img 
-    { 
-        width: 60%;
-    }
-
     a 
     { 
         text-decoration: none; 
@@ -24,21 +10,5 @@
     &:hover 
     { 
         cursor: pointer; 
-    }
-
-    &.small
-    {
-        width: 120px; 
-        height: 120px;
-      img
-      { 
-          width: 70%;
-      }
-    }
-
-    &.large 
-    {
-        width: 250px; 
-        height: 250px;
     }
 }
