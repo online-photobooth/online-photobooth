@@ -24,7 +24,7 @@ const SelectFramePage = ({ dispatch, history }) => {
     <div className="SelectAlbumPage">
       <div className="wrapper">
         <div className="content">
-          <Heading type="heading--3">Kies je Frame</Heading>
+          <Heading type="heading--3">Choose your Frame</Heading>
 
           <div className={css`
             display: flex;

@@ -24,7 +24,7 @@ const SelectFilterPage = ({ dispatch, history, filters }) => {
     <div>
       <div className="wrapper">
         <div className="content">
-          <Heading type="heading--3">Kies je Filter</Heading>
+          <Heading type="heading--3">Choose your filter</Heading>
 
           <div className={css`
             display: flex;

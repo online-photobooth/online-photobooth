@@ -98,14 +98,14 @@ class FinalPage extends React.Component {
       );
     }
     if (errorSendingEmail) {
-      return 'Er is iets fout gegaan bij het versturen van je email';
+      return 'Something went wrong';
     }
 
     if (emailIsSend) {
-      return 'Verzenden voltooid!';
+      return 'Success!';
     }
 
-    return 'Stuur';
+    return 'Send';
   }
 
   render = () => {
@@ -131,7 +131,7 @@ class FinalPage extends React.Component {
             align-items: space-between;
           `}
         >
-          <Heading type="heading--3">Hoe wil je je foto ontvangen?</Heading>
+          <Heading type="heading--3">How do you want to receive your picture?</Heading>
           { album && album.shareInfo && (
             <div className={css`
             width: 70vw;
@@ -147,8 +147,8 @@ class FinalPage extends React.Component {
                   margin-top: 16px;
                 `}
               >
-                <RegularButton title="Per mail" size="large" img="camera" />
-                <RegularButton title="Via QRcode" size="large">
+                <RegularButton title="Mail" size="large" img="camera" />
+                <RegularButton title="QRcode" size="large">
                   <QRCode
                     value={album.shareInfo.shareableUrl}
                     size={156}
@@ -197,7 +197,7 @@ class FinalPage extends React.Component {
                 <label htmlFor="emails">{emailsAreValid ? '' : 'Controleer of alle e-mail adressen juist zijn ingevuld.'}</label>
 
               </form>
-              <p>Meerdere mailadressen? Scheid ze met ;</p>
+              <p>multiple mail adresses? Separate them with ;</p>
 
             </div>
 

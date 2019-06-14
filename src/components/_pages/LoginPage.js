@@ -66,7 +66,7 @@ const LoginPage = ({ dispatch, history }) => {
             className={css`
             max-height: 100%;
           `}
-            src="/images/icons/movie-strip.png"
+            src="/images/icons/photobooth-logo.png"
             alt="Movie Strip"
           />
         </div>
@@ -74,7 +74,7 @@ const LoginPage = ({ dispatch, history }) => {
         display: flex;
         flex-direction: column;
       `}>
-          <Heading type="heading--3">Welkom op de Online Photobooth.</Heading>
+          <Heading type="heading--3">Welcome to the Online Photo-booth.</Heading>
 
           <div className={
             css`

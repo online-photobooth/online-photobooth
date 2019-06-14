@@ -36,7 +36,7 @@ const StartPage = ({
           <Heading
             type="heading--2"
           >
-            Wat wil je maken?
+            What do you want to make?
           </Heading>
           <div className={css`
           display: flex;
@@ -49,17 +49,17 @@ const StartPage = ({
                 alt="Take a single picture."
                 size="large"
                 onClick={() => setFormat('single')}
-                title="Een foto"
+                title="a single picture"
               />
             </div>
 
             <div>
               <RegularButton
                 img="film"
-                alt="Take a single picture."
+                alt="Take a Gif."
                 size="large"
                 onClick={() => setFormat('gif')}
-                title="Een GIF"
+                title="a GIF"
               />
             </div>
           </div>
