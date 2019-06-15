@@ -1,27 +1,9 @@
 import React from 'react';
 import { css } from 'emotion';
-import { colorS } from '../../assets/variables';
+import { connect } from 'react-redux';
 
-class Footer extends React.Component {
-  renderFooter = () => (
-    <div className={css`
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      `}
-    >
-      <p>
-        <span>
-      Made by the awesome
-          <a href="https://jordypereira.be" target="_blank" rel="noopener noreferrer" className={css`color: ${colorS}; text-decoration: none;`}> Jordy Pereira</a>
-!
-        </span>
-      </p>
-    </div>
-  )
-
-  render = () => (
-    <div className={css`
+const Footer = ({ content }) => (
+  <div className={css`
     position: absolute; 
     bottom: 0;
     width: 100%;
@@ -29,10 +11,22 @@ class Footer extends React.Component {
     display: flex;
     justify-content: center;
     `}
+  >
+    <div className={css`
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      `}
     >
-      {this.renderFooter()}
+      <p>
+        <span>{content}</span>
+      </p>
     </div>
-  )
-}
+  </div>
+);
 
-export default Footer;
+const mapStateToProps = state => ({
+  content: state.settings.text.footer,
+});
+
+export default connect(mapStateToProps)(Footer);
