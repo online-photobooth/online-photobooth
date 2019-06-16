@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'emotion';
+import axios from 'axios';
 import Heading from '../titles/Heading';
 import BaseButton from '../buttons/BaseButton';
 
 const Settings = ({ dispatch, history, storeSettings }) => {
   const [settings, setSettings] = useState(storeSettings);
+  const [frames, setFrames] = useState([]);
 
   const filters = [
     'normal', 'clarendon', 'gingham', 'moon', 'lark', 'reyes',
@@ -16,14 +18,6 @@ const Settings = ({ dispatch, history, storeSettings }) => {
     'walden', '1977', 'kelvin', 'maven', 'ginza', 'skyline',
     'dogpatch', 'brooklyn', 'helena', 'ashby', 'charmes',
   ];
-
-  async function save() {
-    await dispatch({
-      type: 'SET_SETTINGS',
-      payload: settings,
-    });
-    history.goBack();
-  }
 
   function setFilter(filter) {
     if (settings.filters.includes(filter)) {
@@ -46,10 +40,34 @@ const Settings = ({ dispatch, history, storeSettings }) => {
     ));
   }
 
-  // function addFile(e) {
-  //   e.persist();
-  //   console.log('TCL: addFile -> e', e);
-  // }
+  async function uploadFiles() {
+    const url = 'https://api.cloudinary.com/v1_1/perjor/upload';
+    try {
+      await Promise.all(frames.forEach((frame) => {
+        axios.post(url, {
+          file: frame,
+          tags: 'photobooth',
+        });
+      }));
+    } catch (error) {
+      console.log('TCL: uploadFiles -> error', error);
+    }
+  }
+
+  function addFile(e) {
+    e.persist();
+    console.log('TCL: addFile -> e', e);
+    setFrames([...frames, e.target.files[0]]);
+  }
+
+  async function save() {
+    uploadFiles();
+    await dispatch({
+      type: 'SET_SETTINGS',
+      payload: settings,
+    });
+    history.goBack();
+  }
 
   return (
     <div className={css`display: flex;  flex-direction: column; align-items: center;`}>
@@ -93,7 +111,7 @@ Single Picture
       <Heading>Node-canvas</Heading>
       <input type="text" value={settings.canvas} onChange={e => setSettings({ ...settings, canvas: e.target.value })} />
       <Heading>Frames</Heading>
-      <input type="file" multiple />
+      <input type="file" multiple onChange={e => addFile(e)} />
       <Heading>Filters</Heading>
       <div className={css`display: flex; flex-flow: wrap; max-width: 70vw; align-items: center;`}>
         {renderFilters()}
