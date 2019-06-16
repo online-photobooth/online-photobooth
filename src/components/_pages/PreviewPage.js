@@ -35,12 +35,14 @@ class PreviewPage extends React.Component {
   }
 
   takePicture = async () => {
-    const { history, frame, filter } = this.props;
+    const {
+      history, frame, filter, cameraServer,
+    } = this.props;
 
     this.setState({ loading: true });
 
     try {
-      await axios.post(`${process.env.REACT_APP_SERVER_URL}/takePicture`, { frame, filter });
+      await axios.post(`${cameraServer}/takePicture`, { frame, filter });
       this.setState({ loading: false });
 
       history.push('/review');
@@ -51,12 +53,14 @@ class PreviewPage extends React.Component {
   }
 
   takeGif = async () => {
-    const { history, frame, filter } = this.props;
+    const {
+      history, frame, filter, cameraServer, ffmpegServer,
+    } = this.props;
 
     this.setState({ loading: true });
 
     try {
-      await axios.post(`${process.env.REACT_APP_SERVER_URL}/takeGif`, {
+      await axios.post(`${cameraServer}/takeGif`, {
         filter,
       });
     } catch (error) {
@@ -67,7 +71,7 @@ class PreviewPage extends React.Component {
     }
 
     try {
-      await axios.post(`${process.env.REACT_APP_SERVER_URL}/createGif`, {
+      await axios.post(`${ffmpegServer}/createGif`, {
         frame,
       });
     } catch (error) {
@@ -169,6 +173,9 @@ const mapStateToProps = state => ({
   format: state.format,
   frame: state.frame,
   filter: state.filter,
+  cameraServer: state.settings.camera,
+  ffmpegServer: state.settings.ffmpeg,
+  canvasServer: state.settings.canvas,
 });
 
 export default connect(mapStateToProps)(PreviewPage);
