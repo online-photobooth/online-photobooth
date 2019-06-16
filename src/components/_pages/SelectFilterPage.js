@@ -6,7 +6,6 @@ import RegularButton from '../buttons/RegularButton';
 
 const SelectFilterPage = ({ dispatch, history, filters }) => {
   useEffect(() => {
-    console.log('TCL: SelectFilterPage -> filters', filters);
     if (filters.length < 1) {
       dispatch({
         type: 'SET_FILTER',
