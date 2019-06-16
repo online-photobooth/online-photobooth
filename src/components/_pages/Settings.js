@@ -79,8 +79,7 @@ const Settings = ({ dispatch, history, storeSettings }) => {
       Save
         </BaseButton>
       </div>
-      <Heading>Settings</Heading>
-      <Heading>Formats</Heading>
+      <Heading type="heading--5" className="mt-8">Formats</Heading>
       <p className={css`margin-bottom: 10px;`}>Please choose at least 1 format.</p>
       <div className={css`display: flex;`}>
         <div className={css`margin-right: 10px;`}>
@@ -106,7 +105,7 @@ Single Picture
 
         </BaseButton>
       </div>
-      <Heading>Camera</Heading>
+      <Heading type="heading--5" className="mt-8">Camera</Heading>
       <p className={css`margin-bottom: 10px;`}>You need the gphoto2 server running if you want to use a DSLR camera.</p>
       <BaseButton
         size="small"
@@ -115,20 +114,20 @@ Single Picture
           Webcam
       </BaseButton>
       <input className={css`margin-top: 10px;`} type="text" value={settings.camera} onChange={e => setSettings({ ...settings, camera: e.target.value })} />
-      <Heading>Ffmpeg Server</Heading>
+      <Heading type="heading--5" className="mt-8">Ffmpeg Server</Heading>
       <p className={css`margin-bottom: 10px;`}>You need this to use the Gif format and to add overlays.</p>
       <input type="text" value={settings.ffmpeg} onChange={e => setSettings({ ...settings, ffmpeg: e.target.value })} />
-      <Heading>Node-canvas Server</Heading>
+      <Heading type="heading--5" className="mt-8">Node-canvas Server</Heading>
       <p className={css`margin-bottom: 10px;`}>You need this to use the filters.</p>
       <input type="text" value={settings.canvas} onChange={e => setSettings({ ...settings, canvas: e.target.value })} />
-      <Heading>Frames</Heading>
+      <Heading type="heading--5" className="mt-8">Frames</Heading>
       <p className={css`margin-bottom: 10px;`}>These will be used as an overlay.</p>
       <input type="file" multiple onChange={e => addFile(e)} />
-      <Heading>Filters</Heading>
+      <Heading type="heading--5" className="mt-8">Filters</Heading>
       <div className={css`display: flex; flex-flow: wrap; max-width: 70vw; align-items: center;`}>
         {renderFilters()}
       </div>
-      <Heading>Theme Colors</Heading>
+      <Heading type="heading--5" className="mt-8">Theme Colors</Heading>
       <div>
         <div className={css`margin-top: 5px;`}>
           Primary Color:
@@ -146,7 +145,7 @@ Single Picture
           <input type="color" value={settings.colors.tertiary} onChange={e => setSettings({ ...settings, colors: { ...settings.colors, tertiary: e.target.value } })} />
         </div>
       </div>
-      <Heading>Text</Heading>
+      <Heading type="heading--5" className="mt-8">Text</Heading>
       <div>
         <span>Footer text</span>
         <p className={css`margin-bottom: 10px;`}>Here you can add a privacy statement.</p>
