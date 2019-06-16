@@ -23,7 +23,7 @@ class PreviewPage extends React.Component {
   componentDidMount = async () => {
     const { album, history } = this.props;
 
-    if (!album) {
+    if (!album.title) {
       history.push('/album');
     }
 
