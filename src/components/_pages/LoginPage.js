@@ -38,7 +38,6 @@ const LoginPage = ({ dispatch, history }) => {
       justify-content: center;
       align-items: center;
       height: 100vh;
-      position: relative;
     `}
     >
       <div className={css` position: absolute; top: 10px; right: 10px;`}>

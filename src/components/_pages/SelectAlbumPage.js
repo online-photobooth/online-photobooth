@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { css } from 'emotion';
 import Heading from '../titles/Heading';
 import CreateAlbumForm from '../albums/CreateAlbumForm';
+import BaseButton from '../buttons/BaseButton';
 
 class SelectAbumPage extends React.Component {
   constructor(props) {
@@ -69,6 +70,14 @@ class SelectAbumPage extends React.Component {
 
     return (
       <div className="SelectAlbumPage">
+        <div className={css` position: absolute; top: 10px; right: 10px;`}>
+          <BaseButton
+            size="small"
+            onClick={() => history.push('/settings')}
+          >
+  Settings
+          </BaseButton>
+        </div>
         <div className="wrapper">
           <div>
             <Heading
