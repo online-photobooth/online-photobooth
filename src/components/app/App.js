@@ -14,12 +14,14 @@ import SelectFilterPage from '../_pages/SelectFilterPage';
 import FinalPage from '../_pages/FinalPage';
 import PrivacyPage from '../_pages/PrivacyPage';
 import Settings from '../_pages/Settings';
+import Overview from '../_pages/Overview';
 
 const App = () => (
   <div className={css`position: relative;`}>
     <Route exact path="/" component={StartPage} />
     <Route exact path="/frame" component={SelectFramePage} />
     <Route exact path="/settings" component={Settings} />
+    <Route exact path="/overview" component={Overview} />
     <Route exact path="/filter" component={SelectFilterPage} />
     <Route exact path="/preview" component={PreviewPage} />
     <Route exact path="/review" component={ShowPicturePage} />

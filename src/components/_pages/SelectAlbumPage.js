@@ -57,7 +57,7 @@ class SelectAbumPage extends React.Component {
       payload: selectedAlbum,
     });
 
-    history.push('/');
+    history.push('/overview');
   }
 
   renderAlbums = albums => albums.map(album => (
