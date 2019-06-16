@@ -1830,7 +1830,7 @@ asn1.js@^4.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
 
-asn1@~0.2.0, asn1@~0.2.3:
+asn1@~0.2.3:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.4.tgz#8d2475dfab553bb33e77b54e59e880bb8ce23136"
   integrity sha512-jxwzQpLQjSmWXgwaCZE9Nz+glAG01yF1QnWgbhGwHI5A6FRIEY6IVqtHhIepHqI7/kyEyQEagBC5mBEFlIYvdg==
@@ -2143,7 +2143,7 @@ batch@0.6.1:
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
   integrity sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY=
 
-bcrypt-pbkdf@^1.0.0, bcrypt-pbkdf@^1.0.2:
+bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz#a4301d389b6a43f9b67ff3ca11a3f6637e360e9e"
   integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
@@ -2652,6 +2652,19 @@ clone-deep@^2.0.1:
     is-plain-object "^2.0.4"
     kind-of "^6.0.0"
     shallow-clone "^1.0.0"
+
+cloudinary-core@^2.6.2:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.6.3.tgz#6a5c773a8c48cbf5686dfcdd577445ab8efe8d85"
+  integrity sha512-0oEUn1eTuJzLxNdm0OsnAadGN6nMFOVqq+n7dgy6VBP8pGwc5TLkZ8MAHvik03Cv7+JH0tykwkSvYzM7rWY43g==
+
+cloudinary-react@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/cloudinary-react/-/cloudinary-react-1.1.1.tgz#95197c8a77d98a200805294ceb82e95c2dfa3792"
+  integrity sha512-iMr98xU/rLsTsveX2iwaO8bNRc+yjYz7sFwaknRHzlmxXhUTHP1lC5nKkDax5LecId0LS44NqyWC+TuZepPJig==
+  dependencies:
+    cloudinary-core "^2.6.2"
+    prop-types "^15.6.2"
 
 co@^4.6.0:
   version "4.6.0"
@@ -8617,11 +8630,6 @@ react-scripts@3.0.0:
   optionalDependencies:
     fsevents "2.0.6"
 
-react-simple-keyboard@^1.14.2:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/react-simple-keyboard/-/react-simple-keyboard-1.22.0.tgz#2f8acb6c44e94a7f05e64e4d89abd88aed72721d"
-  integrity sha512-EIgByK0de3gSd3dm46MDJIbzKOOmaVAE4OR+ImA1NOho4NnWZYg0u/Ex5T0Rjbdzco2WTsPgsciKhls6TcEyIA==
-
 react-spinners@^0.5.1:
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.5.4.tgz#58166f8bf84cbf06dd7accad4b94a5797cfea9b9"
@@ -9191,7 +9199,7 @@ selfsigned@^1.9.1:
   dependencies:
     node-forge "0.7.5"
 
-"semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
+"semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"
   integrity sha512-Ya52jSX2u7QKghxeoFGpLwCtGlt7j0oY9DYb5apt9nPlJ42ID+ulTXESnt/qAQcoSERyZ5sl3LDIOw0nAn/5DA==
@@ -9351,14 +9359,6 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
-
-simple-ssh@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/simple-ssh/-/simple-ssh-1.0.0.tgz#b12ec600056c13626cc9a77a50b6b921db39696b"
-  integrity sha512-k0q/6oiY9HQLbPBDZMDLhbU9Em8EDdIEec08TwosijKhFQYK403nyO7Y+iX1AOOn60XVo688jby6NuV720vIUQ==
-  dependencies:
-    ssh2 "^0.5.0"
-    xtend "^4.0.1"
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
@@ -9553,38 +9553,6 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-ssh2-streams@~0.1.18:
-  version "0.1.20"
-  resolved "https://registry.yarnpkg.com/ssh2-streams/-/ssh2-streams-0.1.20.tgz#51118d154555df5469ee1f67e0cf1e7e8a2c0e3a"
-  integrity sha1-URGNFUVV31Rp7h9n4M8efoosDjo=
-  dependencies:
-    asn1 "~0.2.0"
-    semver "^5.1.0"
-    streamsearch "~0.1.2"
-
-ssh2-streams@~0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/ssh2-streams/-/ssh2-streams-0.4.4.tgz#7f07464c4b19ee93324995ec7164f110c5a13658"
-  integrity sha512-yNfPZgJO/N69TvYkpDHZBkXAXQzTpfzRkOphQu3PeUpZnrjp9VNa8RKDZkZDpjsWItay+I4NMAbZZ7DqHRt0AQ==
-  dependencies:
-    asn1 "~0.2.0"
-    bcrypt-pbkdf "^1.0.2"
-    streamsearch "~0.1.2"
-
-ssh2@^0.5.0:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/ssh2/-/ssh2-0.5.5.tgz#c7781ecd2ece7304a253cf620fab5a5c22bb2235"
-  integrity sha1-x3gezS7OcwSiU89iD6taXCK7IjU=
-  dependencies:
-    ssh2-streams "~0.1.18"
-
-ssh2@^0.8.4:
-  version "0.8.4"
-  resolved "https://registry.yarnpkg.com/ssh2/-/ssh2-0.8.4.tgz#0a657d9371c1fe9f9e349bcff6144febee256aa6"
-  integrity sha512-qztb9t4b34wJSiWVpeTMVVN/5KCuBoyctBc2BcSe/Uq4NRnF0gB16Iu5p72ILhdYATcMNwB5WppzPIEs/3wB8Q==
-  dependencies:
-    ssh2-streams "~0.4.4"
-
 sshpk@^1.7.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.16.1.tgz#fb661c0bef29b39db40769ee39fa70093d6f6877"
@@ -9678,11 +9646,6 @@ stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
   integrity sha1-1cdSgl5TZ+eG944Y5EXqIjoVWVI=
-
-streamsearch@~0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
-  integrity sha1-gIudDlb8Jz2Am6VzOOkpkZoanxo=
 
 string-length@^2.0.0:
   version "2.0.0"
@@ -10972,8 +10935,3 @@ yargs@^7.0.0:
     which-module "^1.0.0"
     y18n "^3.2.1"
     yargs-parser "^5.0.0"
-
-yarn@^1.15.2:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.15.2.tgz#7a064ca81ca34235f16376ad2f796ed432f9e285"
-  integrity sha512-DhqaGe2FcYKduO42d2hByXk7y8k2k42H3uzYdWBMTvcNcgWKx7xCkJWsVAQikXvaEQN2GyJNrz8CboqUmaBRrw==
