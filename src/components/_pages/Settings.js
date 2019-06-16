@@ -118,8 +118,8 @@ Single Picture
       </div>
       <Heading>Text</Heading>
       <div>
-        Footer text
-        <input type="text" value={settings.text.footer} onChange={e => setSettings({ ...settings, text: { ...settings.text, footer: e.target.value } })} />
+        <span>Footer text</span>
+        <textarea value={settings.text.footer} className={css`min-height: 100px; margin-left: 10px;`} onChange={e => setSettings({ ...settings, text: { ...settings.text, footer: e.target.value } })} />
       </div>
       <hr className={css` margin-bottom: 80px;`} />
     </div>
