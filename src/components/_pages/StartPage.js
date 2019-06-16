@@ -6,7 +6,7 @@ import Heading from '../titles/Heading';
 import { checkRefresh } from '../services/refreshLogin';
 
 const StartPage = ({
-  album, dispatch, history,
+  album, dispatch, history, allowSingle, allowGif,
 }) => {
   useEffect(() => {
     if (!album.title) {
@@ -40,28 +40,36 @@ const StartPage = ({
           </Heading>
           <div className={css`
           display: flex;
-          justify-content: space-between;
+          justify-content: ${(allowSingle && allowGif) ? 'space-between' : 'center'};
           `}
           >
-            <div>
-              <RegularButton
-                img="camera"
-                alt="Take a single picture."
-                size="large"
-                onClick={() => setFormat('single')}
-                title="a single picture"
-              />
-            </div>
-
-            <div>
-              <RegularButton
-                img="film"
-                alt="Take a Gif."
-                size="large"
-                onClick={() => setFormat('gif')}
-                title="a GIF"
-              />
-            </div>
+            {
+              (allowSingle || !allowGif)
+              && (
+                <div>
+                  <RegularButton
+                    img="camera"
+                    alt="Take a single picture."
+                    size="large"
+                    onClick={() => setFormat('single')}
+                    title="a single picture"
+                  />
+                </div>
+              )
+            }
+            {
+              allowGif
+              && (
+                <div>
+                  <RegularButton
+                    img="film"
+                    alt="Take a Gif."
+                    size="large"
+                    onClick={() => setFormat('gif')}
+                    title="a GIF"
+                  />
+                </div>
+              )}
           </div>
         </div>
       </div>
@@ -73,6 +81,8 @@ const mapStateToProps = state => ({
   album: state.album,
   expiresAt: state.expiresAt,
   googleUser: state.googleUser,
+  allowSingle: state.settings.format.single,
+  allowGif: state.settings.format.gif,
 });
 
 export default connect(mapStateToProps)(StartPage);
