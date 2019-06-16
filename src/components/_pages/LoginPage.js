@@ -88,7 +88,7 @@ const LoginPage = ({ dispatch, history }) => {
               clientId={process.env.REACT_APP_CLIENT_ID}
               onSuccess={resp => successResponseGoogle(resp)}
               onFailure={resp => responseGoogle(resp)}
-              scope="profile email https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing https://mail.google.com/"
+              scope="https://www.googleapis.com/auth/photoslibrary https://www.googleapis.com/auth/photoslibrary.sharing"
               prompt="consent"
               render={renderProps => (
                 <BaseButton

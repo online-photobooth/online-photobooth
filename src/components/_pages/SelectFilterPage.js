@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { css } from 'emotion';
 import { connect } from 'react-redux';
 import Heading from '../titles/Heading';
 import RegularButton from '../buttons/RegularButton';
 
 const SelectFilterPage = ({ dispatch, history, filters }) => {
-  console.log('TCL: SelectFilterPage -> filters', filters);
+  useEffect(() => {
+    console.log('TCL: SelectFilterPage -> filters', filters);
+    if (filters.length < 1) {
+      dispatch({
+        type: 'SET_FILTER',
+        payload: false,
+      });
+      history.push('/preview');
+    }
+  });
   const setFilter = async (filter) => {
     await dispatch({
       type: 'SET_FILTER',
