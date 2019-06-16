@@ -46,6 +46,11 @@ const Settings = ({ dispatch, history, storeSettings }) => {
     ));
   }
 
+  // function addFile(e) {
+  //   e.persist();
+  //   console.log('TCL: addFile -> e', e);
+  // }
+
   return (
     <div className={css`display: flex;  flex-direction: column; align-items: center;`}>
       <div className={css`align-self: flex-end; margin: 10px;`}>
@@ -85,11 +90,10 @@ Single Picture
       <Heading>Camera</Heading>
       <input type="text" value={settings.camera} onChange={e => setSettings({ ...settings, camera: e.target.value })} />
       <Heading>Ffmpeg</Heading>
-      <input type="text" value={settings.ffmpeg} onChange={e => setSettings({ ...settings, ffmpeg: e.target.value })} />
       <Heading>Node-canvas</Heading>
       <input type="text" value={settings.canvas} onChange={e => setSettings({ ...settings, canvas: e.target.value })} />
       <Heading>Frames</Heading>
-      <input type="text" value={settings.canvas} onChange={e => setSettings({ ...settings, canvas: e.target.value })} />
+      <input type="file" multiple />
       <Heading>Filters</Heading>
       <div className={css`display: flex; flex-flow: wrap; max-width: 70vw; align-items: center;`}>
         {renderFilters()}

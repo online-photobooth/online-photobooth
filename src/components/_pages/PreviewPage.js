@@ -4,6 +4,7 @@ import Webcam from 'react-webcam';
 import axios from 'axios';
 import { SyncLoader } from 'react-spinners';
 import { css } from 'emotion';
+import { Image } from 'cloudinary-react';
 import { colorS } from '../../assets/variables';
 import CountdownButton from '../countdown/CountdownButton';
 import { checkRefresh } from '../services/refreshLogin';
@@ -125,14 +126,17 @@ class PreviewPage extends React.Component {
             ref={this.setRef}
             className={css`position: 'absolute'`}
           />
-          <img
-            src={`/images/frames/${frame}`}
-            alt="Frame"
+          <Image
+            cloudName="perjor"
+            publicId={frame}
+            width="1200"
+            height="800"
+            crop="scale"
             className={css`
-            position: absolute; 
-            height: 800px;
-            width: 1200px;
-          `}
+          position: absolute; 
+          height: 800px;
+          width: 1200px;
+        `}
           />
         </div>
 

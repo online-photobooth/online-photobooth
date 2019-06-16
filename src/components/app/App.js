@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { css } from 'emotion';
 import Footer from '../footer/Footer';
 
 // Pages
@@ -11,12 +12,11 @@ import SelectAbumPage from '../_pages/SelectAlbumPage';
 import SelectFramePage from '../_pages/SelectFramePage';
 import SelectFilterPage from '../_pages/SelectFilterPage';
 import FinalPage from '../_pages/FinalPage';
-import EmailPage from '../_pages/EmailPage';
 import PrivacyPage from '../_pages/PrivacyPage';
 import Settings from '../_pages/Settings';
 
 const App = () => (
-  <div className="App">
+  <div className={css`position: relative;`}>
     <Route exact path="/" component={StartPage} />
     <Route exact path="/frame" component={SelectFramePage} />
     <Route exact path="/settings" component={Settings} />
@@ -26,7 +26,6 @@ const App = () => (
     <Route exact path="/login" component={LoginPage} />
     <Route exact path="/album" component={SelectAbumPage} />
     <Route exact path="/final" component={FinalPage} />
-    <Route exact path="/email" component={EmailPage} />
     <Route exact path="/privacy" component={PrivacyPage} />
 
     <Footer />

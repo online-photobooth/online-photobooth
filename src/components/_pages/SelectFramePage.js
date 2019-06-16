@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { css } from 'emotion';
+import { Image } from 'cloudinary-react';
 import Heading from '../titles/Heading';
 
 const SelectFramePage = ({ dispatch, history }) => {
-  const frames = ['frame_1.png', 'frame_2.png'];
+  const frames = ['frame_1', 'frame_2'];
 
   const setFrame = async (frame) => {
     await dispatch({
@@ -16,7 +17,7 @@ const SelectFramePage = ({ dispatch, history }) => {
 
   const renderImages = () => frames.map(frame => (
     <button key={frame} onClick={() => setFrame(frame)} type="button" className="button-none mr-16">
-      <img src={`/images/frames/${frame}`} alt="Kdg Frame" className={css`border: 1px solid black; max-width: 40vw;`} />
+      <Image cloudName="perjor" publicId={frame} width="1200" height="800" crop="scale" className={css`border: 1px solid black; max-width: 40vw; height: auto;`} />
     </button>
   ));
 
