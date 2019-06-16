@@ -7,12 +7,15 @@ import BaseButton from '../buttons/BaseButton';
 
 const CreateAlbumForm = ({ accessToken, history, dispatch }) => {
   const [newAlbum, setNewAlbum] = useState('');
+  const [loading, setLoading] = useState(false);
 
   async function createNewAlbum(e) {
     e.preventDefault();
     if (newAlbum === '') return false;
 
     let newAlbumResponse;
+
+    setLoading(true);
 
     // CREATE ALBUM
     try {
@@ -66,7 +69,10 @@ const CreateAlbumForm = ({ accessToken, history, dispatch }) => {
     } catch (error) {
       console.log('Sharing album went wrong');
       console.log(error);
+    } finally {
+      setLoading(false);
     }
+
 
     return true;
   }
@@ -76,7 +82,7 @@ const CreateAlbumForm = ({ accessToken, history, dispatch }) => {
       <Heading
         type="heading--3"
       >
-        Of maak een nieuw album aan
+        Or create a new album
       </Heading>
       <div
         className={css`
@@ -98,7 +104,7 @@ const CreateAlbumForm = ({ accessToken, history, dispatch }) => {
         />
 
         <BaseButton type="submit">
-          Aanmaken
+          { loading ? 'Creating..' : 'Create'}
         </BaseButton>
       </div>
     </form>
