@@ -100,17 +100,17 @@ Single Picture
       </div>
       <Heading>Theme Colors</Heading>
       <div>
-        <div>
+        <div className={css`margin-top: 5px;`}>
           Primary Color:
           {' '}
           <input type="color" value={settings.colors.primary} onChange={e => setSettings({ ...settings, colors: { ...settings.colors, primary: e.target.value } })} />
         </div>
-        <div>
+        <div className={css`margin-top: 5px;`}>
           Secondary Color:
           {' '}
           <input type="color" value={settings.colors.secondary} onChange={e => setSettings({ ...settings, colors: { ...settings.colors, secondary: e.target.value } })} />
         </div>
-        <div>
+        <div className={css`margin-top: 5px;`}>
           Tertiary Color:
           {' '}
           <input type="color" value={settings.colors.tertiary} onChange={e => setSettings({ ...settings, colors: { ...settings.colors, tertiary: e.target.value } })} />
