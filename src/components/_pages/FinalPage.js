@@ -35,7 +35,9 @@ class FinalPage extends React.Component {
 
   sendEmail = async (e) => {
     await checkRefresh();
-    const { album, accessToken, format } = this.props;
+    const {
+      album, accessToken, format, cameraServer,
+    } = this.props;
     const { emailsAreValid } = this.state;
 
     e.preventDefault();
@@ -67,7 +69,7 @@ class FinalPage extends React.Component {
       this.setState({ emailIsSending: true });
 
       try {
-        const resp = await axios.post(`${process.env.REACT_APP_SERVER_URL}/sendPictureToEmail`, {
+        const resp = await axios.post(`${cameraServer}/sendPictureToEmail`, {
           token: accessToken,
           title: album.title,
           email: e.target.emails.value,
@@ -218,6 +220,7 @@ const mapStateToProps = state => ({
   accessToken: state.accessToken,
   album: state.album,
   format: state.format,
+  cameraServer: state.settings.camera,
 });
 
 export default connect(mapStateToProps)(FinalPage);

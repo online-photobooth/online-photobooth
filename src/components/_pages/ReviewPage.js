@@ -126,14 +126,14 @@ class ReviewPage extends React.Component {
             <RegularButton
               size="small"
               img="heart"
-              title="Bewaren"
+              title="Keep"
               onClick={this.uploadPicture}
               className={css`margin-bottom: 100px;`}
             />
             <RegularButton
               size="small"
               img="refresh"
-              title="Opnieuw"
+              title="Redo"
               onClick={history.goBack}
               className={css`margin-bottom: 100px;`}
             />

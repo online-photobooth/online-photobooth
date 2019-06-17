@@ -130,18 +130,22 @@ class PreviewPage extends React.Component {
             ref={this.setRef}
             className={css`position: 'absolute'`}
           />
-          <Image
-            cloudName="perjor"
-            publicId={frame}
-            width="1200"
-            height="800"
-            crop="scale"
-            className={css`
+          {
+            frame && (
+              <Image
+                cloudName="perjor"
+                publicId={frame}
+                width="1200"
+                height="800"
+                crop="scale"
+                className={css`
           position: absolute; 
           height: 800px;
           width: 1200px;
         `}
-          />
+              />
+            )
+          }
         </div>
 
         <SyncLoader
