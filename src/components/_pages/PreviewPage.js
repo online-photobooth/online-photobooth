@@ -11,6 +11,8 @@ import { checkRefresh } from '../services/refreshLogin';
 import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
 
+const click = new Audio('/sounds/click.mp3');
+
 class PreviewPage extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,7 @@ class PreviewPage extends React.Component {
       timer: 3,
     };
   }
+
 
   componentDidMount = async () => {
     const { album, history } = this.props;
@@ -41,15 +44,20 @@ class PreviewPage extends React.Component {
 
     this.setState({ loading: true });
 
-    try {
-      await axios.post(`${cameraServer}/takePicture`, { frame, filter });
-      this.setState({ loading: false });
+    if (cameraServer === 'webcam') {
+      const imageSrc = await this.takePictureWithWebcam(this.webcam);
+      console.log('TCL: PreviewPage -> takePicture -> imageSrc', imageSrc);
+    } else {
+      try {
+        await axios.post(`${cameraServer}/takePicture`, { frame, filter });
+        this.setState({ loading: false });
 
-      history.push('/review');
-    } catch (error) {
-      console.log(error);
-      this.setState({ loading: false });
+        history.push('/review');
+      } catch (error) {
+        console.log(error);
+      }
     }
+    this.setState({ loading: false });
   }
 
   takeGif = async () => {
@@ -59,23 +67,26 @@ class PreviewPage extends React.Component {
 
     this.setState({ loading: true });
 
-    try {
-      await axios.post(`${cameraServer}/takeGif`, {
-        filter,
-      });
-    } catch (error) {
-      console.log(error);
-      this.setState({ loading: false });
+    if (cameraServer === 'webcam') {
+      const imageSrc = await this.takeGifWithWebcam(this.webcam);
+      console.log('TCL: takePictureWithWebcam -> imageSrc', imageSrc);
+    } else {
+      try {
+        await axios.post(`${cameraServer}/takeGif`, {
+          filter,
+        });
+      } catch (error) {
+        console.log(error);
+        this.setState({ loading: false });
+      }
 
-      return;
-    }
-
-    try {
-      await axios.post(`${ffmpegServer}/createGif`, {
-        frame,
-      });
-    } catch (error) {
-      console.log(error);
+      try {
+        await axios.post(`${ffmpegServer}/createGif`, {
+          frame,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     await this.setState({ loading: false });
@@ -85,6 +96,22 @@ class PreviewPage extends React.Component {
 
   setRef = (webcam) => {
     this.webcam = webcam;
+  };
+
+  takePictureWithWebcam = webcam => new Promise(resolve => setTimeout(() => {
+    click.play();
+    resolve(webcam.getScreenshot());
+  }, 1000));
+
+  takeGifWithWebcam = async (webcam) => {
+    const imageSrc = [];
+
+    imageSrc.push(await this.takePictureWithWebcam(webcam));
+    imageSrc.push(await this.takePictureWithWebcam(webcam));
+    imageSrc.push(await this.takePictureWithWebcam(webcam));
+    imageSrc.push(await this.takePictureWithWebcam(webcam));
+
+    return imageSrc;
   };
 
   render = () => {

@@ -5,7 +5,7 @@ import { colorP, colorS, colorT } from './assets/variables';
 
 const initialState = {
   accessToken: '',
-  googleUser: {},
+  googleUser: false,
   frames: [],
   frame: {},
   filter: {},
