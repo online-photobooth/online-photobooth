@@ -116,10 +116,22 @@ Single Picture
       <input className={css`margin-top: 10px;`} type="text" value={settings.camera} onChange={e => setSettings({ ...settings, camera: e.target.value })} />
       <Heading type="heading--5" className="mt-8">Ffmpeg Server</Heading>
       <p className={css`margin-bottom: 10px;`}>You need this to use the Gif format and to add overlays.</p>
-      <input type="text" value={settings.ffmpeg} onChange={e => setSettings({ ...settings, ffmpeg: e.target.value })} />
+      <BaseButton
+        size="small"
+        onClick={() => setSettings({ ...settings, ffmpeg: 'online' })}
+      >
+          Online
+      </BaseButton>
+      <input className={css`margin-top: 10px;`} type="text" value={settings.ffmpeg} onChange={e => setSettings({ ...settings, ffmpeg: e.target.value })} />
       <Heading type="heading--5" className="mt-8">Node-canvas Server</Heading>
       <p className={css`margin-bottom: 10px;`}>You need this to use the filters.</p>
-      <input type="text" value={settings.canvas} onChange={e => setSettings({ ...settings, canvas: e.target.value })} />
+      <BaseButton
+        size="small"
+        onClick={() => setSettings({ ...settings, canvas: 'online' })}
+      >
+          Online
+      </BaseButton>
+      <input className={css`margin-top: 10px;`} type="text" value={settings.canvas} onChange={e => setSettings({ ...settings, canvas: e.target.value })} />
       <Heading type="heading--5" className="mt-8">Frames</Heading>
       <p className={css`margin-bottom: 10px;`}>These will be used as an overlay.</p>
       <input type="file" multiple onChange={e => addFile(e)} />
