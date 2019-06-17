@@ -37,7 +37,7 @@ const SelectFilterPage = ({ dispatch, history, filters }) => {
           <div className={css`
             display: flex;
             justify-content: space-between;
-            max-width: 100vw;
+            max-width: 90vw;
           `}
           >
             {filters && renderImages()}

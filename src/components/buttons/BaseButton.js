@@ -17,6 +17,7 @@ const BaseButton = ({
     border-radius: 0;
     border: none;
     box-shadow: 0px 0.5px 1px 0px rgba(29,29,27,0.75);
+    outline: none;
     `}
     onClick={onClick}
     type={type}
