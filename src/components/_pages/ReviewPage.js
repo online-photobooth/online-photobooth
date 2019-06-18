@@ -70,7 +70,7 @@ class ReviewPage extends React.Component {
 
   render = () => {
     const { gif, loading } = this.state;
-    const { history } = this.props;
+    const { history, ffmpegServer } = this.props;
 
     return (
       <div>
@@ -93,7 +93,7 @@ class ReviewPage extends React.Component {
           >
             {!gif && (
               <img
-                src={`${process.env.REACT_APP_SERVER_URL}/images/picture.jpg?t=${new Date()}`}
+                src={`${ffmpegServer}/images/picture.jpg?t=${new Date()}`}
                 alt="Taken by our photobooth."
                 className={css`
               max-width: 100%;
@@ -111,7 +111,7 @@ class ReviewPage extends React.Component {
                 max-width: 100%;
                 `}
               >
-                <source src={`${process.env.REACT_APP_SERVER_URL}/videos/video.mp4?t=${new Date()}`} type="video/mp4" />
+                <source src={`${ffmpegServer}/videos/video.mp4?t=${new Date()}`} type="video/mp4" />
               </video>
             )}
           </div>
