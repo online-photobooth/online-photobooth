@@ -39,14 +39,22 @@ class PreviewPage extends React.Component {
 
   takePicture = async () => {
     const {
-      history, frame, filter, cameraServer,
+      history, frame, filter, cameraServer, ffmpegServer,
     } = this.props;
 
     this.setState({ loading: true });
 
     if (cameraServer === 'webcam') {
-      const imageSrc = await this.takePictureWithWebcam(this.webcam);
-      console.log('TCL: PreviewPage -> takePicture -> imageSrc', imageSrc);
+      const image = await this.takePictureWithWebcam(this.webcam);
+
+      try {
+        await axios.post(`${ffmpegServer}/takePicture`, { frame, filter, image });
+        this.setState({ loading: false });
+
+        history.push('/review');
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       try {
         await axios.post(`${cameraServer}/takePicture`, { frame, filter });
@@ -68,8 +76,16 @@ class PreviewPage extends React.Component {
     this.setState({ loading: true });
 
     if (cameraServer === 'webcam') {
-      const imageSrc = await this.takeGifWithWebcam(this.webcam);
-      console.log('TCL: takePictureWithWebcam -> imageSrc', imageSrc);
+      const images = await this.takeGifWithWebcam(this.webcam);
+      try {
+        await axios.post(`${ffmpegServer}/createGif`, {
+          frame,
+          filter,
+          images,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       try {
         await axios.post(`${cameraServer}/takeGif`, {

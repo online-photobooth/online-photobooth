@@ -33,7 +33,7 @@ class ReviewPage extends React.Component {
     await checkRefresh();
 
     const {
-      history, accessToken, album, format, cameraServer,
+      history, accessToken, album, format, ffmpegServer,
     } = this.props;
 
     this.setState({ loading: true });
@@ -41,7 +41,7 @@ class ReviewPage extends React.Component {
     const formatUrl = format === 'single' ? 'uploadLastImageTaken' : 'uploadLastGifTaken';
 
     try {
-      const resp = await axios.post(`${cameraServer}/${formatUrl}`, {
+      const resp = await axios.post(`${ffmpegServer}/${formatUrl}`, {
         token: accessToken,
         album: album.id,
       });
@@ -156,6 +156,7 @@ const mapStateToProps = state => ({
   format: state.format,
   album: state.album,
   cameraServer: state.settings.camera,
+  ffmpegServer: state.settings.ffmpeg,
 });
 
 export default connect(mapStateToProps)(ReviewPage);
