@@ -48,10 +48,11 @@ class PreviewPage extends React.Component {
       const image = await this.takePictureWithWebcam(this.webcam);
 
       try {
-        await axios.post(`${ffmpegServer}/takePicture`, { frame, filter, image });
+        const imageWithOverlay = await axios.post(`${ffmpegServer}/takePicture`, { frame, filter, image });
+        console.log('TCL: PreviewPage -> takePicture -> imageWithOverlay', imageWithOverlay);
         this.setState({ loading: false });
 
-        history.push('/review');
+        history.push('/review', { image: imageWithOverlay.data });
       } catch (error) {
         console.log(error);
       }

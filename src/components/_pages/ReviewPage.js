@@ -38,6 +38,7 @@ class ReviewPage extends React.Component {
 
     this.setState({ loading: true });
 
+
     const formatUrl = format === 'single' ? 'uploadLastImageTaken' : 'uploadLastGifTaken';
 
     try {
@@ -63,14 +64,16 @@ class ReviewPage extends React.Component {
       } else {
         console.log(error);
       }
-    } finally {
-      this.setState({ loading: false });
     }
+    this.setState({ loading: false });
   }
 
   render = () => {
     const { gif, loading } = this.state;
     const { history, ffmpegServer } = this.props;
+
+    const imagePath = history.location.state.image || `${ffmpegServer}/images/picture.jpg?t=${new Date()}`;
+    const videoPath = `${ffmpegServer}/videos/video.mp4?t=${new Date()}`;
 
     return (
       <div>
@@ -93,7 +96,7 @@ class ReviewPage extends React.Component {
           >
             {!gif && (
               <img
-                src={`${ffmpegServer}/images/picture.jpg?t=${new Date()}`}
+                src={imagePath}
                 alt="Taken by our photobooth."
                 className={css`
               max-width: 100%;
@@ -111,7 +114,7 @@ class ReviewPage extends React.Component {
                 max-width: 100%;
                 `}
               >
-                <source src={`${ffmpegServer}/videos/video.mp4?t=${new Date()}`} type="video/mp4" />
+                <source src={videoPath} type="video/mp4" />
               </video>
             )}
           </div>
