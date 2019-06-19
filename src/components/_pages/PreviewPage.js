@@ -10,6 +10,7 @@ import CountdownButton from '../countdown/CountdownButton';
 import { checkRefresh } from '../services/refreshLogin';
 import RegularButton from '../buttons/RegularButton';
 import Heading from '../titles/Heading';
+// import filterous from '../../assets/filterous2';
 
 const click = new Audio('/sounds/click.mp3');
 
@@ -46,6 +47,12 @@ class PreviewPage extends React.Component {
 
     if (cameraServer === 'webcam') {
       const image = await this.takePictureWithWebcam(this.webcam);
+      // const imageDOM = document.querySelector('img.photo');
+      // const imgObj = new Image();
+      // imgObj.src = image;
+      // filterous.importImage(imgObj)
+      //   .applyInstaFilter(filter)
+      //   .renderHtml(imageDOM);
 
       try {
         const imageWithOverlay = await axios.post(`${ffmpegServer}/takePicture`, { frame, filter, image });
@@ -191,6 +198,7 @@ class PreviewPage extends React.Component {
             )
           }
         </div>
+        <img className="photo" alt="" />
 
         <SyncLoader
           color={colorS}

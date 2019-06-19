@@ -4,9 +4,7 @@ import { css } from 'emotion';
 import { Image } from 'cloudinary-react';
 import Heading from '../titles/Heading';
 
-const SelectFramePage = ({ dispatch, history }) => {
-  const frames = ['frame_1', 'frame_2'];
-
+const SelectFramePage = ({ dispatch, history, frames }) => {
   const setFrame = async (frame) => {
     await dispatch({
       type: 'SET_FRAME',
@@ -42,7 +40,7 @@ const SelectFramePage = ({ dispatch, history }) => {
 };
 
 const mapStateToProps = state => ({
-  frames: state.frames,
+  frames: state.settings.frames,
 });
 
 export default connect(mapStateToProps)(SelectFramePage);

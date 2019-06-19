@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'emotion';
 import axios from 'axios';
+import { Image } from 'cloudinary-react';
 import Heading from '../titles/Heading';
 import BaseButton from '../buttons/BaseButton';
 
 const Settings = ({ dispatch, history, storeSettings }) => {
   const [settings, setSettings] = useState(storeSettings);
-  const [frames, setFrames] = useState([]);
+  const [selectedFrame, setSelectedFrame] = useState('');
 
   const filters = [
     'normal', 'clarendon', 'gingham', 'moon', 'lark', 'reyes',
@@ -40,28 +41,55 @@ const Settings = ({ dispatch, history, storeSettings }) => {
     ));
   }
 
-  async function uploadFiles() {
+  function removeFrame(frameId) {
+    setSettings({ ...settings, frames: settings.frames.filter(frame => frame !== frameId) });
+  }
+
+  function renderFrames() {
+    return settings.frames.map(frame => (
+      <div
+        className={css`display: flex; flex-direction: column; margin: 5px;`}
+        key={frame}
+      >
+        <Image
+          cloudName="perjor"
+          publicId={frame}
+          width="200"
+          height="100"
+          crop="scale"
+          className={css`border: 2px solid black; margin-bottom: 5px;`}
+        />
+        <BaseButton size="small" onClick={() => removeFrame(frame)}>Remove</BaseButton>
+      </div>
+    ));
+  }
+
+  async function uploadFrame(e) {
+    e.preventDefault();
     const url = 'https://api.cloudinary.com/v1_1/perjor/upload';
+    const uploadPreset = 'sjvk75pb';
+
+    const data = new FormData();
+    data.append('file', selectedFrame);
+    data.append('upload_preset', uploadPreset);
+    data.append('tags', 'photobooth');
+
     try {
-      await Promise.all(frames.forEach((frame) => {
-        axios.post(url, {
-          file: frame,
-          tags: 'photobooth',
-        });
-      }));
+      const resp = await axios.post(url, data);
+      console.log('TCL: uploadFrame -> resp', resp);
+      setSettings({ ...settings, frames: [...settings.frames, resp.data.public_id] });
+      setSelectedFrame('');
     } catch (error) {
       console.log('TCL: uploadFiles -> error', error);
     }
   }
 
-  function addFile(e) {
+  function addFrame(e) {
     e.persist();
-    console.log('TCL: addFile -> e', e);
-    setFrames([...frames, e.target.files[0]]);
+    setSelectedFrame(e.target.files[0]);
   }
 
   async function save() {
-    uploadFiles();
     await dispatch({
       type: 'SET_SETTINGS',
       payload: settings,
@@ -91,7 +119,6 @@ const Settings = ({ dispatch, history, storeSettings }) => {
 Single Picture
             {' '}
             { settings.format.single ? 'Enabled' : 'Disabled'}
-
           </BaseButton>
         </div>
         <BaseButton
@@ -102,7 +129,6 @@ Single Picture
           Gif
           {' '}
           { settings.format.gif ? 'Enabled' : 'Disabled'}
-
         </BaseButton>
       </div>
       <Heading type="heading--5" className="mt-8">Camera</Heading>
@@ -134,7 +160,13 @@ Single Picture
       <input className={css`margin-top: 10px;`} type="text" value={settings.canvas} onChange={e => setSettings({ ...settings, canvas: e.target.value })} />
       <Heading type="heading--5" className="mt-8">Frames</Heading>
       <p className={css`margin-bottom: 10px;`}>These will be used as an overlay.</p>
-      <input type="file" multiple onChange={e => addFile(e)} />
+      <div className={css`display: flex;`}>
+        { renderFrames() }
+      </div>
+      <form encType="multipart/form-data" onSubmit={e => uploadFrame(e)}>
+        <input type="file" onChange={e => addFrame(e)} />
+        <BaseButton size="small" type="submit">Add Frame</BaseButton>
+      </form>
       <Heading type="heading--5" className="mt-8">Filters</Heading>
       <div className={css`display: flex; flex-flow: wrap; max-width: 70vw; align-items: center;`}>
         {renderFilters()}

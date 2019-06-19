@@ -6,7 +6,6 @@ import { colorP, colorS, colorT } from './assets/variables';
 const initialState = {
   accessToken: '',
   googleUser: false,
-  frames: [],
   frame: {},
   filter: {},
   album: {},
@@ -29,6 +28,7 @@ const initialState = {
     text: {
       footer: '',
     },
+    frames: ['frame_1', 'frame_2'],
   },
 };
 
