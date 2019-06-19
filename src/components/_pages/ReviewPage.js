@@ -72,7 +72,7 @@ class ReviewPage extends React.Component {
     const { gif, loading } = this.state;
     const { history, ffmpegServer } = this.props;
 
-    const imagePath = history.location.state.image || `${ffmpegServer}/images/picture.jpg?t=${new Date()}`;
+    const imagePath = (history.location.state && history.location.state.image) || `${ffmpegServer}/images/picture.jpg?t=${new Date()}`;
     const videoPath = `${ffmpegServer}/videos/video.mp4?t=${new Date()}`;
 
     return (
