@@ -14,6 +14,7 @@ const SelectFilterPage = ({ dispatch, history, filters }) => {
       history.push('/preview');
     }
   });
+
   const setFilter = async (filter) => {
     await dispatch({
       type: 'SET_FILTER',

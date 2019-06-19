@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'emotion';
 import { Image } from 'cloudinary-react';
 import Heading from '../titles/Heading';
 
 const SelectFramePage = ({ dispatch, history, frames }) => {
+  useEffect(() => {
+    if (frames.length < 1) {
+      dispatch({
+        type: 'SET_FRAME',
+        payload: false,
+      });
+      history.push('/filter');
+    }
+  });
+
   const setFrame = async (frame) => {
     await dispatch({
       type: 'SET_FRAME',
