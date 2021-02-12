@@ -11,7 +11,7 @@
   "dependencies": {
     "add": "^2.0.6",
     "art": "^0.10.3",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.0.1",
     "cloudinary-react": "^1.1.1",
     "emotion": "^10.0.6",
